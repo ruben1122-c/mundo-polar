@@ -48,6 +48,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
       <div className="header-main">
         <button
           className="brand-button"
+          type="button"
           onClick={() => onNavigate("inicio")}
           aria-label="Ir al inicio"
         >
@@ -59,6 +60,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             <button
               key={item.id}
               className={currentPage === item.id ? "nav-link active" : "nav-link"}
+              type="button"
               onClick={() => onNavigate(item.id)}
               aria-current={currentPage === item.id ? "page" : undefined}
             >

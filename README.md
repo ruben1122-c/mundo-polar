@@ -8,7 +8,7 @@ prototipo exportado desde Figma Make.
 - React 18 + TypeScript
 - Vite 6
 - Tailwind CSS 4
-- Datos de productos locales en `src/data/products.ts`
+- Datos de productos locales en `src/data/products.ts` y `src/data/catalog.ts`
 
 ## Ejecutar en local
 
@@ -58,26 +58,31 @@ public/
     shared/           Recursos comunes del footer
 src/
   app/
-    components/       Header y adaptación responsive del lienzo Figma
+    components/       Header, footer y componentes comerciales responsivos
     App.tsx           Navegación y carga diferida de páginas
     navigation.ts     Rutas permitidas
   config/
     assets.ts         Fuente única de rutas de imágenes
   data/
-    products.ts       Catálogo mock preparado para una integración futura
+    products.ts       Datos del buscador local
+    catalog.ts        Productos, categorías y colecciones visuales
   pages/
     home/             Página Inicio
     hombre/           Colección Hombre
     mascotas/         Colección Mascotas
     mujer/            Colección Mujer
-    nosotros/         Página Nosotros y bloque ContactSection
+    nosotros/         Página Nosotros
     ofertas/          Página Ofertas
     contacto/         Vista independiente del bloque ContactSection
 ```
 
-Los bloques visuales internos exportados por Figma permanecen intactos para
-preservar el diseño original. Las imágenes se consumen desde `ASSETS`, evitando
-imports con hashes y copias duplicadas.
+El frontend usa layouts semánticos con Grid y Flexbox. Las páginas se adaptan
+desde 320 px hasta pantallas de escritorio sin escalar un lienzo fijo. Las
+imágenes se consumen desde `ASSETS`, evitando imports con hashes y copias
+duplicadas.
+
+El formulario de contacto y el newsletter solo realizan validación local y
+muestran un aviso de demostración; no envían información a ningún servicio.
 
 ## Imágenes
 

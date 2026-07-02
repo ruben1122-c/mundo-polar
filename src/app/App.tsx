@@ -1,5 +1,4 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { FigmaCanvas } from "./components/FigmaCanvas";
 import { Header } from "./components/Header";
 import { getPageFromPath, navigateTo, type Page } from "./navigation";
 import "./app.css";
@@ -50,9 +49,7 @@ export default function App() {
             </div>
           }
         >
-          <FigmaCanvas key={page} cropTop={page === "contacto" ? 0 : 72}>
-            <CurrentPage />
-          </FigmaCanvas>
+          <CurrentPage />
         </Suspense>
       </main>
     </div>
