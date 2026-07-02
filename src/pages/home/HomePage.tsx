@@ -1,5 +1,7 @@
 import svgPaths from "./svgPaths";
 import { ASSETS } from "@/config/assets";
+import { Footer } from "@/app/components/Footer";
+import { navigateTo } from "@/app/navigation";
 
 const img01 = ASSETS.home.hero;
 const imgCms01Jpg = ASSETS.home.familyAndPet;
@@ -94,12 +96,12 @@ function Frame17() {
 
 function Component52() {
   return (
-    <div className="h-[44px] relative shrink-0 w-[169px]" data-name="218">
-      <div aria-hidden className="absolute border border-black border-solid inset-0 pointer-events-none" />
-      <p className="-translate-x-1/2 [word-break:break-word] absolute font-['DM_Sans:Medium',sans-serif] font-medium h-[28px] leading-[28px] left-[calc(50%-0.5px)] text-[14px] text-black text-center top-[8px] tracking-[0.6px] uppercase w-[104px]" style={{ fontVariationSettings: '"opsz" 14' }}>
+    <button className="h-[44px] relative shrink-0 w-[169px] cursor-pointer group transition-transform duration-200 hover:scale-105 border-0 bg-transparent p-0" data-name="218" onClick={() => navigateTo("nosotros")}>
+      <div className="absolute border border-black border-solid inset-0 transition-colors duration-200 group-hover:bg-black" />
+      <p className="-translate-x-1/2 [word-break:break-word] absolute font-['DM_Sans:Medium',sans-serif] font-medium h-[28px] leading-[28px] left-[calc(50%-0.5px)] text-[14px] text-black group-hover:text-white text-center top-[8px] tracking-[0.6px] uppercase w-[104px] transition-colors duration-200" style={{ fontVariationSettings: '"opsz" 14' }}>
         conoce más
       </p>
-    </div>
+    </button>
   );
 }
 
@@ -176,9 +178,9 @@ function Component4() {
 
 function Background() {
   return (
-    <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[44.8px] left-1/2 rounded-[5px] top-[calc(50%+158.97px)] w-[139.41px]" data-name="Background">
+    <button className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[44.8px] left-1/2 rounded-[5px] top-[calc(50%+158.97px)] w-[139.41px] cursor-pointer transition-transform duration-200 hover:scale-105 hover:bg-slate-50 border-0 shadow-[0px_4px_10px_rgba(0,0,0,0.1)] p-0" data-name="Background" onClick={() => navigateTo("mujer")}>
       <Component4 />
-    </div>
+    </button>
   );
 }
 
@@ -219,9 +221,9 @@ function Component6() {
 
 function Background1() {
   return (
-    <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[44.8px] left-1/2 rounded-[5px] top-[calc(50%+158.97px)] w-[139.41px]" data-name="Background">
+    <button className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[44.8px] left-1/2 rounded-[5px] top-[calc(50%+158.97px)] w-[139.41px] cursor-pointer transition-transform duration-200 hover:scale-105 hover:bg-slate-50 border-0 shadow-[0px_4px_10px_rgba(0,0,0,0.1)] p-0" data-name="Background" onClick={() => navigateTo("hombre")}>
       <Component6 />
-    </div>
+    </button>
   );
 }
 
@@ -262,9 +264,9 @@ function Component8() {
 
 function Background2() {
   return (
-    <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[44.8px] left-1/2 rounded-[5px] top-[calc(50%+158.97px)] w-[139.41px]" data-name="Background">
+    <button className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[44.8px] left-1/2 rounded-[5px] top-[calc(50%+158.97px)] w-[139.41px] cursor-pointer transition-transform duration-200 hover:scale-105 hover:bg-slate-50 border-0 shadow-[0px_4px_10px_rgba(0,0,0,0.1)] p-0" data-name="Background" onClick={() => navigateTo("ofertas")}>
       <Component8 />
-    </div>
+    </button>
   );
 }
 
@@ -305,9 +307,9 @@ function Component10() {
 
 function Background3() {
   return (
-    <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[44.8px] left-1/2 rounded-[5px] top-[calc(50%+158.97px)] w-[139.41px]" data-name="Background">
+    <button className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[44.8px] left-1/2 rounded-[5px] top-[calc(50%+158.97px)] w-[139.41px] cursor-pointer transition-transform duration-200 hover:scale-105 hover:bg-slate-50 border-0 shadow-[0px_4px_10px_rgba(0,0,0,0.1)] p-0" data-name="Background" onClick={() => navigateTo("mascotas")}>
       <Component10 />
-    </div>
+    </button>
   );
 }
 
@@ -352,11 +354,11 @@ function Frame16() {
 
 function Link() {
   return (
-    <div className="h-[20px] relative shrink-0 w-[152px]" data-name="Link">
+    <button className="h-[20px] relative shrink-0 w-[152px] cursor-pointer hover:opacity-80 transition-opacity duration-200 border-0 bg-transparent p-0 text-left animate-pulse hover:animate-none" data-name="Link" onClick={() => navigateTo("ofertas")}>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Semi_Bold',sans-serif] font-semibold justify-center leading-[0] left-0 not-italic text-[#004ac6] text-[32px] top-[10px] tracking-[0.28px] whitespace-nowrap">
         <p className="leading-[20px]">Ver todos</p>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -1119,11 +1121,11 @@ function Container33() {
 
 function Button() {
   return (
-    <div className="bg-[#004ac6] content-stretch drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] flex h-[48px] items-center justify-center pb-[14.5px] pt-[13.5px] px-[32px] relative rounded-[2px] shrink-0" data-name="Button">
+    <button className="bg-[#004ac6] content-stretch drop-shadow-[0px_1px_1px_rgba(0,0,0,0.05)] flex h-[48px] items-center justify-center pb-[14.5px] pt-[13.5px] px-[32px] relative rounded-[2px] shrink-0 border-0 cursor-pointer" data-name="Button" onClick={() => navigateTo("ofertas")}>
       <div className="[word-break:break-word] flex flex-col font-['Inter:Semi_Bold',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-center text-white tracking-[0.28px] whitespace-nowrap">
         <p className="leading-[20px]">Ver ofertas</p>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -1156,11 +1158,11 @@ function ColeccionInvierno() {
 
 function Link1() {
   return (
-    <div className="h-[20px] relative shrink-0 w-[152px]" data-name="Link">
+    <button className="h-[20px] relative shrink-0 w-[152px] cursor-pointer hover:opacity-80 transition-opacity duration-200 border-0 bg-transparent p-0 text-left animate-pulse hover:animate-none" data-name="Link" onClick={() => navigateTo("ofertas")}>
       <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter:Semi_Bold',sans-serif] font-semibold justify-center leading-[0] left-0 not-italic text-[#004ac6] text-[32px] top-[10px] tracking-[0.28px] whitespace-nowrap">
         <p className="leading-[20px]">Ver todos</p>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -1920,311 +1922,6 @@ function Frame36() {
   );
 }
 
-function Label() {
-  return (
-    <div className="absolute h-[51px] left-0 top-[2px] w-[320.19px]" data-name="Label">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[51px] leading-[28px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[320.39px]">Recibe novedades, promociones y lanzamientos de nuestra colección de invierno.</p>
-    </div>
-  );
-}
-
-function Container66() {
-  return (
-    <div className="absolute h-[23px] left-[15px] overflow-clip right-[50px] top-[13.5px]" data-name="Container">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[normal] left-0 text-[#555] text-[16px] top-0 tracking-[0.3px] w-[133.884px]">Tu correo electrónico</p>
-    </div>
-  );
-}
-
-function Input() {
-  return (
-    <div className="absolute bg-white h-[50px] left-0 overflow-clip right-0 rounded-[5px] top-[106px]" data-name="Input">
-      <Container66 />
-    </div>
-  );
-}
-
-function NewsletterIconSvg() {
-  return (
-    <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[22px] top-1/2" data-name="newsletter-icon.svg">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
-        <g clipPath="url(#clip0_1_3605)" id="newsletter-icon.svg">
-          <path d={svgPaths.p15593200} fill="var(--fill-0, black)" id="Vector" />
-        </g>
-        <defs>
-          <clipPath id="clip0_1_3605">
-            <rect fill="white" height="22" width="22" />
-          </clipPath>
-        </defs>
-      </svg>
-    </div>
-  );
-}
-
-function NewsletterIconSvgFill() {
-  return (
-    <div className="absolute h-[50px] left-0 overflow-clip top-0 w-[52px]" data-name="newsletter-icon.svg fill">
-      <NewsletterIconSvg />
-    </div>
-  );
-}
-
-function Input1() {
-  return (
-    <div className="absolute h-[50px] overflow-clip right-0 rounded-[5px] top-[106px] w-[52px]" data-name="Input">
-      <NewsletterIconSvgFill />
-    </div>
-  );
-}
-
-function Form() {
-  return (
-    <div className="absolute h-[156px] left-0 right-0 top-[61px]" data-name="Form">
-      <Label />
-      <Input />
-      <Input1 />
-    </div>
-  );
-}
-
-function Section() {
-  return (
-    <div className="absolute h-[217px] left-[260px] right-[1296.92px] top-[65px]" data-name="Section">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[36px] leading-[36px] left-0 text-[24px] text-white top-0 w-[348px]">Mantente al día con Mundo Polar</p>
-      <Form />
-    </div>
-  );
-}
-
-function Icon() {
-  return (
-    <div className="absolute flex items-center justify-center left-0 size-[20px] top-[64.31px]">
-      <div className="-scale-y-100 flex-none">
-        <div className="relative size-[20px]" data-name="Icon">
-          <div className="absolute inset-[0_0_-2.74%_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20.5474">
-              <g id="Icon">
-                <path d={svgPaths.p35d52800} fill="var(--fill-0, #AAAAAA)" id="Vector" />
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Icon1() {
-  return (
-    <div className="absolute flex items-center justify-center left-0 size-[20px] top-[132.31px]">
-      <div className="-scale-y-100 flex-none">
-        <div className="relative size-[20px]" data-name="Icon" />
-      </div>
-    </div>
-  );
-}
-
-function Component53() {
-  return (
-    <div className="absolute h-[23px] left-[30px] top-[129px] w-[124.03px]" data-name="757">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[38px] leading-[24px] left-0 text-[#aaa] text-[16px] top-[-15px] tracking-[0.3px] w-[137px]">+51 962 690 195</p>
-    </div>
-  );
-}
-
-function Icon2() {
-  return (
-    <div className="absolute flex items-center justify-center left-0 size-[20px] top-[176.31px]">
-      <div className="-scale-y-100 flex-none">
-        <div className="relative size-[20px]" data-name="Icon">
-          <div className="absolute inset-[0_-0.2%_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20.0391 20">
-              <g id="Icon">
-                <path d={svgPaths.p1a119000} fill="var(--fill-0, #AAAAAA)" id="Vector" />
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Component54() {
-  return (
-    <div className="absolute h-[23px] left-[30px] top-[173px] w-[144.5px]" data-name="758">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[24px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[192px]">contacto@mundopolar.com</p>
-    </div>
-  );
-}
-
-function Section1() {
-  return (
-    <div className="absolute h-[197px] left-[681px] right-[876.66px] top-[74px]" data-name="Section">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[36px] leading-[36px] left-0 text-[24px] text-white top-0 w-[133px]">Contacto</p>
-      <Icon />
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[24px] left-[30px] text-[#aaa] text-[16px] top-[61px] tracking-[0.3px] w-[249.754px]">Lima, Perú</p>
-      <Icon1 />
-      <div className="absolute flex inset-[60.91%_94.47%_30.17%_0] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
-          <div className="relative size-full" data-name="Vector">
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20.0944 17.5586">
-              <path d={svgPaths.p37f20500} fill="var(--fill-0, #AAAAAA)" id="Vector" />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <Component53 />
-      <Icon2 />
-      <Component54 />
-    </div>
-  );
-}
-
-function Component55() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[2px] w-[64.33px]" data-name="759">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.42px] text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[113px]">Sobre Nosotros</p>
-    </div>
-  );
-}
-
-function Component56() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[35.8px] w-[95.91px]" data-name="760">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.42px] text-[#aaa] text-[16px] top-[0.2px] tracking-[0.3px] w-[134px]">Nuestra Colección</p>
-    </div>
-  );
-}
-
-function Component57() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[69.59px] w-[54.42px]" data-name="761">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.42px] text-[#aaa] text-[16px] top-[0.41px] tracking-[0.3px] w-[178px]">Preguntas Frecuentes</p>
-    </div>
-  );
-}
-
-function Component58() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[103.39px] w-[91.91px]" data-name="762">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[92.252px]">Contáctanos</p>
-    </div>
-  );
-}
-
-function Component59() {
-  return <div className="absolute h-[23px] left-0 top-[137.19px] w-[75.39px]" data-name="763" />;
-}
-
-function List() {
-  return (
-    <div className="absolute h-[163.98px] left-0 right-0 top-[61px]" data-name="List">
-      <Component55 />
-      <Component56 />
-      <Component57 />
-      <Component58 />
-      <Component59 />
-    </div>
-  );
-}
-
-function Section2() {
-  return (
-    <div className="absolute h-[224.98px] left-[1100.42px] right-[540.86px] top-[65px]" data-name="Section">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[36px] leading-[36px] left-0 text-[24px] text-white top-0 tracking-[0.3px] w-[158.633px]">Conócenos</p>
-      <List />
-    </div>
-  );
-}
-
-function Component60() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[2px] w-[85.75px]" data-name="764">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.14px] text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[170px]">Términos y Condiciones</p>
-    </div>
-  );
-}
-
-function Component61() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[35.8px] w-[67.03px]" data-name="765">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.14px] text-[#aaa] text-[16px] top-[0.2px] tracking-[0.3px] w-[170px]">Política de Privacidad</p>
-    </div>
-  );
-}
-
-function Component62() {
-  return (
-    <div className="absolute h-[23px] left-[-0.14px] top-[70px] w-[107px]" data-name="766">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[107px]">Guía de Tallas</p>
-    </div>
-  );
-}
-
-function Component63() {
-  return (
-    <div className="absolute h-[23px] left-[-0.14px] top-[103px] w-[115px]" data-name="767">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[180px]">Cambios y Devoluciones</p>
-    </div>
-  );
-}
-
-function List1() {
-  return (
-    <div className="absolute h-[163.98px] left-0 right-0 top-[61px]" data-name="List">
-      <Component60 />
-      <Component61 />
-      <Component62 />
-      <Component63 />
-    </div>
-  );
-}
-
-function Section3() {
-  return (
-    <div className="absolute h-[224.98px] left-[1409.14px] right-[260px] top-[65px]" data-name="Section">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[36px] leading-[36px] left-[-0.14px] text-[24px] text-white top-0 tracking-[0.3px] w-[158px]">Información</p>
-      <List1 />
-    </div>
-  );
-}
-
-function HorizontalBorder() {
-  return (
-    <div className="absolute border-[rgba(255,255,255,0.2)] border-b border-solid h-[365.98px] left-0 right-0 top-0" data-name="HorizontalBorder">
-      <Section />
-      <Section1 />
-      <Section2 />
-      <Section3 />
-    </div>
-  );
-}
-
-function Component64() {
-  return <div className="absolute h-[23px] left-[605.17px] top-[395.98px] w-[54.88px]" data-name="769" />;
-}
-
-function Component51() {
-  return (
-    <div className="absolute h-[25px] right-[260px] top-[395.98px] w-[282px]" data-name="68">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img68} />
-      </div>
-    </div>
-  );
-}
-
-function Footer() {
-  return (
-    <div className="bg-[#111] h-[511px] relative shrink-0 w-[1921px]" data-name="Footer">
-      <HorizontalBorder />
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[24px] leading-[24px] left-[260px] text-[#aaa] text-[16px] top-[396.17px] tracking-[0.3px] w-[427px]">© 2026 Mundo Polar — Todos los derechos reservados.</p>
-      <Component64 />
-      <Component51 />
-    </div>
-  );
-}
 
 function Frame29() {
   return (

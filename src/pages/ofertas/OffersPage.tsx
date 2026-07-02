@@ -1,5 +1,6 @@
 import svgPaths from "./svgPaths";
 import { ASSETS } from "@/config/assets";
+import { Footer } from "@/app/components/Footer";
 
 const imgRectangle114 = ASSETS.logo;
 const imgImage12 = ASSETS.ofertas.hero;
@@ -279,9 +280,9 @@ function Component5() {
 
 function Component34() {
   return (
-    <div className="absolute border border-black border-solid h-[44px] left-[262px] right-[1524.39px] rounded-[5px] top-[509px]" data-name="687">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[26px] leading-[42px] left-[14px] text-[16px] text-black top-[-1px] w-[103px]">Comprar ahora</p>
-    </div>
+    <button className="absolute border border-black border-solid h-[44px] left-[262px] right-[1524.39px] rounded-[5px] top-[509px] cursor-pointer transition-colors duration-200 hover:bg-black hover:text-white group bg-transparent p-0" data-name="687">
+      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[26px] leading-[42px] left-[14px] text-[16px] text-black group-hover:text-white top-[-1px] w-[103px] transition-colors duration-200">Comprar ahora</p>
+    </button>
   );
 }
 
@@ -2225,9 +2226,9 @@ function Container47() {
 
 function Component58() {
   return (
-    <div className="absolute h-[16px] left-[67px] rounded-[5px] top-[233.66px] w-[74.02px]" data-name="724">
+    <button className="absolute h-[16px] left-[67px] rounded-[5px] top-[233.66px] w-[74.02px] cursor-pointer transition-opacity duration-200 hover:opacity-75 border-0 bg-transparent p-0 text-left" data-name="724">
       <p className="-translate-x-1/2 [text-underline-position:from-font] [word-break:break-word] absolute capitalize decoration-from-font decoration-solid font-['Jost:Regular',sans-serif] font-normal h-[16px] leading-[16px] left-[calc(50%+21.49px)] text-[16px] text-black text-center top-0 tracking-[0.3px] underline w-[117px]">Comprar ahora</p>
-    </div>
+    </button>
   );
 }
 
@@ -2267,9 +2268,9 @@ function Container48() {
 
 function Component60() {
   return (
-    <div className="absolute h-[16px] left-[784px] rounded-[5px] top-[217.77px] w-[74.02px]" data-name="726">
+    <button className="absolute h-[16px] left-[784px] rounded-[5px] top-[217.77px] w-[74.02px] cursor-pointer transition-opacity duration-200 hover:opacity-75 border-0 bg-transparent p-0 text-left" data-name="726">
       <p className="-translate-x-1/2 [text-underline-position:from-font] [word-break:break-word] absolute capitalize decoration-from-font decoration-solid font-['Jost:Regular',sans-serif] font-normal h-[16px] leading-[16px] left-[calc(50%+20.49px)] text-[16px] text-black text-center top-[-0.11px] tracking-[0.3px] underline w-[115px]">Comprar ahora</p>
-    </div>
+    </button>
   );
 }
 
@@ -2307,9 +2308,9 @@ function Frame25() {
 
 function Component61() {
   return (
-    <div className="absolute border border-black border-solid h-[46.8px] left-0 rounded-[5px] top-[220.59px] w-[130.7px]" data-name="727">
-      <p className="-translate-x-1/2 [word-break:break-word] absolute capitalize font-['Jost:Regular',sans-serif] font-normal h-[28.8px] leading-[28.8px] left-[calc(50%+0.16px)] text-[16px] text-black text-center top-[8px] tracking-[0.3px] w-[77.018px]">read more</p>
-    </div>
+    <button className="absolute border border-black border-solid h-[46.8px] left-0 rounded-[5px] top-[220.59px] w-[130.7px] cursor-pointer transition-colors duration-200 hover:bg-black hover:text-white group bg-transparent p-0" data-name="727">
+      <p className="-translate-x-1/2 [word-break:break-word] absolute capitalize font-['Jost:Regular',sans-serif] font-normal h-[28.8px] leading-[28.8px] left-[calc(50%+0.16px)] text-[16px] text-black group-hover:text-white text-center top-[8px] tracking-[0.3px] w-[77.018px] transition-colors duration-200">read more</p>
+    </button>
   );
 }
 
@@ -2481,311 +2482,6 @@ function Frame26() {
   );
 }
 
-function Label() {
-  return (
-    <div className="absolute h-[51px] left-0 top-[2px] w-[320.19px]" data-name="Label">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[51px] leading-[28px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[320.39px]">Recibe novedades, promociones y lanzamientos de nuestra colección de invierno.</p>
-    </div>
-  );
-}
-
-function Container56() {
-  return (
-    <div className="absolute h-[23px] left-[15px] overflow-clip right-[50px] top-[13.5px]" data-name="Container">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[normal] left-0 text-[#555] text-[16px] top-0 tracking-[0.3px] w-[133.884px]">Tu correo electrónico</p>
-    </div>
-  );
-}
-
-function Input() {
-  return (
-    <div className="absolute bg-white h-[50px] left-0 overflow-clip right-0 rounded-[5px] top-[106px]" data-name="Input">
-      <Container56 />
-    </div>
-  );
-}
-
-function NewsletterIconSvg() {
-  return (
-    <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[22px] top-1/2" data-name="newsletter-icon.svg">
-      <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 22 22">
-        <g clipPath="url(#clip0_1_3605)" id="newsletter-icon.svg">
-          <path d={svgPaths.p15593200} fill="var(--fill-0, black)" id="Vector" />
-        </g>
-        <defs>
-          <clipPath id="clip0_1_3605">
-            <rect fill="white" height="22" width="22" />
-          </clipPath>
-        </defs>
-      </svg>
-    </div>
-  );
-}
-
-function NewsletterIconSvgFill() {
-  return (
-    <div className="absolute h-[50px] left-0 overflow-clip top-0 w-[52px]" data-name="newsletter-icon.svg fill">
-      <NewsletterIconSvg />
-    </div>
-  );
-}
-
-function Input1() {
-  return (
-    <div className="absolute h-[50px] overflow-clip right-0 rounded-[5px] top-[106px] w-[52px]" data-name="Input">
-      <NewsletterIconSvgFill />
-    </div>
-  );
-}
-
-function Form() {
-  return (
-    <div className="absolute h-[156px] left-0 right-0 top-[61px]" data-name="Form">
-      <Label />
-      <Input />
-      <Input1 />
-    </div>
-  );
-}
-
-function Section7() {
-  return (
-    <div className="absolute h-[217px] left-[260px] right-[1296.92px] top-[65px]" data-name="Section">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[36px] leading-[36px] left-0 text-[24px] text-white top-0 w-[348px]">Mantente al día con Mundo Polar</p>
-      <Form />
-    </div>
-  );
-}
-
-function Icon2() {
-  return (
-    <div className="absolute flex items-center justify-center left-0 size-[20px] top-[64.31px]">
-      <div className="-scale-y-100 flex-none">
-        <div className="relative size-[20px]" data-name="Icon">
-          <div className="absolute inset-[0_0_-2.74%_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 20.5474">
-              <g id="Icon">
-                <path d={svgPaths.p35d52800} fill="var(--fill-0, #AAAAAA)" id="Vector" />
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Icon3() {
-  return (
-    <div className="absolute flex items-center justify-center left-0 size-[20px] top-[132.31px]">
-      <div className="-scale-y-100 flex-none">
-        <div className="relative size-[20px]" data-name="Icon" />
-      </div>
-    </div>
-  );
-}
-
-function Component62() {
-  return (
-    <div className="absolute h-[23px] left-[30px] top-[129px] w-[124.03px]" data-name="757">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[38px] leading-[24px] left-0 text-[#aaa] text-[16px] top-[-15px] tracking-[0.3px] w-[137px]">+51 962 690 195</p>
-    </div>
-  );
-}
-
-function Icon4() {
-  return (
-    <div className="absolute flex items-center justify-center left-0 size-[20px] top-[176.31px]">
-      <div className="-scale-y-100 flex-none">
-        <div className="relative size-[20px]" data-name="Icon">
-          <div className="absolute inset-[0_-0.2%_0_0]">
-            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20.0391 20">
-              <g id="Icon">
-                <path d={svgPaths.p1a119000} fill="var(--fill-0, #AAAAAA)" id="Vector" />
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Component63() {
-  return (
-    <div className="absolute h-[23px] left-[30px] top-[173px] w-[144.5px]" data-name="758">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[24px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[192px]">contacto@mundopolar.com</p>
-    </div>
-  );
-}
-
-function Section8() {
-  return (
-    <div className="absolute h-[197px] left-[681px] right-[876.66px] top-[74px]" data-name="Section">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[36px] leading-[36px] left-0 text-[24px] text-white top-0 w-[133px]">Contacto</p>
-      <Icon2 />
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[24px] left-[30px] text-[#aaa] text-[16px] top-[61px] tracking-[0.3px] w-[249.754px]">Lima, Perú</p>
-      <Icon3 />
-      <div className="absolute flex inset-[60.91%_94.47%_30.17%_0] items-center justify-center" style={{ containerType: "size" }}>
-        <div className="-rotate-180 -scale-x-100 flex-none h-[100cqh] w-[100cqw]">
-          <div className="relative size-full" data-name="Vector">
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20.0944 17.5586">
-              <path d={svgPaths.p37f20500} fill="var(--fill-0, #AAAAAA)" id="Vector" />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <Component62 />
-      <Icon4 />
-      <Component63 />
-    </div>
-  );
-}
-
-function Component64() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[2px] w-[64.33px]" data-name="759">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.42px] text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[113px]">Sobre Nosotros</p>
-    </div>
-  );
-}
-
-function Component65() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[35.8px] w-[95.91px]" data-name="760">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.42px] text-[#aaa] text-[16px] top-[0.2px] tracking-[0.3px] w-[134px]">Nuestra Colección</p>
-    </div>
-  );
-}
-
-function Component66() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[69.59px] w-[54.42px]" data-name="761">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.42px] text-[#aaa] text-[16px] top-[0.41px] tracking-[0.3px] w-[178px]">Preguntas Frecuentes</p>
-    </div>
-  );
-}
-
-function Component67() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[103.39px] w-[91.91px]" data-name="762">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[92.252px]">Contáctanos</p>
-    </div>
-  );
-}
-
-function Component68() {
-  return <div className="absolute h-[23px] left-0 top-[137.19px] w-[75.39px]" data-name="763" />;
-}
-
-function List() {
-  return (
-    <div className="absolute h-[163.98px] left-0 right-0 top-[61px]" data-name="List">
-      <Component64 />
-      <Component65 />
-      <Component66 />
-      <Component67 />
-      <Component68 />
-    </div>
-  );
-}
-
-function Section9() {
-  return (
-    <div className="absolute h-[224.98px] left-[1100.42px] right-[540.86px] top-[65px]" data-name="Section">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[36px] leading-[36px] left-0 text-[24px] text-white top-0 tracking-[0.3px] w-[158.633px]">Conócenos</p>
-      <List />
-    </div>
-  );
-}
-
-function Component69() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[2px] w-[85.75px]" data-name="764">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.14px] text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[170px]">Términos y Condiciones</p>
-    </div>
-  );
-}
-
-function Component70() {
-  return (
-    <div className="absolute h-[23px] left-0 top-[35.8px] w-[67.03px]" data-name="765">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-[-0.14px] text-[#aaa] text-[16px] top-[0.2px] tracking-[0.3px] w-[170px]">Política de Privacidad</p>
-    </div>
-  );
-}
-
-function Component71() {
-  return (
-    <div className="absolute h-[23px] left-[-0.14px] top-[70px] w-[107px]" data-name="766">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[107px]">Guía de Tallas</p>
-    </div>
-  );
-}
-
-function Component72() {
-  return (
-    <div className="absolute h-[23px] left-[-0.14px] top-[103px] w-[115px]" data-name="767">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[23px] leading-[28.8px] left-0 text-[#aaa] text-[16px] top-0 tracking-[0.3px] w-[180px]">Cambios y Devoluciones</p>
-    </div>
-  );
-}
-
-function List1() {
-  return (
-    <div className="absolute h-[163.98px] left-0 right-0 top-[61px]" data-name="List">
-      <Component69 />
-      <Component70 />
-      <Component71 />
-      <Component72 />
-    </div>
-  );
-}
-
-function Section10() {
-  return (
-    <div className="absolute h-[224.98px] left-[1409.14px] right-[260px] top-[65px]" data-name="Section">
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[36px] leading-[36px] left-[-0.14px] text-[24px] text-white top-0 tracking-[0.3px] w-[158px]">Información</p>
-      <List1 />
-    </div>
-  );
-}
-
-function HorizontalBorder() {
-  return (
-    <div className="absolute border-[rgba(255,255,255,0.2)] border-b border-solid h-[365.98px] left-0 right-0 top-0" data-name="HorizontalBorder">
-      <Section7 />
-      <Section8 />
-      <Section9 />
-      <Section10 />
-    </div>
-  );
-}
-
-function Component73() {
-  return <div className="absolute h-[23px] left-[605.17px] top-[395.98px] w-[54.88px]" data-name="769" />;
-}
-
-function Component8() {
-  return (
-    <div className="absolute h-[25px] right-[260px] top-[395.98px] w-[282px]" data-name="68">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img68} />
-      </div>
-    </div>
-  );
-}
-
-function Footer() {
-  return (
-    <div className="absolute bg-[#111] h-[510.98px] left-0 right-0 top-[6326px]" data-name="Footer">
-      <HorizontalBorder />
-      <p className="[word-break:break-word] absolute font-['Jost:Regular',sans-serif] font-normal h-[24px] leading-[24px] left-[260px] text-[#aaa] text-[16px] top-[396.17px] tracking-[0.3px] w-[427px]">© 2026 Mundo Polar — Todos los derechos reservados.</p>
-      <Component73 />
-      <Component8 />
-    </div>
-  );
-}
 
 function Component() {
   return (
@@ -2793,7 +2489,7 @@ function Component() {
       <Frame20 />
       <ProductosDestacados />
       <Frame26 />
-      <Footer />
+      <Footer absoluteTop={6326} />
     </div>
   );
 }

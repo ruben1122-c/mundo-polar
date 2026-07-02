@@ -1,5 +1,7 @@
 const asset = (path: string) => `${import.meta.env.BASE_URL}assets/${path}`;
 
+export const publicAsset = asset;
+
 export const ASSETS = {
   logo: asset("logo/mundo-polar-logo.png"),
   shared: {

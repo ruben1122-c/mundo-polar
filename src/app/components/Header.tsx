@@ -1,5 +1,7 @@
+import { useMemo, useState } from "react";
 import { Heart, Search, ShoppingCart, UserRound } from "lucide-react";
 import { ASSETS } from "@/config/assets";
+import { mockProducts, type ProductCategory } from "@/data/products";
 import { NAV_ITEMS, type Page } from "../navigation";
 
 interface HeaderProps {
@@ -13,7 +15,33 @@ const placeholders = [
   { label: "Usuario (próximamente)", Icon: UserRound },
 ];
 
+const CATEGORY_PAGES: Record<ProductCategory, Page> = {
+  mujer: "mujer",
+  hombre: "hombre",
+  infantil: "ofertas",
+  mascotas: "mascotas",
+  accesorios: "ofertas",
+};
+
 export function Header({ currentPage, onNavigate }: HeaderProps) {
+  const [query, setQuery] = useState("");
+  const [notice, setNotice] = useState("");
+  const results = useMemo(() => {
+    const normalized = query.trim().toLocaleLowerCase("es");
+    if (!normalized) return [];
+
+    return mockProducts
+      .filter((product) =>
+        product.name.toLocaleLowerCase("es").includes(normalized),
+      )
+      .slice(0, 5);
+  }, [query]);
+
+  const openProductCategory = (category: ProductCategory) => {
+    setQuery("");
+    onNavigate(CATEGORY_PAGES[category]);
+  };
+
   return (
     <header className="site-header">
       <div className="header-main">
@@ -38,11 +66,41 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           ))}
         </nav>
 
-        <div className="header-tools" aria-label="Funciones futuras">
-          <div className="search-placeholder" aria-label="Búsqueda (próximamente)">
+        <div className="header-tools" aria-label="Herramientas">
+          <form
+            className="search-placeholder"
+            role="search"
+            onSubmit={(event) => {
+              event.preventDefault();
+              if (results[0]) openProductCategory(results[0].category);
+            }}
+          >
             <Search size={20} aria-hidden="true" />
-            <span>Buscar productos</span>
-          </div>
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Buscar productos"
+              aria-label="Buscar productos"
+            />
+            {query.trim() && (
+              <div className="search-results">
+                {results.length ? (
+                  results.map((product) => (
+                    <button
+                      key={product.id}
+                      type="button"
+                      onClick={() => openProductCategory(product.category)}
+                    >
+                      <span>{product.name}</span>
+                      <strong>S/ {product.price}</strong>
+                    </button>
+                  ))
+                ) : (
+                  <p>No encontramos productos.</p>
+                )}
+              </div>
+            )}
+          </form>
           <div className="commerce-placeholders">
             {placeholders.map(({ label, Icon }) => (
               <button
@@ -51,12 +109,22 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                 type="button"
                 aria-label={label}
                 title={label}
-                onClick={(event) => event.preventDefault()}
+                onClick={() => setNotice(label)}
               >
                 <Icon size={22} aria-hidden="true" />
               </button>
             ))}
           </div>
+          {notice && (
+            <button
+              className="header-notice"
+              type="button"
+              onClick={() => setNotice("")}
+              aria-live="polite"
+            >
+              {notice}. Esta función se habilitará más adelante.
+            </button>
+          )}
         </div>
       </div>
     </header>

@@ -1,4 +1,11 @@
-export type Page = "inicio" | "nosotros" | "ofertas" | "contacto";
+export type Page =
+  | "inicio"
+  | "nosotros"
+  | "ofertas"
+  | "contacto"
+  | "mujer"
+  | "hombre"
+  | "mascotas";
 
 export const NAV_ITEMS: ReadonlyArray<{
   id: Page;
@@ -12,9 +19,24 @@ export const NAV_ITEMS: ReadonlyArray<{
 ];
 
 export const PAGE_PATHS = Object.fromEntries(
-  NAV_ITEMS.map(({ id, path }) => [id, path]),
+  [
+    ...NAV_ITEMS,
+    { id: "mujer", path: "/mujer" },
+    { id: "hombre", path: "/hombre" },
+    { id: "mascotas", path: "/mascotas" },
+  ].map(({ id, path }) => [id, path]),
 ) as Record<Page, string>;
 
 export function getPageFromPath(pathname: string): Page {
-  return NAV_ITEMS.find(({ path }) => path === pathname)?.id ?? "inicio";
+  const match = Object.entries(PAGE_PATHS).find(([, path]) => path === pathname);
+  return (match?.[0] as Page | undefined) ?? "inicio";
+}
+
+export function navigateTo(target: Page) {
+  const path = PAGE_PATHS[target];
+  if (window.location.pathname !== path) {
+    window.history.pushState({}, "", path);
+    window.dispatchEvent(new Event("popstate"));
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }

@@ -1,4 +1,9 @@
-export type ProductCategory = "mujer" | "hombre" | "infantil" | "accesorios";
+export type ProductCategory =
+  | "mujer"
+  | "hombre"
+  | "infantil"
+  | "mascotas"
+  | "accesorios";
 
 export interface MockProduct {
   id: string;
@@ -46,5 +51,24 @@ export const mockProducts: ReadonlyArray<MockProduct> = [
     category: "infantil",
     price: 129,
     featured: true,
+  },
+  {
+    id: "polar-clasico-hombre",
+    name: "Polar clásico para hombre",
+    category: "hombre",
+    price: 50,
+    featured: true,
+  },
+  {
+    id: "bufanda-polar-mascota",
+    name: "Bufanda polar para mascota",
+    category: "mascotas",
+    price: 35,
+  },
+  {
+    id: "sueter-tejido-mascota",
+    name: "Suéter tejido para mascota",
+    category: "mascotas",
+    price: 55,
   },
 ];

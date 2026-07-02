@@ -36,9 +36,18 @@ Las únicas rutas disponibles son:
 - `/nosotros` — Nosotros
 - `/ofertas` — Ofertas
 - `/contacto` — Contacto
+- `/mujer` — Colección Mujer
+- `/hombre` — Colección Hombre
+- `/mascotas` — Colección Mascotas
 
-El buscador y los iconos de favoritos, carrito y usuario son placeholders
-visuales. No existe backend, base de datos, autenticación, checkout ni pagos.
+El buscador funciona con los productos mock locales y redirige a la categoría
+correspondiente. Los botones de Inicio conectan con Mujer, Hombre, Mascotas y
+Ofertas; Niños redirige a Ofertas porque el prototipo no incluye todavía una
+pantalla infantil independiente.
+
+Los iconos de favoritos, carrito y usuario muestran un aviso informativo y
+siguen reservados para una implementación futura. No existe backend, base de
+datos, autenticación, checkout ni pagos.
 
 ## Estructura principal
 
@@ -62,6 +71,9 @@ src/
     products.ts       Catálogo mock preparado para una integración futura
   pages/
     home/             Página Inicio
+    hombre/           Colección Hombre
+    mascotas/         Colección Mascotas
+    mujer/            Colección Mujer
     nosotros/         Página Nosotros y bloque ContactSection
     ofertas/          Página Ofertas
     contacto/         Vista independiente del bloque ContactSection

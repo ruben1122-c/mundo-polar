@@ -1,19 +1,25 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { FigmaCanvas } from "./components/FigmaCanvas";
 import { Header } from "./components/Header";
-import { getPageFromPath, type Page, PAGE_PATHS } from "./navigation";
+import { getPageFromPath, navigateTo, type Page } from "./navigation";
 import "./app.css";
 
 const HomePage = lazy(() => import("@/pages/home/HomePage"));
 const NosotrosPage = lazy(() => import("@/pages/nosotros/NosotrosPage"));
 const OffersPage = lazy(() => import("@/pages/ofertas/OffersPage"));
 const ContactPage = lazy(() => import("@/pages/contacto/ContactPage"));
+const MujerPage = lazy(() => import("@/pages/mujer/MujerPage"));
+const HombrePage = lazy(() => import("@/pages/hombre/HombrePage"));
+const MascotasPage = lazy(() => import("@/pages/mascotas/MascotasPage"));
 
 const pages: Record<Page, React.LazyExoticComponent<React.ComponentType>> = {
   inicio: HomePage,
   nosotros: NosotrosPage,
   ofertas: OffersPage,
   contacto: ContactPage,
+  mujer: MujerPage,
+  hombre: HombrePage,
+  mascotas: MascotasPage,
 };
 
 export default function App() {
@@ -28,11 +34,7 @@ export default function App() {
   }, []);
 
   const navigate = (target: Page) => {
-    if (target !== page) {
-      window.history.pushState({}, "", PAGE_PATHS[target]);
-      setPage(target);
-    }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    navigateTo(target);
   };
 
   const CurrentPage = pages[page];
