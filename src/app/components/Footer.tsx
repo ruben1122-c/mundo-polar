@@ -1,3 +1,4 @@
+import { OptimizedImage } from "@/app/components/OptimizedImage";
 import { ASSETS } from "@/config/assets";
 
 const footerSvgPaths = {
@@ -336,7 +337,7 @@ function Component51() {
   return (
     <div className="absolute h-[25px] right-[260px] top-[395.98px] w-[282px]" data-name="68">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img68} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img68} />
       </div>
     </div>
   );

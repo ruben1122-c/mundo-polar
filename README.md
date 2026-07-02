@@ -54,11 +54,7 @@ datos, autenticación, checkout ni pagos.
 ```text
 public/
   assets/
-    home/             Recursos exclusivos de Inicio
     logo/             Identidad de Mundo Polar
-    nosotros/         Recursos exclusivos de Nosotros
-    ofertas/          Banners, categorías y testimonios de Ofertas
-    products/         Imágenes de producto compartidas
     shared/           Recursos comunes del footer
 src/
   app/
@@ -82,3 +78,13 @@ src/
 Los bloques visuales internos exportados por Figma permanecen intactos para
 preservar el diseño original. Las imágenes se consumen desde `ASSETS`, evitando
 imports con hashes y copias duplicadas.
+
+## Imágenes
+
+Las fotografías, productos y banners se sirven desde Cloudinary mediante
+`src/config/assets.ts`. `OptimizedImage` genera formatos y tamaños responsivos,
+además de aplicar carga diferida fuera del primer viewport.
+
+Solo el logo y las marcas gráficas compartidas permanecen en `public/assets`.
+La API Key y el API Secret de Cloudinary no son necesarios en el navegador ni
+deben añadirse al repositorio.

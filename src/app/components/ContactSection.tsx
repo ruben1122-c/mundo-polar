@@ -1,3 +1,4 @@
+import { OptimizedImage } from "@/app/components/OptimizedImage";
 import React from "react";
 import svgPaths from "@/pages/nosotros/svgPaths";
 import { ASSETS } from "@/config/assets";
@@ -264,7 +265,7 @@ function Container107() {
     <div className="h-[260px] relative shrink-0 w-full" data-name="Container">
       <div aria-hidden className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 pointer-events-none">
         <div className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden">
-          <img alt="" className="absolute h-[188.55%] left-[-0.05%] max-w-none top-[-0.02%] w-full" src={imgContainer4} />
+          <OptimizedImage alt="" className="absolute h-[188.55%] left-[-0.05%] max-w-none top-[-0.02%] w-full" src={imgContainer4} />
         </div>
         <div className="absolute bg-clip-padding bg-gradient-to-t border-0 border-[transparent] border-solid from-[rgba(0,0,0,0.6)] inset-0 to-[rgba(0,0,0,0)]" />
       </div>
@@ -323,7 +324,7 @@ function Container112() {
 function ImageChaquetaCapucha() {
   return (
     <div className="absolute h-[229.075px] left-0 top-0 w-[171.813px]" data-name="Image (Chaqueta capucha)">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImageChaquetaCapucha} />
+      <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImageChaquetaCapucha} />
     </div>
   );
 }
@@ -386,7 +387,7 @@ function Container115() {
 function ImageAbrigoCorto() {
   return (
     <div className="absolute h-[229.075px] left-0 top-0 w-[171.813px]" data-name="Image (Abrigo corto)">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImageAbrigoCorto} />
+      <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImageAbrigoCorto} />
     </div>
   );
 }
@@ -449,7 +450,7 @@ function Container118() {
 function ImageHoodieFleece() {
   return (
     <div className="absolute h-[229.075px] left-0 top-0 w-[171.813px]" data-name="Image (Hoodie fleece)">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImageHoodieFleece} />
+      <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImageHoodieFleece} />
     </div>
   );
 }
@@ -512,7 +513,7 @@ function Container121() {
 function ImageSweaterCuello() {
   return (
     <div className="absolute h-[229.075px] left-0 top-0 w-[171.813px]" data-name="Image (Sweater cuello)">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImageSweaterCuello} />
+      <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImageSweaterCuello} />
     </div>
   );
 }

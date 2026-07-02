@@ -1,43 +1,44 @@
+import { OptimizedImage } from "@/app/components/OptimizedImage";
 import svgPaths from "./svgPaths";
-import { publicAsset } from "@/config/assets";
+import { ASSETS } from "@/config/assets";
 import { navigateTo } from "@/app/navigation";
 
-const img13 = publicAsset("mascotas/hero-mascotas.png");
-const img68 = publicAsset("shared/footer-marks.png");
-const imgImage46 = publicAsset("mascotas/i-ma-ge46.png");
-const imgImage45 = publicAsset("mascotas/i-ma-ge45.png");
-const imgImage48 = publicAsset("mascotas/i-ma-ge48.png");
-const imgImage49 = publicAsset("mascotas/i-ma-ge49.png");
-const imgOddCoolSleeveVentCollarKnit = publicAsset("mascotas/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it.png");
-const imgOddCoolSleeveVentCollarKnit1 = publicAsset("mascotas/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it1.png");
-const imgOddCoolSleeveVentCollarKnit2 = publicAsset("mascotas/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it2.png");
-const imgOddCoolSleeveVentCollarKnit3 = publicAsset("mascotas/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it3.png");
-const imgOddCoolSleeveVentCollarKnit4 = publicAsset("mascotas/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it4.png");
-const imgOddCoolSleeveVentCollarKnit5 = publicAsset("mascotas/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it5.png");
-const imgOddCoolSleeveVentCollarKnit6 = publicAsset("mascotas/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it6.png");
-const imgOddCoolSleeveVentCollarKnit7 = publicAsset("mascotas/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it7.png");
-const imgSection = publicAsset("mascotas/s-ec-ti-on.png");
-const imgImage13 = publicAsset("mascotas/i-ma-ge13.png");
-const imgImage15 = publicAsset("mascotas/i-ma-ge15.png");
-const imgImage14 = publicAsset("mascotas/i-ma-ge14.png");
-const img702 = publicAsset("mascotas/702.png");
-const imgImage16 = publicAsset("mascotas/i-ma-ge16.png");
-const imgLinenDressWithBackOpeningDress = publicAsset("mascotas/l-in-en-dr-es-sw-it-hb-ac-ko-pe-ni-ng-dr-es-s.png");
-const imgWomenSolidPoloNeckCottonBlendWhiteTShirt = publicAsset("mascotas/w-om-en-so-li-dp-ol-on-ec-kc-ot-to-nb-le-nd-wh-it-et-sh-ir-t.png");
-const imgImage17 = publicAsset("mascotas/i-ma-ge17.png");
-const imgWomensRibbedTurtleneckBaseLayerUnderShirts = publicAsset("mascotas/w-om-en-sr-ib-be-dt-ur-tl-en-ec-kb-as-el-ay-er-un-de-rs-hi-rt-s.png");
-const imgCmsBanner01Jpg = publicAsset("mascotas/c-ms-ba-nn-er01-jp-g.png");
-const imgCmsBanner02Jpg = publicAsset("mascotas/c-ms-ba-nn-er02-jp-g.png");
-const imgTesti1Jpg = publicAsset("ofertas/testimonio-01.png");
-const imgTesti2Jpg = publicAsset("ofertas/testimonio-02.png");
-const imgTesti3Jpg = publicAsset("ofertas/testimonio-03.png");
-const imgRectangle114 = publicAsset("logo/mundo-polar-logo.png");
+const img13 = ASSETS.mascotas.img13;
+const img68 = ASSETS.mascotas.img68;
+const imgImage46 = ASSETS.mascotas.imgImage46;
+const imgImage45 = ASSETS.mascotas.imgImage45;
+const imgImage48 = ASSETS.mascotas.imgImage48;
+const imgImage49 = ASSETS.mascotas.imgImage49;
+const imgOddCoolSleeveVentCollarKnit = ASSETS.mascotas.imgOddCoolSleeveVentCollarKnit;
+const imgOddCoolSleeveVentCollarKnit1 = ASSETS.mascotas.imgOddCoolSleeveVentCollarKnit1;
+const imgOddCoolSleeveVentCollarKnit2 = ASSETS.mascotas.imgOddCoolSleeveVentCollarKnit2;
+const imgOddCoolSleeveVentCollarKnit3 = ASSETS.mascotas.imgOddCoolSleeveVentCollarKnit3;
+const imgOddCoolSleeveVentCollarKnit4 = ASSETS.mascotas.imgOddCoolSleeveVentCollarKnit4;
+const imgOddCoolSleeveVentCollarKnit5 = ASSETS.mascotas.imgOddCoolSleeveVentCollarKnit5;
+const imgOddCoolSleeveVentCollarKnit6 = ASSETS.mascotas.imgOddCoolSleeveVentCollarKnit6;
+const imgOddCoolSleeveVentCollarKnit7 = ASSETS.mascotas.imgOddCoolSleeveVentCollarKnit7;
+const imgSection = ASSETS.mascotas.imgSection;
+const imgImage13 = ASSETS.mascotas.imgImage13;
+const imgImage15 = ASSETS.mascotas.imgImage15;
+const imgImage14 = ASSETS.mascotas.imgImage14;
+const img702 = ASSETS.mascotas.img702;
+const imgImage16 = ASSETS.mascotas.imgImage16;
+const imgLinenDressWithBackOpeningDress = ASSETS.mascotas.imgLinenDressWithBackOpeningDress;
+const imgWomenSolidPoloNeckCottonBlendWhiteTShirt = ASSETS.mascotas.imgWomenSolidPoloNeckCottonBlendWhiteTShirt;
+const imgImage17 = ASSETS.mascotas.imgImage17;
+const imgWomensRibbedTurtleneckBaseLayerUnderShirts = ASSETS.mascotas.imgWomensRibbedTurtleneckBaseLayerUnderShirts;
+const imgCmsBanner01Jpg = ASSETS.mascotas.imgCmsBanner01Jpg;
+const imgCmsBanner02Jpg = ASSETS.mascotas.imgCmsBanner02Jpg;
+const imgTesti1Jpg = ASSETS.mascotas.imgTesti1Jpg;
+const imgTesti2Jpg = ASSETS.mascotas.imgTesti2Jpg;
+const imgTesti3Jpg = ASSETS.mascotas.imgTesti3Jpg;
+const imgRectangle114 = ASSETS.mascotas.imgRectangle114;
 
 function Component() {
   return (
     <div className="absolute h-[920px] left-[-24px] top-0 w-[1944px]" data-name="13">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img13} />
+        <OptimizedImage priority kind="hero" alt="" className="absolute left-0 max-w-none size-full top-0" src={img13} />
       </div>
     </div>
   );
@@ -458,7 +459,7 @@ function Component5() {
   return (
     <div className="absolute h-[25px] right-[260px] top-[395.98px] w-[282px]" data-name="68">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img68} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img68} />
       </div>
     </div>
   );
@@ -488,7 +489,7 @@ function Component46() {
     <div className="absolute h-[437px] left-0 overflow-clip right-0 top-0" data-name="715">
       <div className="absolute aspect-[248/563] left-0 right-0 top-0" data-name="image 46">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[56.72%] left-[0.11%] max-w-none top-[0.03%] w-[103%]" src={imgImage46} />
+          <OptimizedImage alt="" className="absolute h-[56.72%] left-[0.11%] max-w-none top-[0.03%] w-[103%]" src={imgImage46} />
         </div>
       </div>
       <Background />
@@ -614,7 +615,7 @@ function Component48() {
     <div className="absolute h-[437px] left-0 overflow-clip right-0 top-0" data-name="717">
       <div className="absolute aspect-[249/567] left-0 right-0 top-[-0.17px]" data-name="image 45">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[57.04%] left-[-1.92%] max-w-none top-[-0.48%] w-[104%]" src={imgImage45} />
+          <OptimizedImage alt="" className="absolute h-[57.04%] left-[-1.92%] max-w-none top-[-0.48%] w-[104%]" src={imgImage45} />
         </div>
       </div>
       <ParagraphBackground />
@@ -700,7 +701,7 @@ function Component50() {
     <div className="absolute h-[437px] left-0 overflow-clip right-0 top-0" data-name="719">
       <div className="absolute aspect-[244/565] left-0 right-0 top-[-0.17px]" data-name="image 48">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[58.6%] left-[-4.28%] max-w-none top-[-2.94%] w-[108.56%]" src={imgImage48} />
+          <OptimizedImage alt="" className="absolute h-[58.6%] left-[-4.28%] max-w-none top-[-2.94%] w-[108.56%]" src={imgImage48} />
         </div>
       </div>
       <Background4 />
@@ -782,7 +783,7 @@ function Component52() {
     <div className="absolute h-[437px] left-0 overflow-clip right-0 top-0" data-name="721">
       <div className="absolute aspect-[344/818] left-[-8px] right-[-9px] top-[0.17px]" data-name="image 49">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[54.03%] left-[-1.39%] max-w-none top-[-2.43%] w-[102.83%]" src={imgImage49} />
+          <OptimizedImage alt="" className="absolute h-[54.03%] left-[-1.39%] max-w-none top-[-2.43%] w-[102.83%]" src={imgImage49} />
         </div>
       </div>
       <Background6 />
@@ -891,7 +892,7 @@ function OddCoolSleeveVentCollarKnit() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit} />
       </div>
     </div>
   );
@@ -953,7 +954,7 @@ function OddCoolSleeveVentCollarKnit1() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit1} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit1} />
       </div>
     </div>
   );
@@ -1015,7 +1016,7 @@ function OddCoolSleeveVentCollarKnit2() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit2} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit2} />
       </div>
     </div>
   );
@@ -1077,7 +1078,7 @@ function OddCoolSleeveVentCollarKnit3() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit3} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit3} />
       </div>
     </div>
   );
@@ -1150,7 +1151,7 @@ function OddCoolSleeveVentCollarKnit4() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit4} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit4} />
       </div>
     </div>
   );
@@ -1212,7 +1213,7 @@ function OddCoolSleeveVentCollarKnit5() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit5} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit5} />
       </div>
     </div>
   );
@@ -1274,7 +1275,7 @@ function OddCoolSleeveVentCollarKnit6() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit6} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit6} />
       </div>
     </div>
   );
@@ -1336,7 +1337,7 @@ function OddCoolSleeveVentCollarKnit7() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit7} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit7} />
       </div>
     </div>
   );
@@ -1466,7 +1467,7 @@ function Section5() {
   return (
     <div className="h-[1035px] relative shrink-0 w-full" data-name="Section">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[100.89%] left-0 max-w-none top-[-0.45%] w-full" src={imgSection} />
+        <OptimizedImage alt="" className="absolute h-[100.89%] left-0 max-w-none top-[-0.45%] w-full" src={imgSection} />
       </div>
       <Container26 />
     </div>
@@ -1477,7 +1478,7 @@ function Component32() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[705px] left-1/2 overflow-clip rounded-[5px] top-1/2 w-[682px]" data-name="696">
       <div className="absolute h-[714px] left-0 top-0 w-[690px]" data-name="image 13">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage13} />
+        <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage13} />
       </div>
     </div>
   );
@@ -1512,7 +1513,7 @@ function Component33() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[337px] left-1/2 overflow-clip top-1/2 w-[322px]" data-name="698">
       <div className="absolute h-[337px] left-0 top-0 w-[322px]" data-name="image 15">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage15} />
+        <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage15} />
       </div>
     </div>
   );
@@ -1544,7 +1545,7 @@ function Component34() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[337px] left-1/2 overflow-clip top-1/2 w-[322px]" data-name="700">
       <div className="absolute h-[337px] left-[0.5px] top-0 w-[322px]" data-name="image 14">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage14} />
+        <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage14} />
       </div>
     </div>
   );
@@ -1588,7 +1589,7 @@ function Component35() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[337px] left-1/2 top-1/2 w-[322px]" data-name="702">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img702} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img702} />
       </div>
     </div>
   );
@@ -1623,7 +1624,7 @@ function Component36() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[337px] left-[calc(50%+0.5px)] overflow-clip rounded-[5px] top-1/2 w-[322px]" data-name="704">
       <div className="absolute h-[337px] left-0 top-0 w-[322px]" data-name="image 16">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage16} />
+        <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage16} />
       </div>
     </div>
   );
@@ -1685,7 +1686,7 @@ function LinenDressWithBackOpeningDress() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-0" data-name="Linen Dress With Back Opening Dress">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgLinenDressWithBackOpeningDress} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgLinenDressWithBackOpeningDress} />
       </div>
     </div>
   );
@@ -1747,7 +1748,7 @@ function WomenSolidPoloNeckCottonBlendWhiteTShirt() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-0" data-name="Women Solid Polo Neck Cotton Blend White T-Shirt">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgWomenSolidPoloNeckCottonBlendWhiteTShirt} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgWomenSolidPoloNeckCottonBlendWhiteTShirt} />
       </div>
     </div>
   );
@@ -1809,7 +1810,7 @@ function Component4() {
   return (
     <div className="absolute h-[437px] left-0 overflow-clip right-0 rounded-[5px] top-0" data-name="40">
       <div className="absolute h-[436px] left-0 top-px w-[327px]" data-name="image 17">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage17} />
+        <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage17} />
       </div>
     </div>
   );
@@ -1897,7 +1898,7 @@ function WomensRibbedTurtleneckBaseLayerUnderShirts() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-0" data-name="Womens Ribbed Turtleneck Base Layer Under Shirts">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgWomensRibbedTurtleneckBaseLayerUnderShirts} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgWomensRibbedTurtleneckBaseLayerUnderShirts} />
       </div>
     </div>
   );
@@ -2040,7 +2041,7 @@ function CmsBanner01Jpg() {
   return (
     <div className="-translate-x-1/2 absolute h-[319.06px] left-1/2 rounded-[5px] top-0 w-[685px]" data-name="cms-banner01.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgCmsBanner01Jpg} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgCmsBanner01Jpg} />
       </div>
     </div>
   );
@@ -2066,7 +2067,7 @@ function CmsBanner02Jpg() {
   return (
     <div className="-translate-x-1/2 absolute h-[319.06px] left-1/2 rounded-[5px] top-0 w-[685px]" data-name="cms-banner02.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgCmsBanner02Jpg} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgCmsBanner02Jpg} />
       </div>
     </div>
   );
@@ -2164,7 +2165,7 @@ function Testi1Jpg() {
   return (
     <div className="absolute left-[30px] rounded-[100px] size-[80px] top-[196.56px]" data-name="testi_1.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[100px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti1Jpg} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti1Jpg} />
       </div>
     </div>
   );
@@ -2203,7 +2204,7 @@ function Testi2Jpg() {
   return (
     <div className="absolute left-[30px] rounded-[100px] size-[80px] top-[196.56px]" data-name="testi_2.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[100px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti2Jpg} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti2Jpg} />
       </div>
     </div>
   );
@@ -2242,7 +2243,7 @@ function Testi3Jpg() {
   return (
     <div className="absolute left-[30px] rounded-[100px] size-[80px] top-[196.56px]" data-name="testi_3.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[100px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti3Jpg} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti3Jpg} />
       </div>
     </div>
   );
@@ -2353,7 +2354,7 @@ function Frame18() {
     <div className="content-stretch flex flex-col items-start p-[10px] relative shrink-0 w-[192px]">
       <div className="h-[69px] relative shrink-0 w-full">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-full left-[0.2%] max-w-none top-0 w-[99.59%]" src={imgRectangle114} />
+          <OptimizedImage alt="" className="absolute h-full left-[0.2%] max-w-none top-0 w-[99.59%]" src={imgRectangle114} />
         </div>
       </div>
     </div>

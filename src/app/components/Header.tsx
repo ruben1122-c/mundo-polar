@@ -1,3 +1,4 @@
+import { OptimizedImage } from "@/app/components/OptimizedImage";
 import { useMemo, useState } from "react";
 import { Heart, Search, ShoppingCart, UserRound } from "lucide-react";
 import { ASSETS } from "@/config/assets";
@@ -50,7 +51,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
           onClick={() => onNavigate("inicio")}
           aria-label="Ir al inicio"
         >
-          <img src={ASSETS.logo} alt="Mundo Polar" />
+          <OptimizedImage loading="eager" src={ASSETS.logo} alt="Mundo Polar" />
         </button>
 
         <nav className="primary-nav" aria-label="Navegación principal">

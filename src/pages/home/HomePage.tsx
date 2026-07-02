@@ -1,3 +1,4 @@
+import { OptimizedImage } from "@/app/components/OptimizedImage";
 import svgPaths from "./svgPaths";
 import { ASSETS } from "@/config/assets";
 import { Footer } from "@/app/components/Footer";
@@ -49,7 +50,7 @@ function Frame24() {
 function Component() {
   return (
     <div className="opacity-93 relative shrink-0 w-full" data-name="01">
-      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={img01} />
+      <OptimizedImage priority kind="hero" alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={img01} />
       <div className="content-stretch flex flex-col items-start px-[111px] py-[255px] relative size-full">
         <Frame24 />
       </div>
@@ -127,7 +128,7 @@ function Cms01Jpg() {
   return (
     <div className="h-[680px] relative shrink-0 w-[821px]" data-name="cms-01.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[106.4%] left-0 max-w-none top-[-3.15%] w-[99.96%]" src={imgCms01Jpg} />
+        <OptimizedImage alt="" className="absolute h-[106.4%] left-0 max-w-none top-[-3.15%] w-[99.96%]" src={imgCms01Jpg} />
       </div>
     </div>
   );
@@ -154,7 +155,7 @@ function Clothes() {
   return (
     <div className="absolute h-[453.39px] left-0 right-0 rounded-[5px] top-0" data-name="Clothes">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgClothes} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgClothes} />
       </div>
     </div>
   );
@@ -197,7 +198,7 @@ function Clothes1() {
   return (
     <div className="absolute h-[453.39px] left-0 right-0 rounded-[5px] top-0" data-name="Clothes">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgClothes1} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgClothes1} />
       </div>
     </div>
   );
@@ -240,7 +241,7 @@ function Clothes2() {
   return (
     <div className="absolute h-[453.39px] left-0 right-0 rounded-[5px] top-0" data-name="Clothes">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgClothes2} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgClothes2} />
       </div>
     </div>
   );
@@ -283,7 +284,7 @@ function Clothes3() {
   return (
     <div className="absolute h-[453.39px] left-0 right-0 rounded-[5px] top-0" data-name="Clothes">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgClothes3} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgClothes3} />
       </div>
     </div>
   );
@@ -377,7 +378,7 @@ function Component11() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="32">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img32} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img32} />
       </div>
     </div>
   );
@@ -439,7 +440,7 @@ function Component13() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="34">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img34} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img34} />
       </div>
     </div>
   );
@@ -501,7 +502,7 @@ function Component15() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="36">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img36} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img36} />
       </div>
     </div>
   );
@@ -563,7 +564,7 @@ function GildanMensHeavyCottonAdultTShirt() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="Gildan mens Heavy Cotton Adult T-Shirt">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgGildanMensHeavyCottonAdultTShirt} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgGildanMensHeavyCottonAdultTShirt} />
       </div>
     </div>
   );
@@ -645,7 +646,7 @@ function Component19() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="40">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img40} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img40} />
       </div>
     </div>
   );
@@ -730,7 +731,7 @@ function Component21() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="32">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img32} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img32} />
       </div>
     </div>
   );
@@ -792,7 +793,7 @@ function Component23() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="34">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img34} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img34} />
       </div>
     </div>
   );
@@ -854,7 +855,7 @@ function Component25() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="36">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img36} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img36} />
       </div>
     </div>
   );
@@ -916,7 +917,7 @@ function GildanMensHeavyCottonAdultTShirt1() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="Gildan mens Heavy Cotton Adult T-Shirt">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgGildanMensHeavyCottonAdultTShirt} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgGildanMensHeavyCottonAdultTShirt} />
       </div>
     </div>
   );
@@ -998,7 +999,7 @@ function Component29() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="40">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img40} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img40} />
       </div>
     </div>
   );
@@ -1145,7 +1146,7 @@ function ColeccionInvierno() {
   return (
     <div className="relative shrink-0 w-full" data-name="Colección Invierno">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[308%] left-[-0.03%] max-w-none top-[-123.14%] w-full" src={imgColeccionInvierno} />
+        <OptimizedImage alt="" className="absolute h-[308%] left-[-0.03%] max-w-none top-[-123.14%] w-full" src={imgColeccionInvierno} />
       </div>
       <div className="overflow-clip rounded-[inherit] size-full">
         <div className="content-stretch flex flex-col items-start px-[36px] py-[125px] relative size-full">
@@ -1181,7 +1182,7 @@ function Component31() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="32">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img32} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img32} />
       </div>
     </div>
   );
@@ -1243,7 +1244,7 @@ function Component33() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="34">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img34} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img34} />
       </div>
     </div>
   );
@@ -1305,7 +1306,7 @@ function Component35() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="36">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img36} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img36} />
       </div>
     </div>
   );
@@ -1367,7 +1368,7 @@ function GildanMensHeavyCottonAdultTShirt2() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="Gildan mens Heavy Cotton Adult T-Shirt">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgGildanMensHeavyCottonAdultTShirt} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgGildanMensHeavyCottonAdultTShirt} />
       </div>
     </div>
   );
@@ -1449,7 +1450,7 @@ function Component39() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="40">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img40} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img40} />
       </div>
     </div>
   );
@@ -1534,7 +1535,7 @@ function Component41() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="32">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img32} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img32} />
       </div>
     </div>
   );
@@ -1596,7 +1597,7 @@ function Component43() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="34">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img34} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img34} />
       </div>
     </div>
   );
@@ -1658,7 +1659,7 @@ function Component45() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="36">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img36} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img36} />
       </div>
     </div>
   );
@@ -1720,7 +1721,7 @@ function GildanMensHeavyCottonAdultTShirt3() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="Gildan mens Heavy Cotton Adult T-Shirt">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgGildanMensHeavyCottonAdultTShirt} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgGildanMensHeavyCottonAdultTShirt} />
       </div>
     </div>
   );
@@ -1802,7 +1803,7 @@ function Component49() {
   return (
     <div className="absolute h-[389.47px] left-0 right-0 top-0" data-name="40">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img40} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img40} />
       </div>
     </div>
   );
@@ -1937,7 +1938,7 @@ function Frame7() {
     <div className="content-stretch flex flex-col items-start p-[10px] relative shrink-0 w-[192px]">
       <div className="h-[69px] relative shrink-0 w-full">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-full left-[0.2%] max-w-none top-0 w-[99.59%]" src={imgRectangle114} />
+          <OptimizedImage alt="" className="absolute h-full left-[0.2%] max-w-none top-0 w-[99.59%]" src={imgRectangle114} />
         </div>
       </div>
     </div>

@@ -1,37 +1,38 @@
+import { OptimizedImage } from "@/app/components/OptimizedImage";
 import svgPaths from "./svgPaths";
-import { publicAsset } from "@/config/assets";
+import { ASSETS } from "@/config/assets";
 import { navigateTo } from "@/app/navigation";
 
-const imgRectangle143 = publicAsset("mujer/hero-mujer.png");
-const img68 = publicAsset("shared/footer-marks.png");
-const img42 = publicAsset("mujer/42.png");
-const imgWomensRibbedTurtleneckBaseLayerUnderShirts = publicAsset("mujer/w-om-en-sr-ib-be-dt-ur-tl-en-ec-kb-as-el-ay-er-un-de-rs-hi-rt-s.png");
-const imgAdagroWomensTShirtsTurtleNeckSlimFitTee = publicAsset("mujer/a-da-gr-ow-om-en-st-sh-ir-ts-tu-rt-le-ne-ck-sl-im-fi-tt-ee.png");
-const imgTommyHilfigerWomensKnitSheathDress = publicAsset("mujer/t-om-my-hi-lf-ig-er-wo-me-ns-kn-it-sh-ea-th-dr-es-s.png");
-const imgOddCoolSleeveVentCollarKnit = publicAsset("mujer/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it.png");
-const imgOddCoolSleeveVentCollarKnit1 = publicAsset("mujer/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it1.png");
-const imgOddCoolSleeveVentCollarKnit2 = publicAsset("mujer/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it2.png");
-const imgOddCoolSleeveVentCollarKnit3 = publicAsset("mujer/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it3.png");
-const imgOddCoolSleeveVentCollarKnit4 = publicAsset("mujer/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it4.png");
-const imgOddCoolSleeveVentCollarKnit5 = publicAsset("mujer/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it5.png");
-const imgOddCoolSleeveVentCollarKnit6 = publicAsset("mujer/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it6.png");
-const imgOddCoolSleeveVentCollarKnit7 = publicAsset("mujer/o-dd-co-ol-sl-ee-ve-ve-nt-co-ll-ar-kn-it7.png");
-const imgSection = publicAsset("mujer/s-ec-ti-on.png");
-const imgImage13 = publicAsset("mujer/i-ma-ge13.png");
-const imgImage15 = publicAsset("mujer/i-ma-ge15.png");
-const imgImage14 = publicAsset("mujer/i-ma-ge14.png");
-const img702 = publicAsset("mujer/702.png");
-const imgImage16 = publicAsset("mujer/i-ma-ge16.png");
-const imgLinenDressWithBackOpeningDress = publicAsset("mujer/l-in-en-dr-es-sw-it-hb-ac-ko-pe-ni-ng-dr-es-s.png");
-const imgWomenSolidPoloNeckCottonBlendWhiteTShirt = publicAsset("products/abrigo-corto-marron.png");
-const imgImage17 = publicAsset("products/chaqueta-capucha-marron.png");
-const imgWomensRibbedTurtleneckBaseLayerUnderShirts1 = publicAsset("mujer/w-om-en-sr-ib-be-dt-ur-tl-en-ec-kb-as-el-ay-er-un-de-rs-hi-rt-s1.png");
-const imgCmsBanner01Jpg = publicAsset("mujer/c-ms-ba-nn-er01-jp-g.png");
-const imgCmsBanner02Jpg = publicAsset("mujer/c-ms-ba-nn-er02-jp-g.png");
-const imgTesti1Jpg = publicAsset("mujer/t-es-ti1-jp-g.png");
-const imgTesti2Jpg = publicAsset("ofertas/testimonio-02.png");
-const imgTesti3Jpg = publicAsset("ofertas/testimonio-03.png");
-const imgRectangle114 = publicAsset("logo/mundo-polar-logo.png");
+const imgRectangle143 = ASSETS.mujer.imgRectangle143;
+const img68 = ASSETS.mujer.img68;
+const img42 = ASSETS.mujer.img42;
+const imgWomensRibbedTurtleneckBaseLayerUnderShirts = ASSETS.mujer.imgWomensRibbedTurtleneckBaseLayerUnderShirts;
+const imgAdagroWomensTShirtsTurtleNeckSlimFitTee = ASSETS.mujer.imgAdagroWomensTShirtsTurtleNeckSlimFitTee;
+const imgTommyHilfigerWomensKnitSheathDress = ASSETS.mujer.imgTommyHilfigerWomensKnitSheathDress;
+const imgOddCoolSleeveVentCollarKnit = ASSETS.mujer.imgOddCoolSleeveVentCollarKnit;
+const imgOddCoolSleeveVentCollarKnit1 = ASSETS.mujer.imgOddCoolSleeveVentCollarKnit1;
+const imgOddCoolSleeveVentCollarKnit2 = ASSETS.mujer.imgOddCoolSleeveVentCollarKnit2;
+const imgOddCoolSleeveVentCollarKnit3 = ASSETS.mujer.imgOddCoolSleeveVentCollarKnit3;
+const imgOddCoolSleeveVentCollarKnit4 = ASSETS.mujer.imgOddCoolSleeveVentCollarKnit4;
+const imgOddCoolSleeveVentCollarKnit5 = ASSETS.mujer.imgOddCoolSleeveVentCollarKnit5;
+const imgOddCoolSleeveVentCollarKnit6 = ASSETS.mujer.imgOddCoolSleeveVentCollarKnit6;
+const imgOddCoolSleeveVentCollarKnit7 = ASSETS.mujer.imgOddCoolSleeveVentCollarKnit7;
+const imgSection = ASSETS.mujer.imgSection;
+const imgImage13 = ASSETS.mujer.imgImage13;
+const imgImage15 = ASSETS.mujer.imgImage15;
+const imgImage14 = ASSETS.mujer.imgImage14;
+const img702 = ASSETS.mujer.img702;
+const imgImage16 = ASSETS.mujer.imgImage16;
+const imgLinenDressWithBackOpeningDress = ASSETS.mujer.imgLinenDressWithBackOpeningDress;
+const imgWomenSolidPoloNeckCottonBlendWhiteTShirt = ASSETS.mujer.imgWomenSolidPoloNeckCottonBlendWhiteTShirt;
+const imgImage17 = ASSETS.mujer.imgImage17;
+const imgWomensRibbedTurtleneckBaseLayerUnderShirts1 = ASSETS.mujer.imgWomensRibbedTurtleneckBaseLayerUnderShirts1;
+const imgCmsBanner01Jpg = ASSETS.mujer.imgCmsBanner01Jpg;
+const imgCmsBanner02Jpg = ASSETS.mujer.imgCmsBanner02Jpg;
+const imgTesti1Jpg = ASSETS.mujer.imgTesti1Jpg;
+const imgTesti2Jpg = ASSETS.mujer.imgTesti2Jpg;
+const imgTesti3Jpg = ASSETS.mujer.imgTesti3Jpg;
+const imgRectangle114 = ASSETS.mujer.imgRectangle114;
 
 function Label() {
   return (
@@ -322,7 +323,7 @@ function Component2() {
   return (
     <div className="absolute h-[25px] right-[260px] top-[395.98px] w-[282px]" data-name="68">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img68} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img68} />
       </div>
     </div>
   );
@@ -351,7 +352,7 @@ function Component1() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-0" data-name="42">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-[-4.65%] max-w-none size-[108.74%] top-[0.03%]" src={img42} />
+        <OptimizedImage alt="" className="absolute left-[-4.65%] max-w-none size-[108.74%] top-[0.03%]" src={img42} />
       </div>
     </div>
   );
@@ -439,7 +440,7 @@ function WomensRibbedTurtleneckBaseLayerUnderShirts() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-[-0.17px]" data-name="Womens Ribbed Turtleneck Base Layer Under Shirts">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute h-[99.95%] left-[-0.13%] max-w-none top-0 w-[99.91%]" src={imgWomensRibbedTurtleneckBaseLayerUnderShirts} />
+        <OptimizedImage alt="" className="absolute h-[99.95%] left-[-0.13%] max-w-none top-0 w-[99.91%]" src={imgWomensRibbedTurtleneckBaseLayerUnderShirts} />
       </div>
     </div>
   );
@@ -575,7 +576,7 @@ function AdagroWomensTShirtsTurtleNeckSlimFitTee() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-[-0.17px]" data-name="Adagro Womens T-shirts Turtle Neck Slim Fit Tee">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-[0.08%] max-w-none size-[99.97%] top-[0.03%]" src={imgAdagroWomensTShirtsTurtleNeckSlimFitTee} />
+        <OptimizedImage alt="" className="absolute left-[0.08%] max-w-none size-[99.97%] top-[0.03%]" src={imgAdagroWomensTShirtsTurtleNeckSlimFitTee} />
       </div>
     </div>
   );
@@ -663,7 +664,7 @@ function TommyHilfigerWomensKnitSheathDress() {
   return (
     <div className="absolute h-[421px] left-[6px] right-0 rounded-[5px] top-[7.83px]" data-name="Tommy Hilfiger Women's Knit Sheath Dress">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute h-[99.97%] left-[0.1%] max-w-none top-[-0.04%] w-[98.13%]" src={imgTommyHilfigerWomensKnitSheathDress} />
+        <OptimizedImage alt="" className="absolute h-[99.97%] left-[0.1%] max-w-none top-[-0.04%] w-[98.13%]" src={imgTommyHilfigerWomensKnitSheathDress} />
       </div>
     </div>
   );
@@ -772,7 +773,7 @@ function OddCoolSleeveVentCollarKnit() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit} />
       </div>
     </div>
   );
@@ -834,7 +835,7 @@ function OddCoolSleeveVentCollarKnit1() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit1} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit1} />
       </div>
     </div>
   );
@@ -896,7 +897,7 @@ function OddCoolSleeveVentCollarKnit2() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit2} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit2} />
       </div>
     </div>
   );
@@ -958,7 +959,7 @@ function OddCoolSleeveVentCollarKnit3() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit3} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit3} />
       </div>
     </div>
   );
@@ -1031,7 +1032,7 @@ function OddCoolSleeveVentCollarKnit4() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit4} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit4} />
       </div>
     </div>
   );
@@ -1093,7 +1094,7 @@ function OddCoolSleeveVentCollarKnit5() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit5} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit5} />
       </div>
     </div>
   );
@@ -1155,7 +1156,7 @@ function OddCoolSleeveVentCollarKnit6() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit6} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit6} />
       </div>
     </div>
   );
@@ -1217,7 +1218,7 @@ function OddCoolSleeveVentCollarKnit7() {
   return (
     <div className="absolute h-[425px] left-0 right-0 rounded-[5px] top-0" data-name="Odd Cool Sleeve Vent Collar Knit">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit7} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgOddCoolSleeveVentCollarKnit7} />
       </div>
     </div>
   );
@@ -1350,7 +1351,7 @@ function Section4() {
   return (
     <div className="relative shrink-0 w-full" data-name="Section">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[130.24%] left-[-29.02%] max-w-none top-[0.03%] w-[129.08%]" src={imgSection} />
+        <OptimizedImage alt="" className="absolute h-[130.24%] left-[-29.02%] max-w-none top-[0.03%] w-[129.08%]" src={imgSection} />
       </div>
       <div className="content-stretch flex flex-col items-start px-[245px] relative size-full">
         <Container26 />
@@ -1364,7 +1365,7 @@ function Component28() {
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[705px] left-[calc(50%+3px)] overflow-clip rounded-[5px] top-1/2 w-[682px]" data-name="696">
       <div className="absolute h-[714px] left-0 top-0 w-[690px]" data-name="image 13">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-full left-[5.11%] max-w-none top-[0.02%] w-[155.35%]" src={imgImage13} />
+          <OptimizedImage alt="" className="absolute h-full left-[5.11%] max-w-none top-[0.02%] w-[155.35%]" src={imgImage13} />
         </div>
       </div>
     </div>
@@ -1401,7 +1402,7 @@ function Component29() {
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[337px] left-1/2 overflow-clip top-1/2 w-[322px]" data-name="698">
       <div className="absolute h-[337px] left-0 top-0 w-[322px]" data-name="image 15">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[169.86%] left-[0.02%] max-w-none top-[-19.2%] w-full" src={imgImage15} />
+          <OptimizedImage alt="" className="absolute h-[169.86%] left-[0.02%] max-w-none top-[-19.2%] w-full" src={imgImage15} />
         </div>
       </div>
     </div>
@@ -1435,7 +1436,7 @@ function Component30() {
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[337px] left-1/2 overflow-clip top-1/2 w-[322px]" data-name="700">
       <div className="absolute h-[337px] left-[0.5px] top-0 w-[322px]" data-name="image 14">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-full left-[-4.36%] max-w-none top-[-0.14%] w-[156.99%]" src={imgImage14} />
+          <OptimizedImage alt="" className="absolute h-full left-[-4.36%] max-w-none top-[-0.14%] w-[156.99%]" src={imgImage14} />
         </div>
       </div>
     </div>
@@ -1480,7 +1481,7 @@ function Component31() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[337px] left-1/2 top-1/2 w-[322px]" data-name="702">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img702} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={img702} />
       </div>
     </div>
   );
@@ -1515,7 +1516,7 @@ function Component32() {
   return (
     <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[337px] left-[calc(50%+0.5px)] overflow-clip rounded-[5px] top-1/2 w-[322px]" data-name="704">
       <div className="absolute h-[337px] left-0 top-0 w-[322px]" data-name="image 16">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage16} />
+        <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage16} />
       </div>
     </div>
   );
@@ -1577,7 +1578,7 @@ function LinenDressWithBackOpeningDress() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-0" data-name="Linen Dress With Back Opening Dress">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgLinenDressWithBackOpeningDress} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgLinenDressWithBackOpeningDress} />
       </div>
     </div>
   );
@@ -1639,7 +1640,7 @@ function WomenSolidPoloNeckCottonBlendWhiteTShirt() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-0" data-name="Women Solid Polo Neck Cotton Blend White T-Shirt">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgWomenSolidPoloNeckCottonBlendWhiteTShirt} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgWomenSolidPoloNeckCottonBlendWhiteTShirt} />
       </div>
     </div>
   );
@@ -1701,7 +1702,7 @@ function Component() {
   return (
     <div className="absolute h-[437px] left-0 overflow-clip right-0 rounded-[5px] top-0" data-name="40">
       <div className="absolute h-[436px] left-0 top-px w-[327px]" data-name="image 17">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage17} />
+        <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage17} />
       </div>
     </div>
   );
@@ -1789,7 +1790,7 @@ function WomensRibbedTurtleneckBaseLayerUnderShirts1() {
   return (
     <div className="absolute h-[437px] left-0 right-0 rounded-[5px] top-0" data-name="Womens Ribbed Turtleneck Base Layer Under Shirts">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgWomensRibbedTurtleneckBaseLayerUnderShirts1} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgWomensRibbedTurtleneckBaseLayerUnderShirts1} />
       </div>
     </div>
   );
@@ -1989,7 +1990,7 @@ function CmsBanner01Jpg() {
   return (
     <div className="-translate-x-1/2 absolute h-[319px] left-1/2 rounded-[5px] top-[-0.34px] w-[685px]" data-name="cms-banner01.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute h-[139.44%] left-[-0.12%] max-w-none top-[0.06%] w-[139.41%]" src={imgCmsBanner01Jpg} />
+        <OptimizedImage alt="" className="absolute h-[139.44%] left-[-0.12%] max-w-none top-[0.06%] w-[139.41%]" src={imgCmsBanner01Jpg} />
       </div>
     </div>
   );
@@ -2015,7 +2016,7 @@ function CmsBanner02Jpg() {
   return (
     <div className="-translate-x-1/2 absolute h-[319px] left-1/2 rounded-[5px] top-[-0.34px] w-[685px]" data-name="cms-banner02.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[5px]">
-        <img alt="" className="absolute h-[100.02%] left-0 max-w-none top-[0.11%] w-full" src={imgCmsBanner02Jpg} />
+        <OptimizedImage alt="" className="absolute h-[100.02%] left-0 max-w-none top-[0.11%] w-full" src={imgCmsBanner02Jpg} />
       </div>
     </div>
   );
@@ -2113,7 +2114,7 @@ function Testi1Jpg() {
   return (
     <div className="absolute left-[30px] rounded-[100px] size-[80px] top-[196.56px]" data-name="testi_1.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[100px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti1Jpg} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti1Jpg} />
       </div>
     </div>
   );
@@ -2152,7 +2153,7 @@ function Testi2Jpg() {
   return (
     <div className="absolute left-[30px] rounded-[100px] size-[80px] top-[196.56px]" data-name="testi_2.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[100px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti2Jpg} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti2Jpg} />
       </div>
     </div>
   );
@@ -2191,7 +2192,7 @@ function Testi3Jpg() {
   return (
     <div className="absolute left-[30px] rounded-[100px] size-[80px] top-[196.56px]" data-name="testi_3.jpg">
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[100px]">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti3Jpg} />
+        <OptimizedImage alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTesti3Jpg} />
       </div>
     </div>
   );
@@ -2290,7 +2291,7 @@ function Frame18() {
     <div className="content-stretch flex flex-col items-start p-[10px] relative shrink-0 w-[192px]">
       <div className="h-[69px] relative shrink-0 w-full">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-full left-[0.2%] max-w-none top-0 w-[99.59%]" src={imgRectangle114} />
+          <OptimizedImage alt="" className="absolute h-full left-[0.2%] max-w-none top-0 w-[99.59%]" src={imgRectangle114} />
         </div>
       </div>
     </div>
@@ -2461,7 +2462,7 @@ export default function MujerPage() {
     <div className="content-stretch flex flex-col items-start relative size-full" data-name="Mujer">
       <div className="h-[846px] relative shrink-0 w-[1920px]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-[151.48%] left-[0.01%] max-w-none top-[-25.74%] w-full" src={imgRectangle143} />
+          <OptimizedImage priority kind="hero" alt="" className="absolute h-[151.48%] left-[0.01%] max-w-none top-[-25.74%] w-full" src={imgRectangle143} />
         </div>
       </div>
       <div className="bg-white h-[5483px] relative shrink-0 w-full" />

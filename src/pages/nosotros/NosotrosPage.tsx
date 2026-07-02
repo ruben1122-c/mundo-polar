@@ -1,3 +1,4 @@
+import { OptimizedImage } from "@/app/components/OptimizedImage";
 import svgPaths from "./svgPaths";
 import { ASSETS } from "@/config/assets";
 import { Footer } from "@/app/components/Footer";
@@ -21,7 +22,7 @@ function Frame6() {
     <div className="content-stretch flex flex-col items-start p-[10px] relative shrink-0 w-[192px]">
       <div className="h-[69px] relative shrink-0 w-full">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <img alt="" className="absolute h-full left-[0.2%] max-w-none top-0 w-[99.59%]" src={imgRectangle114} />
+          <OptimizedImage alt="" className="absolute h-full left-[0.2%] max-w-none top-0 w-[99.59%]" src={imgRectangle114} />
         </div>
       </div>
     </div>
@@ -313,7 +314,7 @@ function Hero() {
   return (
     <div className="h-[758px] relative shrink-0 w-full" data-name="Hero">
       <div className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[166.9%] left-0 max-w-none top-[-43.15%] w-full" src={imgHero} />
+        <OptimizedImage priority kind="hero" alt="" className="absolute h-[166.9%] left-0 max-w-none top-[-43.15%] w-full" src={imgHero} />
       </div>
       <div className="overflow-clip rounded-[inherit] size-full">
         <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start px-[141px] py-[187px] relative size-full">
@@ -432,7 +433,7 @@ function QuienesSomos() {
     <div className="bg-[#f5f5f5] h-[750px] relative shrink-0 w-full" data-name="QuienesSomos">
       <Container2 />
       <div className="absolute h-[688px] left-0 top-[62px] w-[960px]">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRectangle145} />
+        <OptimizedImage alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRectangle145} />
       </div>
     </div>
   );
@@ -1795,7 +1796,7 @@ function Container71() {
     <div className="absolute h-[730px] left-[960px] top-0 w-[960px]" data-name="Container">
       <div aria-hidden className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 overflow-hidden">
-          <img alt="" className="absolute h-[126.33%] left-[0.02%] max-w-none top-[-13.14%] w-full" src={imgContainer} />
+          <OptimizedImage alt="" className="absolute h-[126.33%] left-[0.02%] max-w-none top-[-13.14%] w-full" src={imgContainer} />
         </div>
         <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(142.75deg, rgba(20, 27, 43, 0.42) 0%, rgba(0, 0, 0, 0) 60%)" }} />
       </div>
@@ -2017,7 +2018,7 @@ function Container77() {
     <div className="h-[220px] relative shrink-0 w-full" data-name="Container">
       <div aria-hidden className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 pointer-events-none">
         <div className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden">
-          <img alt="" className="absolute h-[155.66%] left-[-0.02%] max-w-none top-[-43.68%] w-full" src={imgContainer1} />
+          <OptimizedImage alt="" className="absolute h-[155.66%] left-[-0.02%] max-w-none top-[-43.68%] w-full" src={imgContainer1} />
         </div>
         <div className="absolute bg-clip-padding bg-gradient-to-t border-0 border-[transparent] border-solid from-[rgba(0,0,0,0.5)] inset-0 to-[rgba(0,0,0,0)]" />
       </div>
@@ -2222,7 +2223,7 @@ function Container84() {
     <div className="h-[220px] relative shrink-0 w-full" data-name="Container">
       <div aria-hidden className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 pointer-events-none">
         <div className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden">
-          <img alt="" className="absolute h-[155.49%] left-[-0.17%] max-w-none top-[0.26%] w-full" src={imgContainer2} />
+          <OptimizedImage alt="" className="absolute h-[155.49%] left-[-0.17%] max-w-none top-[0.26%] w-full" src={imgContainer2} />
         </div>
         <div className="absolute bg-clip-padding bg-gradient-to-t border-0 border-[transparent] border-solid from-[rgba(0,0,0,0.5)] inset-0 to-[rgba(0,0,0,0)]" />
       </div>
@@ -2427,7 +2428,7 @@ function Container91() {
     <div className="h-[220px] relative shrink-0 w-full" data-name="Container">
       <div aria-hidden className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 pointer-events-none">
         <div className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden">
-          <img alt="" className="absolute h-[155.49%] left-[0.02%] max-w-none top-[-0.09%] w-full" src={imgContainer3} />
+          <OptimizedImage alt="" className="absolute h-[155.49%] left-[0.02%] max-w-none top-[-0.09%] w-full" src={imgContainer3} />
         </div>
         <div className="absolute bg-clip-padding bg-gradient-to-t border-0 border-[transparent] border-solid from-[rgba(0,0,0,0.5)] inset-0 to-[rgba(0,0,0,0)]" />
       </div>
