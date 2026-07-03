@@ -94,11 +94,10 @@ export function ProfileDropdown({
               <button
                 type="button"
                 role="menuitem"
-                onClick={() =>
-                  runMockAction(
-                    "La sección de ayuda estará disponible próximamente.",
-                  )
-                }
+                onClick={() => {
+                  close();
+                  onNavigate("ayuda");
+                }}
               >
                 <CircleHelp size={17} aria-hidden="true" />
                 Ayuda
@@ -145,11 +144,10 @@ export function ProfileDropdown({
               <button
                 type="button"
                 role="menuitem"
-                onClick={() =>
-                  runMockAction(
-                    "La sección de ayuda estará disponible próximamente.",
-                  )
-                }
+                onClick={() => {
+                  close();
+                  onNavigate("ayuda");
+                }}
               >
                 <CircleHelp size={17} aria-hidden="true" />
                 Ayuda

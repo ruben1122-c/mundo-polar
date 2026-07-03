@@ -51,7 +51,7 @@ export interface CollectionProductSection {
 }
 
 export interface CollectionConfig {
-  page: "mujer" | "hombre" | "mascotas";
+  page: "mujer" | "hombre" | "ninos" | "mascotas";
   eyebrow: string;
   title: string;
   description: string;
@@ -375,6 +375,17 @@ const petProducts: ReadonlyArray<StoreProduct> = [
   },
 ];
 
+const kidProducts: ReadonlyArray<StoreProduct> = [
+  { id: "k1", name: "Casaca impermeable infantil", image: ASSETS.mujer.featuredPuffer, price: 218, previousPrice: 250, badge: "-13%" },
+  { id: "k2", name: "Gorro tejido de invierno", image: ASSETS.products.woolBeanie, price: 50 },
+  { id: "k3", name: "Bufanda polar para niños", image: ASSETS.ofertas.categoryScarves, price: 78 },
+  { id: "k4", name: "Chaleco acolchado infantil", image: ASSETS.hombre.featuredExplorerVest, price: 98 },
+  { id: "k5", name: "Chompa de lana crema", image: ASSETS.products.beigeSweater, price: 150 },
+  { id: "k6", name: "Botas de invierno", image: ASSETS.products.winterBoots, price: 249, previousPrice: 320, badge: "-22%" },
+  { id: "k7", name: "Conjunto térmico infantil", image: ASSETS.products.polarSet, price: 299 },
+  { id: "k8", name: "Guantes térmicos", image: ASSETS.ofertas.categoryGloves, price: 65 },
+];
+
 const womenGallery: ReadonlyArray<CollectionVisualItem> = [
   {
     id: "wg-1",
@@ -646,6 +657,53 @@ export const collections: Record<CollectionConfig["page"], CollectionConfig> = {
         alt: "Promo secundaria de la coleccion hombre",
         destination: "contacto",
       },
+    ],
+  },
+  ninos: {
+    page: "ninos",
+    eyebrow: "Hasta 25% de descuento",
+    title: "Encuentra el abrigo perfecto para este invierno",
+    description: "Descubre nuestra nueva colección de ropa térmica, casacas, gorros y accesorios para niños y niñas.",
+    hero: ASSETS.ofertas.kidsCollectionBanner,
+    cta: "Comprar ahora",
+    ctaDestination: "ofertas",
+    filterTags: ["Casacas", "Conjuntos térmicos", "Gorros", "Botas"],
+    products: kidProducts,
+    secondarySection: {
+      eyebrow: "Nueva temporada",
+      title: "Ofertas especiales de invierno",
+      description: "Prendas suaves y resistentes para disfrutar cada salida con más abrigo.",
+      products: kidProducts.slice(4, 8),
+    },
+    bestsellerSection: {
+      eyebrow: "Favoritos de las familias",
+      title: "Productos más vendidos",
+      products: [...kidProducts].reverse().slice(0, 4),
+    },
+    promoTitle: "Diseñado para los más pequeños",
+    promoDescription: "Abrigo, comodidad y libertad para jugar durante toda la temporada.",
+    promoImage: ASSETS.ofertas.kidsCollectionBanner,
+    spotlight: {
+      eyebrow: "Diseño de temporada",
+      title: "Abrigo para cada aventura",
+      description: "Capas fáciles de combinar con materiales cómodos y cálidos para el uso diario.",
+      image: ASSETS.home.categoryKids,
+      alt: "Niña usando ropa de invierno",
+      tags: ["Comodidad", "Calidez", "Movimiento"],
+    },
+    gallery: {
+      eyebrow: "Completa su look",
+      title: "Todo lo que necesitan este invierno",
+      items: [
+        { id: "kg-1", title: "Casacas", image: ASSETS.home.categoryKids, alt: "Casaca para niños" },
+        { id: "kg-2", title: "Conjuntos térmicos", image: ASSETS.products.polarSet, alt: "Conjunto térmico infantil" },
+        { id: "kg-3", title: "Accesorios", image: ASSETS.ofertas.categoryGloves, alt: "Guantes de invierno" },
+        { id: "kg-4", title: "Botas", image: ASSETS.products.winterBoots, alt: "Botas de invierno" },
+      ],
+    },
+    promoTiles: [
+      { title: "Mantén cálido su invierno", description: "Conoce la nueva colección infantil.", image: ASSETS.ofertas.kidsCollectionBanner, alt: "Colección infantil de invierno", destination: "ofertas" },
+      { title: "Hasta 25% de descuento", description: "Descubre las últimas tendencias.", image: ASSETS.home.categoryKids, alt: "Promoción infantil", destination: "ofertas" },
     ],
   },
   mascotas: {

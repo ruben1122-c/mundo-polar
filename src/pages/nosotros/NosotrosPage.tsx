@@ -1,222 +1,133 @@
-import { ASSETS } from "@/config/assets";
-import { Footer } from "@/app/components/Footer";
-import {
-  PageHero,
-  ProductGrid,
-  SectionHeader,
-  Testimonials,
-} from "@/app/components/Storefront";
 import { OptimizedImage } from "@/app/components/OptimizedImage";
+import { ProductGrid } from "@/app/components/Storefront";
 import { navigateTo } from "@/app/navigation";
+import { ASSETS } from "@/config/assets";
 import { featuredProducts } from "@/data/catalog";
+import { Check } from "lucide-react";
 
 const storyStats = [
   { label: "Fundación", value: "2019" },
-  { label: "Clientes felices", value: "50K+" },
-  { label: "Satisfacción", value: "100%" },
+  { label: "Clientes", value: "50K+" },
+  { label: "Sostenible", value: "100%" },
 ] as const;
 
 const trustReasons = [
-  "Materiales sostenibles",
-  "Diseño pensado para el frío real",
-  "Calidad comprobada",
-  "Atención cercana para cada compra",
+  { title: "Materiales sostenibles", text: "Lana reciclada, algodón orgánico y tintes amigables en cada prenda." },
+  { title: "Calidez comprobada", text: "Diseños testeados en condiciones reales de frío extremo en la Patagonia." },
+  { title: "Garantía vitalicia", text: "Si se rompe, lo reparamos. Comprometidos con la durabilidad." },
+  { title: "Envío carbono neutro", text: "Compensamos el CO₂ de los envíos realizados con cada orden." },
 ] as const;
 
-const missionValues = [
-  {
-    id: "01",
-    title: "Cálidez",
-    text: "Diseñamos para acompañar a familias, no solo para vender una temporada.",
-  },
-  {
-    id: "02",
-    title: "Durabilidad",
-    text: "Seleccionamos piezas que resistan el uso diario y el clima más frío.",
-  },
-  {
-    id: "03",
-    title: "Transparencia",
-    text: "Queremos que sepas qué estás comprando y por qué lo elegimos.",
-  },
-  {
-    id: "04",
-    title: "Responsabilidad",
-    text: "Buscamos materiales y procesos más conscientes con el entorno.",
-  },
+const values = [
+  { id: "01", title: "Sostenibilidad", text: "Cada decisión considera su impacto en el planeta." },
+  { id: "02", title: "Calidez", text: "No solo física: también en cómo tratamos a nuestra comunidad." },
+  { id: "03", title: "Transparencia", text: "Sabemos de dónde viene cada material que usamos." },
+  { id: "04", title: "Durabilidad", text: "Diseñamos para que dure, no para que compres de nuevo." },
 ] as const;
 
-const sustainabilityChecklist = [
-  "Lana reciclada y tejidos duraderos",
-  "Algodón orgánico certificado",
-  "Empaques más ligeros",
-  "Menos plástico de un solo uso",
+const materials = [
+  "Lana 100% reciclada",
+  "Algodón orgánico certificado GOTS",
+  "Tintes vegetales y minerales",
+  "Empaque sin plástico",
+] as const;
+
+const reviews = [
+  { name: "Valentina R.", location: "Santiago, Chile", image: ASSETS.nosotros.story01, text: "La chaqueta que compré para mi mascota es increíble. Súper abrigadora y el material se siente premium." },
+  { name: "Marcos T.", location: "Mendoza, Argentina", image: ASSETS.nosotros.story02, text: "Llevo dos inviernos usando mi abrigo de Mundo Polar. No se ha deformado ni perdido color." },
+  { name: "Carla M.", location: "Lima, Perú", image: ASSETS.nosotros.story03, text: "Me encantó que el empaque llegó sin plástico y con una tarjeta explicando de dónde viene el material." },
 ] as const;
 
 export default function NosotrosPage() {
   return (
-    <>
-      <PageHero
-        eyebrow="Conoce a Mundo Polar"
-        title="Una marca nacida para acompañar el invierno"
-        description="Diseño, calidez y materiales responsables en prendas pensadas para personas, familias y mascotas."
-        image={ASSETS.nosotros.hero}
-        cta="Ver colección"
-        destination="ofertas"
-      />
-
-      <section className="page-section">
-        <div className="page-container contact-story-grid">
-          <div className="contact-story-copy">
-            <p className="section-eyebrow">Nuestra historia</p>
-            <h2>Una marca nacida del frío del sur</h2>
-            <p>
-              Mundo Polar nace con una idea simple: que el invierno se viva con
-              comodidad, estilo y prendas que de verdad acompañen la rutina.
-            </p>
-            <p>
-              Hoy trabajamos desde Lima, Perú, reuniendo colecciones pensadas
-              para el clima frío, el uso diario y la vida en familia.
-            </p>
-            <div className="contact-stats-grid">
-              {storyStats.map((stat) => (
-                <article key={stat.label}>
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
-                </article>
-              ))}
-            </div>
+    <div className="about-page">
+      <section className="about-hero">
+        <OptimizedImage priority kind="hero" className="about-hero-image" src={ASSETS.nosotros.hero} alt="Perro abrigado en la nieve" />
+        <div className="about-hero-overlay" />
+        <div className="page-container about-hero-content">
+          <h1>Conoce a<br /><strong>Mundo Polar</strong></h1>
+          <p>Somos Mundo Polar — una tienda de ropa de invierno para toda la familia. Diseño, calidez y materiales sostenibles en cada prenda.</p>
+          <div className="about-hero-actions">
+            <button type="button" onClick={() => navigateTo("ofertas")}>Ver colección</button>
+            <button type="button" onClick={() => document.querySelector(".about-story")?.scrollIntoView({ behavior: "smooth" })}>Nuestra historia</button>
           </div>
-          <OptimizedImage
-            kind="content"
-            className="contact-story-image"
-            src={ASSETS.nosotros.story04}
-            alt="Persona disfrutando un paisaje invernal"
-          />
         </div>
       </section>
 
-      <section className="page-section page-section-dark contact-trust-section">
-        <div className="page-container">
-          <div className="contact-trust-header">
-            <div>
-              <p className="section-eyebrow">Por qué elegirnos</p>
-              <h2>Más que una tienda de ropa</h2>
+      <section className="about-section about-story">
+        <div className="page-container about-story-grid">
+          <div>
+            <p className="about-kicker">Quiénes somos</p>
+            <h2>Una marca nacida<br />del frío del sur.</h2>
+            <p>Fundados en Santiago en 2019, nacimos con una obsesión: que ninguna familia pase frío. Hoy vestimos a miles de personas en toda Latinoamérica con prendas que respetan el planeta y duran años.</p>
+            <div className="about-stats">
+              {storyStats.map((stat) => <article key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span></article>)}
             </div>
-            <p>
-              Queremos que la experiencia de comprar abrigo sea clara, cálida y
-              útil, no solo bonita.
-            </p>
           </div>
-          <div className="contact-trust-grid">
+          <OptimizedImage kind="content" src={ASSETS.nosotros.story04} alt="Persona contemplando una montaña nevada" />
+        </div>
+      </section>
+
+      <section className="about-trust">
+        <div className="page-container">
+          <header className="about-trust-header">
+            <div><p className="about-kicker">Nuestra propuesta de valor</p><h2>¿Por qué<br />elegirnos?</h2></div>
+            <p>Somos más que una tienda. Somos el abrigo de tu familia en los meses más fríos del año.</p>
+          </header>
+          <div className="about-trust-grid">
             {trustReasons.map((reason) => (
-              <article key={reason}>
-                <span>{reason.slice(0, 1)}</span>
-                <h3>{reason}</h3>
-              </article>
+              <article key={reason.title}><span><Check size={15} aria-hidden="true" /></span><h3>{reason.title}</h3><p>{reason.text}</p></article>
             ))}
           </div>
-          <div className="contact-trust-cta">
-            <p>Una colección pensada para acompañarte todo el invierno.</p>
-            <button
-              className="primary-button"
-              type="button"
-              onClick={() => navigateTo("ofertas")}
-            >
-              Explorar colección
-            </button>
-          </div>
+          <div className="about-trust-cta"><span>Más de 50,000 familias ya eligieron Mundo Polar</span><button type="button" onClick={() => navigateTo("ofertas")}>Ver colección</button></div>
         </div>
       </section>
 
-      <section className="page-section contact-values-section">
+      <section className="about-section about-values">
         <div className="page-container">
-          <div className="contact-values-header">
-            <p className="section-eyebrow">Misión y valores</p>
-            <h2>Lo que nos mueve cada día</h2>
-            <p>
-              Nuestra misión es que ninguna familia sienta que elegir ropa de
-              invierno es complicado o impersonal.
-            </p>
+          <header><p className="about-kicker">Misión y valores</p><h2>Lo que nos mueve<br />cada día.</h2><p>Mundo Polar nació con una misión clara: que ninguna familia pase frío — y que hacerlo bien no signifique descuidar el planeta.</p></header>
+          <div className="about-values-grid">
+            {values.map((value) => <article key={value.id}><span>{value.id}</span><h3>{value.title}</h3><p>{value.text}</p></article>)}
           </div>
-          <div className="contact-values-grid">
-            {missionValues.map((value) => (
-              <article key={value.id}>
-                <span>{value.id}</span>
-                <h3>{value.title}</h3>
-                <p>{value.text}</p>
-              </article>
-            ))}
-          </div>
-          <blockquote className="contact-quote-card">
-            <p>
-              “Queremos que cada prenda de Mundo Polar se sienta útil, cálida y
-              realmente pensada para durar.”
-            </p>
-            <span>Mundo Polar</span>
-          </blockquote>
+          <blockquote><p>“Nuestra misión es que cada prenda que vendemos sea una razón para disfrutar el invierno.”</p><footer><strong>Mundo Polar</strong><span>Fundada en 2019 · Chile</span></footer></blockquote>
         </div>
       </section>
 
-      <section className="page-section page-section-soft">
-        <div className="page-container contact-sustainability-grid">
-          <div>
-            <p className="section-eyebrow">Moda responsable</p>
-            <h2>Prendas que respetan el planeta</h2>
-            <p>
-              La referencia muestra una página larga y editorial; aquí
-              reforzamos esa idea con una sección de materiales, procesos y
-              decisiones responsables.
-            </p>
-            <ul className="contact-check-list">
-              {sustainabilityChecklist.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className="contact-products-mosaic">
-            {featuredProducts.slice(0, 4).map((product) => (
-              <article key={product.id}>
-                <OptimizedImage
-                  kind="product"
-                  src={product.image}
-                  alt={product.name}
-                />
-              </article>
-            ))}
+      <section className="about-section about-materials">
+        <div className="page-container about-materials-grid">
+          <div><p className="about-kicker">Eco materiales</p><h2>Moda que respeta<br />el planeta.</h2><p>Todos nuestros materiales son trazables y sostenibles. La lana reciclada de la Patagonia, algodón orgánico certificado y tintes de origen natural.</p><ul>{materials.map((item) => <li key={item}><Check size={13} aria-hidden="true" />{item}</li>)}</ul></div>
+          <div className="about-material-images">
+            <OptimizedImage kind="content" src={ASSETS.nosotros.story01} alt="Material reciclado" />
+            <OptimizedImage kind="content" src={ASSETS.nosotros.story02} alt="Material orgánico" />
+            <OptimizedImage kind="content" src={ASSETS.nosotros.story03} alt="Tintes naturales" />
+            <OptimizedImage kind="content" src={ASSETS.nosotros.story05} alt="Empaque responsable" />
           </div>
         </div>
       </section>
 
-      <section className="page-section">
+      <section className="about-section about-community">
         <div className="page-container">
-          <SectionHeader
-            eyebrow="Estamos para ayudarte"
-            title="Selección de prendas que representa la marca"
-            description="Un bloque adicional de producto para que Nosotros tenga la misma sensación de página completa que la referencia."
-          />
-          <ProductGrid products={featuredProducts.slice(0, 4)} catalogScope="featured" />
-        </div>
-      </section>
-
-      <Testimonials />
-
-      <section className="contact-cta">
-        <div className="page-container">
-          <div>
-            <p className="section-eyebrow">¿Tienes una consulta?</p>
-            <h2>Conversemos sobre tu próxima compra</h2>
+          <header><p className="about-kicker">Valoración de clientes</p><h2>Lo que dice nuestra comunidad.</h2><div><strong>4.9</strong><span>★★★★★<small>+2,500 reseñas verificadas</small></span></div></header>
+          <div className="about-review-grid">
+            {reviews.map((review) => <article key={review.name}><OptimizedImage kind="content" src={review.image} alt="" /><p>“{review.text}”</p><footer><span className="about-review-avatar">{review.name.charAt(0)}</span><strong>{review.name}<small>{review.location}</small></strong><em>Compra verificada</em></footer></article>)}
           </div>
-          <button
-            className="primary-button"
-            type="button"
-            onClick={() => navigateTo("contacto")}
-          >
-            Ir a contacto
-          </button>
+          <button className="about-all-reviews" type="button">Ver todas las reseñas ›</button>
         </div>
       </section>
-      <Footer />
-    </>
+
+      <section className="about-section about-contact-products">
+        <div className="page-container about-contact-products-grid">
+          <form onSubmit={(event) => event.preventDefault()}>
+            <p className="about-kicker">Contáctanos</p><h2>Estamos para<br />ayudarte.</h2>
+            <input aria-label="Nombre" placeholder="Nombre" required />
+            <input type="email" aria-label="Correo electrónico" placeholder="Correo electrónico" required />
+            <textarea aria-label="Mensaje" placeholder="Tu mensaje..." required />
+            <button type="submit">Enviar mensaje</button>
+          </form>
+          <div><header><h3>Productos destacados</h3><button type="button" onClick={() => navigateTo("ofertas")}>Ver todo ›</button></header><ProductGrid products={featuredProducts.slice(0, 4)} catalogScope="featured" /></div>
+        </div>
+      </section>
+      <div className="about-bottom-space" />
+    </div>
   );
 }

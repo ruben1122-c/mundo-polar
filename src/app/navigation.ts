@@ -11,6 +11,7 @@ export type Page =
   | "perfil"
   | "checkout"
   | "carrito"
+  | "ayuda"
   | "login"
   | "registro";
 
@@ -36,6 +37,7 @@ export const PAGE_PATHS = Object.fromEntries(
     { id: "perfil", path: "/perfil" },
     { id: "checkout", path: "/checkout" },
     { id: "carrito", path: "/carrito" },
+    { id: "ayuda", path: "/ayuda" },
     { id: "login", path: "/login" },
     { id: "registro", path: "/registro" },
   ].map(({ id, path }) => [id, path]),

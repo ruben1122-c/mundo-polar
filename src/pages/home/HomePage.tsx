@@ -2,7 +2,6 @@ import { ASSETS } from "@/config/assets";
 import { Footer } from "@/app/components/Footer";
 import {
   CategoryCard,
-  PageHero,
   ProductGrid,
   PromoBanner,
   SectionHeader,
@@ -16,29 +15,55 @@ import {
 import { navigateTo } from "@/app/navigation";
 import { AnimateInView } from "@/app/components/ui/AnimateInView";
 
+const homeFeaturedProducts = [
+  ...featuredProducts,
+  ...offerProducts.slice(0, 5),
+];
+
+const newProducts = [...offerProducts].reverse().slice(0, 10);
+
 export default function HomePage() {
   return (
-    <>
-      <PageHero
-        title="Abrígate con estilo"
-        description="Ropa de invierno para mujer, hombre, niños y mascotas. Comodidad, calidad y estilo para toda la familia."
-        image={ASSETS.home.hero}
-        cta="Ver ofertas"
-        destination="ofertas"
-      />
+    <div className="home-page">
+      <section className="home-hero">
+        <OptimizedImage
+          priority
+          kind="hero"
+          className="home-hero-image"
+          src={ASSETS.home.hero}
+          alt="Familia disfrutando de un día de invierno"
+        />
+        <div className="home-hero-overlay" />
+        <div className="page-container home-hero-content">
+          <h1>
+            Abrígate con estilo
+            <span>Mundo Polar</span>
+          </h1>
+          <p>
+            Ropa de invierno para mujer, hombre, niños, niñas y mascotas.
+            Comodidad, calidad y estilo para toda la familia.
+          </p>
+        </div>
+      </section>
 
-      <section className="page-section">
-        <div className="page-container split-feature">
-          <AnimateInView className="flex flex-col">
-            <p className="section-eyebrow">Mundo Polar</p>
+      <section className="home-about">
+        <div className="page-container home-about-grid">
+          <AnimateInView className="home-about-copy">
             <h2>¿Quiénes somos?</h2>
             <p>
-              Creemos que el invierno es una temporada para disfrutar en
-              familia sin dejar de lado el estilo y la comodidad. Seleccionamos
-              prendas cálidas, duraderas y pensadas para el uso diario.
+              En Mundo Polar, creemos que el invierno es una temporada para
+              disfrutar en familia, sin dejar de lado el estilo y la comodidad.
+              Desde nuestros inicios, nos hemos dedicado a ofrecer prendas de
+              alta calidad que combinan diseño minimalista, máxima calidez y
+              durabilidad.
+            </p>
+            <p className="home-about-highlight">
+              Nuestro compromiso es mantener a toda tu familia abrigada,
+              incluyendo a los más pequeños y a tus mascotas, con materiales
+              sostenibles y procesos de fabricación éticos.
             </p>
             <button
-              className="outline-button btn-animate-tap self-start"
+              className="outline-button btn-animate-tap"
               type="button"
               onClick={() => navigateTo("nosotros")}
             >
@@ -48,6 +73,7 @@ export default function HomePage() {
           <AnimateInView delay={150}>
             <OptimizedImage
               kind="content"
+              className="home-about-image"
               src={ASSETS.home.familyAndPet}
               alt="Niña abrigada junto a su mascota"
             />
@@ -55,17 +81,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-section page-section-soft">
+      <section className="home-category-section">
         <div className="page-container">
           <AnimateInView>
-            <SectionHeader
-              eyebrow="Para toda la familia"
-              title="Compra por categoría"
-            />
+            <h2 className="home-centered-title">Compra por categoría</h2>
           </AnimateInView>
           <div className="category-grid mobile-carousel category-carousel">
             {homeCategories.map((category, index) => (
-              <AnimateInView key={category.id} delay={index * 100}>
+              <AnimateInView key={category.id} delay={index * 80}>
                 <CategoryCard category={category} />
               </AnimateInView>
             ))}
@@ -73,99 +96,53 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="page-section">
+      <section className="home-product-section">
         <div className="page-container">
           <AnimateInView>
             <SectionHeader
-              eyebrow="Selección Mundo Polar"
               title="Productos destacados"
-              action={{ label: "Ver ofertas", destination: "ofertas" }}
+              action={{ label: "Ver todos", destination: "ofertas" }}
             />
           </AnimateInView>
-          <AnimateInView delay={100}>
+          <AnimateInView delay={80}>
             <ProductGrid
-              products={featuredProducts}
+              products={homeFeaturedProducts}
               catalogScope="featured"
-              className="mobile-carousel product-carousel"
+              className="home-product-grid mobile-carousel product-carousel"
             />
           </AnimateInView>
         </div>
       </section>
 
-      <div className="page-container">
-        <AnimateInView>
-          <PromoBanner
-            title="Nueva colección de invierno"
-            description="Descubre las últimas tendencias y mantén el frío a raya con prendas seleccionadas."
-            image={ASSETS.home.winterCollectionBanner}
-            action={{ label: "Ver ofertas", destination: "ofertas" }}
-          />
-        </AnimateInView>
-      </div>
+      <AnimateInView>
+        <PromoBanner
+          eyebrow=""
+          title="Nueva colección de invierno"
+          description="Descubre las últimas tendencias y mantén el frío a raya. Aprovecha hasta un 30% de descuento en artículos seleccionados."
+          image={ASSETS.home.winterCollectionBanner}
+          action={{ label: "Ver ofertas", destination: "ofertas" }}
+        />
+      </AnimateInView>
 
-      <section className="page-section">
-        <div className="page-container">
-          <AnimateInView>
-            <SectionHeader title="Nuevos ingresos" />
-          </AnimateInView>
-          <AnimateInView delay={100}>
-            <ProductGrid
-              products={[...featuredProducts].reverse()}
-              catalogScope="new"
-              className="mobile-carousel product-carousel"
-            />
-          </AnimateInView>
-        </div>
-      </section>
-
-      <section className="page-section page-section-soft">
-        <div className="page-container home-editorial-grid">
-          <AnimateInView>
-            <OptimizedImage
-              kind="content"
-              className="home-editorial-image"
-              src={ASSETS.home.familyAndPet}
-              alt="Colección de invierno para familias"
-            />
-          </AnimateInView>
-          <AnimateInView delay={100} className="home-editorial-copy">
-            <p className="section-eyebrow">Colección editorial</p>
-            <h2>Abrigos pensados para el día a día</h2>
-            <p>
-              Combinamos prendas suaves, colores versátiles y capas cómodas para
-              que Inicio tenga la continuidad visual de la referencia sin dejar
-              de parecer parte del mismo frontend actual.
-            </p>
-            <button
-              className="outline-button btn-animate-tap"
-              type="button"
-              onClick={() => navigateTo("nosotros")}
-            >
-              Conoce la marca
-            </button>
-          </AnimateInView>
-        </div>
-      </section>
-
-      <section className="page-section">
+      <section className="home-product-section home-new-products">
         <div className="page-container">
           <AnimateInView>
             <SectionHeader
-              eyebrow="Más para descubrir"
-              title="Esenciales para toda la familia"
-              description="Un bloque adicional para que Inicio tenga más profundidad y se acerque mejor a la estructura del mock."
+              title="Nuevos ingresos"
+              action={{ label: "Ver todos", destination: "ofertas" }}
             />
           </AnimateInView>
-          <AnimateInView delay={100}>
+          <AnimateInView delay={80}>
             <ProductGrid
-              products={offerProducts.slice(0, 8)}
-              catalogScope="offers"
-              className="mobile-carousel product-carousel"
+              products={newProducts}
+              catalogScope="new"
+              className="home-product-grid mobile-carousel product-carousel"
             />
           </AnimateInView>
         </div>
       </section>
+
       <Footer />
-    </>
+    </div>
   );
 }

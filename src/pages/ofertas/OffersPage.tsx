@@ -1,167 +1,165 @@
 import { ASSETS } from "@/config/assets";
 import { Footer } from "@/app/components/Footer";
-import {
-  PageHero,
-  ProductGrid,
-  PromoBanner,
-  SectionHeader,
-  Testimonials,
-} from "@/app/components/Storefront";
+import { ProductGrid } from "@/app/components/Storefront";
 import { OptimizedImage } from "@/app/components/OptimizedImage";
 import { navigateTo } from "@/app/navigation";
-import { offerProducts, winterCategories } from "@/data/catalog";
+import { offerProducts, type StoreProduct } from "@/data/catalog";
+import { AnimateInView } from "@/app/components/ui/AnimateInView";
 
-const offerStats = [
-  { value: "30%", label: "Descuento máximo" },
-  { value: "45+", label: "Prendas destacadas" },
-  { value: "7 días", label: "Campaña vigente" },
-] as const;
+interface OfferSection {
+  eyebrow: string;
+  title: string;
+  products: ReadonlyArray<StoreProduct>;
+}
+
+function productsForSection(index: number) {
+  return Array.from({ length: 4 }, (_, position) => {
+    const product = offerProducts[(index * 2 + position) % offerProducts.length];
+    return {
+      ...product,
+      id: `oferta-${index}-${product.id}`,
+      badge: product.badge ?? `-${15 + index * 3}%`,
+    };
+  });
+}
+
+const offerSections: ReadonlyArray<OfferSection> = [
+  {
+    eyebrow: "Ofertas destacadas",
+    title: "Los más vendidos",
+    products: productsForSection(0),
+  },
+  {
+    eyebrow: "Niños · Mascotas · Familia",
+    title: "Para los pequeños y engreídos de la familia",
+    products: productsForSection(1),
+  },
+  {
+    eyebrow: "Mujer · Colección activa",
+    title: "Nueva colección de temporada con descuento",
+    products: productsForSection(2),
+  },
+  {
+    eyebrow: "Niños · Mascotas · Familia",
+    title: "Sets de invierno en promoción",
+    products: productsForSection(3),
+  },
+  {
+    eyebrow: "Últimas unidades",
+    title: "¡Solo para los primeros en comprar!",
+    products: productsForSection(4),
+  },
+];
+
+function OfferProductSection({ section }: { section: OfferSection }) {
+  return (
+    <section className="offers-product-section">
+      <div className="page-container">
+        <AnimateInView className="offers-section-heading">
+          <p>{section.eyebrow}</p>
+          <h2>{section.title}</h2>
+          <button type="button" onClick={() => navigateTo("ofertas")}>
+            Ver todos <span aria-hidden="true">›</span>
+          </button>
+        </AnimateInView>
+        <AnimateInView delay={80}>
+          <ProductGrid
+            products={section.products}
+            className="offers-product-grid mobile-carousel product-carousel"
+          />
+        </AnimateInView>
+      </div>
+    </section>
+  );
+}
 
 export default function OffersPage() {
   return (
-    <>
-      <PageHero
-        eyebrow="Hasta 30% de descuento"
-        title="Encuentra el abrigo perfecto"
-        description="Ropa térmica, casacas, gorros y accesorios seleccionados para disfrutar el invierno con mejores precios."
-        image={ASSETS.ofertas.hero}
-        cta="Ver productos"
-        destination="ofertas"
-      />
-
-      <section className="season-offer">
-        <div className="page-container season-offer-content">
-          <div>
-            <p className="section-eyebrow">Promoción vigente</p>
-            <h2>Oferta de temporada</h2>
-          </div>
-          <p>
-            Precios especiales en productos seleccionados, disponibles durante
-            la campaña de invierno.
-          </p>
-        </div>
-      </section>
-
-      <section className="page-section page-section-soft">
-        <div className="page-container offer-stats-grid">
-          {offerStats.map((stat) => (
-            <article key={stat.label}>
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="page-section">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow="Los más vendidos"
-            title="Selección de rebajas destacadas"
-            description="Una selección local de prendas y accesorios con precios de temporada."
-          />
-          <ProductGrid
-            products={offerProducts.slice(0, 8)}
-            catalogScope="offers"
-            className="mobile-carousel product-carousel"
-          />
-        </div>
-      </section>
-
-      <section className="page-section page-section-soft">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow="Compra por categoría"
-            title="Encuentra tu descuento ideal"
-          />
-          <div className="winter-category-grid mobile-carousel category-carousel">
-            {winterCategories.map((category) => (
-              <article className="winter-category-card" key={category.name}>
-                <OptimizedImage
-                  kind="content"
-                  src={category.image}
-                  alt={category.name}
-                />
-                <h3>{category.name}</h3>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="page-container">
-        <PromoBanner
-          title="Sets de invierno con descuento"
-          description="Combinaciones listas para comprar con prendas pensadas para mantener el estilo y la calidez."
-          image={ASSETS.ofertas.kidsCollectionBanner}
-          action={{ label: "Explorar ofertas", destination: "ofertas" }}
+    <div className="offers-page">
+      <section className="offers-hero">
+        <OptimizedImage
+          priority
+          kind="hero"
+          className="offers-hero-image"
+          src={ASSETS.ofertas.hero}
+          alt="Paisaje nevado de la campaña de ofertas"
         />
-      </div>
-
-      <section className="page-section">
-        <div className="page-container offers-editorial-grid">
-          <div className="offers-editorial-copy">
-            <p className="section-eyebrow">Nueva colección</p>
-            <h2>Nuevas combinaciones de temporada</h2>
+        <div className="offers-hero-overlay" />
+        <div className="page-container offers-hero-layout">
+          <div className="offers-hero-copy">
+            <p className="offers-hero-kicker">Temporada de invierno</p>
+            <h1>
+              Hasta <strong>30%</strong>
+              <span>de descuento.</span>
+            </h1>
             <p>
-              Reforzamos esta página con más bloques de catálogo y apoyo visual
-              para que se acerque a la longitud del diseño de referencia, sin
-              convertirlo en una captura pegada.
+              Descuentos en ropa de invierno para mujer, hombre, niños y
+              mascotas. Sin códigos, sin vueltas: el precio ya está rebajado.
             </p>
-            <button
-              className="primary-button btn-animate-tap"
-              type="button"
-              onClick={() => navigateTo("mujer")}
-            >
-              Ver colección mujer
+            <button type="button" onClick={() => navigateTo("ofertas")}>
+              Ver ofertas <span aria-hidden="true">›</span>
             </button>
           </div>
-          <OptimizedImage
-            kind="content"
-            className="offers-editorial-image"
-            src={ASSETS.ofertas.trendsBanner}
-            alt="Tendencias de invierno en promoción"
-          />
-        </div>
-      </section>
-
-      <section className="page-section page-section-soft">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow="Más descuentos"
-            title="Piezas recomendadas para seguir comprando"
-            description="Un bloque extra de productos para que Ofertas tenga una estructura más completa."
-          />
-          <ProductGrid
-            products={offerProducts.slice(4, 12)}
-            catalogScope="offers"
-            className="mobile-carousel product-carousel"
-          />
-        </div>
-      </section>
-
-      <section className="page-section">
-        <div className="page-container newsletter-strip">
-          <div>
-            <p className="section-eyebrow">Recibe alertas</p>
-            <h2>Entérate primero de las nuevas promociones</h2>
-            <p>
-              Este bloque reemplaza los espacios vacíos de la versión anterior y
-              mantiene la composición comercial de la referencia.
-            </p>
+          <div className="offers-discount-stack" aria-label="Descuentos disponibles">
+            <span className="discount-blue"><strong>30%</strong> en mujer</span>
+            <span className="discount-red"><strong>35%</strong> en niños</span>
+            <span className="discount-dark"><strong>25%</strong> en mascotas</span>
           </div>
-          <button
-            className="outline-button btn-animate-tap"
-            type="button"
-            onClick={() => navigateTo("contacto")}
-          >
-            Ir a contacto
-          </button>
         </div>
       </section>
 
-      <Testimonials />
+      <section className="offers-countdown" aria-label="Tiempo restante de la oferta">
+        <div className="page-container offers-countdown-layout">
+          <p><span aria-hidden="true">⚡</span> Oferta relámpago · Termina pronto</p>
+          <div className="countdown-values">
+            <span><strong>02</strong><small>Días</small></span>
+            <span><strong>18</strong><small>Horas</small></span>
+            <span><strong>43</strong><small>Minutos</small></span>
+            <span><strong>07</strong><small>Segundos</small></span>
+          </div>
+          <small>El invierno no espera</small>
+        </div>
+      </section>
+
+      <OfferProductSection section={offerSections[0]} />
+      <OfferProductSection section={offerSections[1]} />
+
+      <section className="offers-set-banner">
+        <div className="page-container offers-set-layout">
+          <div>
+            <p>Nueva colección · Precios especiales</p>
+            <h2>Set invernal completo<br />con 36% de descuento.</h2>
+            <span>Compra ropa para ti y tu familia en una sola orden.</span>
+            <button type="button" onClick={() => navigateTo("ofertas")}>Ver packs ›</button>
+          </div>
+          <div className="offers-set-gallery" aria-label="Productos del set invernal">
+            <OptimizedImage src={ASSETS.ofertas.categoryJackets} alt="Casaca del set" />
+            <OptimizedImage src={ASSETS.ofertas.categoryThermalSets} alt="Conjunto térmico" />
+            <OptimizedImage src={ASSETS.home.categoryKids} alt="Set para niños" />
+            <OptimizedImage src={ASSETS.home.categoryPets} alt="Set para mascotas" />
+          </div>
+        </div>
+      </section>
+
+      <OfferProductSection section={offerSections[2]} />
+      <OfferProductSection section={offerSections[3]} />
+      <OfferProductSection section={offerSections[4]} />
+
+      <section className="offers-newsletter">
+        <div className="page-container offers-newsletter-layout">
+          <div>
+            <h2>Recibe ofertas antes que nadie.</h2>
+            <p>Solo recibirás las novedades y promociones que valen la pena.</p>
+          </div>
+          <form onSubmit={(event) => event.preventDefault()}>
+            <label className="sr-only" htmlFor="offers-email">Correo electrónico</label>
+            <input id="offers-email" type="email" placeholder="tu@email.com" required />
+            <button type="submit">Quiero recibir</button>
+          </form>
+        </div>
+      </section>
+
       <Footer />
-    </>
+    </div>
   );
 }

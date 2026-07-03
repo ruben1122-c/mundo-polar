@@ -21,11 +21,13 @@ const routeImports = {
   contacto: () => import("@/pages/contacto/ContactPage"),
   mujer: () => import("@/pages/mujer/MujerPage"),
   hombre: () => import("@/pages/hombre/HombrePage"),
+  ninos: () => import("@/pages/ninos/NinosPage"),
   mascotas: () => import("@/pages/mascotas/MascotasPage"),
   favoritos: () => import("@/pages/favoritos/FavoritosPage"),
   perfil: () => import("@/pages/perfil/PerfilPage"),
   checkout: () => import("@/pages/checkout/CheckoutPage"),
   carrito: () => import("@/pages/carrito/CarritoPage"),
+  ayuda: () => import("@/pages/ayuda/HelpPage"),
   login: () => import("@/pages/auth/LoginPage"),
   registro: () => import("@/pages/auth/RegistroPage"),
 };
@@ -43,6 +45,7 @@ const skeletons: Record<Page, () => ReactNode> = {
   perfil: ProfilePageSkeleton,
   checkout: CheckoutPageSkeleton,
   carrito: CartPageSkeleton,
+  ayuda: GenericPageSkeleton,
   login: GenericPageSkeleton,
   registro: GenericPageSkeleton,
 };
@@ -53,11 +56,13 @@ const OffersPage = lazy(routeImports.ofertas);
 const ContactPage = lazy(routeImports.contacto);
 const MujerPage = lazy(routeImports.mujer);
 const HombrePage = lazy(routeImports.hombre);
+const NinosPage = lazy(routeImports.ninos);
 const MascotasPage = lazy(routeImports.mascotas);
 const FavoritesPage = lazy(routeImports.favoritos);
 const ProfilePage = lazy(routeImports.perfil);
 const CheckoutPage = lazy(routeImports.checkout);
 const CartPage = lazy(routeImports.carrito);
+const HelpPage = lazy(routeImports.ayuda);
 const LoginPage = lazy(routeImports.login);
 const RegistroPage = lazy(routeImports.registro);
 
@@ -68,12 +73,13 @@ const pages: Record<Page, React.LazyExoticComponent<React.ComponentType>> = {
   contacto: ContactPage,
   mujer: MujerPage,
   hombre: HombrePage,
-  ninos: OffersPage,
+  ninos: NinosPage,
   mascotas: MascotasPage,
   favoritos: FavoritesPage,
   perfil: ProfilePage,
   checkout: CheckoutPage,
   carrito: CartPage,
+  ayuda: HelpPage,
   login: LoginPage,
   registro: RegistroPage,
 };

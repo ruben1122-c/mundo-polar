@@ -1,6 +1,6 @@
 const CLOUDINARY_BASE =
   "https://res.cloudinary.com/jyonna8m/image/upload/mundo-polar";
-const LOCAL_ASSET_FOLDERS = new Set(["logo", "shared"]);
+const LOCAL_ASSET_FOLDERS = new Set(["logo", "shared", "help"]);
 
 const asset = (path: string) => {
   const folder = path.split("/", 1)[0];
@@ -15,6 +15,9 @@ export const ASSETS = {
   logo: asset("logo/mundo-polar-logo.png"),
   shared: {
     footerMarks: asset("shared/footer-marks.png"),
+  },
+  help: {
+    hero: asset("help/centro-ayuda.jpg"),
   },
   home: {
     hero: asset("home/hero-familia-invierno.png"),

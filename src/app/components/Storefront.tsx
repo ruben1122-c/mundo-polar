@@ -303,18 +303,30 @@ interface FilterChipsProps {
 
 function FilterChips({ items }: FilterChipsProps) {
   return (
-    <section className="catalog-filter-strip" aria-label="Filtros visuales">
+    <section className="catalog-filter-strip" aria-label="Filtros de catálogo">
       <div className="page-container">
         <div className="catalog-filter-strip-inner">
-          {items.map((item, index) => (
-            <button
-              key={item}
-              className={index === 0 ? "active" : undefined}
-              type="button"
-            >
-              {item}
-            </button>
-          ))}
+          <label>
+            <span>Categoría</span>
+            <select defaultValue="">
+              <option value="" disabled>Seleccionar categoría</option>
+              {items.map((item) => <option key={item}>{item}</option>)}
+            </select>
+          </label>
+          <label>
+            <span>Color</span>
+            <select defaultValue="">
+              <option value="" disabled>Seleccionar color</option>
+              <option>Azul</option>
+              <option>Negro</option>
+              <option>Crema</option>
+            </select>
+          </label>
+          <label className="catalog-price-filter">
+            <span>Rango de precio</span>
+            <strong>S/ 0.00 – S/ 1,000.00</strong>
+            <input type="range" min="0" max="1000" defaultValue="1000" aria-label="Precio máximo" />
+          </label>
         </div>
       </div>
     </section>
@@ -492,7 +504,7 @@ interface CollectionPageProps {
 
 export function CollectionPage({ config }: CollectionPageProps) {
   return (
-    <>
+    <div className={`collection-page collection-page-${config.page}`}>
       <PageHero
         eyebrow={config.eyebrow}
         title={config.title}
@@ -502,22 +514,18 @@ export function CollectionPage({ config }: CollectionPageProps) {
         destination={config.ctaDestination}
       />
       <FilterChips items={config.filterTags} />
-      <section className="page-section">
-        <div className="page-container">
-          <SectionHeader
-            eyebrow="Selección Mundo Polar"
-            title="Productos destacados"
-            description="Prendas escogidas para combinar calidez, comodidad y estilo."
-            action={{ label: "Ver ofertas", destination: "ofertas" }}
-          />
-          <ProductGrid products={config.products.slice(0, 4)} catalogScope={`${config.page}:featured`} />
-        </div>
-      </section>
       <CollectionProductSectionBlock
         section={config.secondarySection}
         catalogScope={`${config.page}:secondary`}
-        className="page-section-soft"
       />
+      <section className="page-section">
+        <div className="page-container">
+          <SectionHeader
+            title="Productos destacados"
+          />
+          <ProductGrid products={config.products} catalogScope={`${config.page}:featured`} />
+        </div>
+      </section>
       <div className="page-container">
         <PromoBanner
           title={config.promoTitle}
@@ -540,6 +548,6 @@ export function CollectionPage({ config }: CollectionPageProps) {
       <CollectionPromoTiles items={config.promoTiles} />
       <Testimonials />
       <Footer />
-    </>
+    </div>
   );
 }
