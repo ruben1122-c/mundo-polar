@@ -2019,6 +2019,124 @@ p {
   color: #c9dbff;
 }
 
+.catalog-filter-strip {
+  border-bottom: 1px solid rgb(0 0 0 / 6%);
+  background: #fff;
+}
+
+.catalog-filter-strip-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-block: 18px;
+}
+
+.catalog-filter-strip-inner button {
+  min-height: 42px;
+  padding: 9px 15px;
+  border: 1px solid #dce2eb;
+  border-radius: 999px;
+  color: #4a5360;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  transition: color 160ms ease, background-color 160ms ease,
+    border-color 160ms ease, transform 160ms ease;
+}
+
+.catalog-filter-strip-inner button:hover {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  transform: translateY(-1px);
+}
+
+.catalog-filter-strip-inner button.active {
+  border-color: var(--brand-primary);
+  color: #fff;
+  background: var(--brand-primary);
+}
+
+.home-editorial-grid,
+.offers-editorial-grid,
+.newsletter-strip,
+.offer-stats-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.home-editorial-grid,
+.offers-editorial-grid {
+  align-items: center;
+}
+
+.home-editorial-image,
+.offers-editorial-image {
+  width: 100%;
+  min-height: 360px;
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 22px 54px rgb(15 23 42 / 12%);
+}
+
+.home-editorial-copy,
+.offers-editorial-copy {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+}
+
+.home-editorial-copy h2,
+.offers-editorial-copy h2,
+.newsletter-strip h2 {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.08;
+}
+
+.home-editorial-copy p:last-of-type,
+.offers-editorial-copy p:last-of-type,
+.newsletter-strip p:last-of-type {
+  margin: 0;
+  color: #5f6671;
+}
+
+.offer-stats-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.offer-stats-grid article {
+  display: grid;
+  min-height: 130px;
+  align-content: center;
+  padding: 22px;
+  border: 1px solid #e5e9ef;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgb(16 24 40 / 6%);
+  gap: 8px;
+  text-align: center;
+}
+
+.offer-stats-grid strong {
+  color: var(--brand-primary);
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1;
+}
+
+.offer-stats-grid span {
+  color: #667085;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.newsletter-strip {
+  align-items: center;
+  padding: clamp(26px, 4vw, 38px);
+  border: 1px solid #e5e8ee;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #f9fbff 0%, #eef4fb 100%);
+}
+
 .winter-category-card {
   overflow: hidden;
   border-radius: 12px;
@@ -2947,6 +3065,10 @@ p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .offer-stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .footer-newsletter {
     grid-template-columns: 1fr minmax(320px, 0.8fr);
   }
@@ -2988,7 +3110,10 @@ p {
 
   .contact-story-grid,
   .contact-sustainability-grid,
-  .contact-bottom-grid {
+  .contact-bottom-grid,
+  .home-editorial-grid,
+  .offers-editorial-grid,
+  .newsletter-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -3177,6 +3302,14 @@ p {
 
   .promo-content {
     margin-inline: 20px;
+  }
+
+  .offer-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletter-strip {
+    text-align: left;
   }
 
   .testimonial-card {

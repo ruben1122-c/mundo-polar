@@ -43,6 +43,13 @@ export interface CollectionPromoTile {
   destination: Page;
 }
 
+export interface CollectionProductSection {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  products: ReadonlyArray<StoreProduct>;
+}
+
 export interface CollectionConfig {
   page: "mujer" | "hombre" | "mascotas";
   eyebrow: string;
@@ -51,7 +58,10 @@ export interface CollectionConfig {
   hero: string;
   cta: string;
   ctaDestination: Page;
+  filterTags: ReadonlyArray<string>;
   products: ReadonlyArray<StoreProduct>;
+  secondarySection: CollectionProductSection;
+  bestsellerSection: CollectionProductSection;
   promoTitle: string;
   promoDescription: string;
   promoImage: string;
@@ -75,7 +85,7 @@ export const homeCategories: ReadonlyArray<StoreCategory> = [
   },
   {
     id: "infantil",
-    name: "Ninos",
+    name: "Niños",
     image: ASSETS.home.categoryKids,
     destination: "ofertas",
   },
@@ -461,37 +471,78 @@ const petsGallery: ReadonlyArray<CollectionVisualItem> = [
 export const collections: Record<CollectionConfig["page"], CollectionConfig> = {
   mujer: {
     page: "mujer",
-    eyebrow: "Coleccion para mujer",
-    title: "Abrigate con estilo",
+    eyebrow: "Colección para mujer",
+    title: "Abrígate con estilo",
     description:
-      "Prendas disenadas para acompanarte con comodidad y elegancia durante todo el invierno.",
+      "Prendas diseñadas para acompañarte con comodidad y elegancia durante todo el invierno.",
     hero: ASSETS.mujer.hero,
     cta: "Ver ofertas",
     ctaDestination: "ofertas",
+    filterTags: ["Nuevos ingresos", "Abrigos", "Tejidos", "Accesorios"],
     products: womanProducts,
-    promoTitle: "Disenado para los dias mas frios",
+    secondarySection: {
+      eyebrow: "Ofertas especiales",
+      title: "Capas suaves para el dia a dia",
+      description:
+        "Una segunda selección inspirada en la composición de la referencia, con prendas ligeras y complementos de invierno.",
+      products: [...womanProducts].reverse().slice(0, 4),
+    },
+    bestsellerSection: {
+      eyebrow: "Más vendidos",
+      title: "Favoritos de la temporada",
+      description:
+        "Prendas y accesorios en tonos neutros que ya destacan dentro de la coleccion.",
+      products: [
+        {
+          id: "wb-1",
+          name: "Vestido lino premium",
+          image: ASSETS.mujer.bestsellerDress,
+          price: 158,
+          previousPrice: 184,
+        },
+        {
+          id: "wb-2",
+          name: "Chaqueta casual marron",
+          image: ASSETS.mujer.bestsellerOuterwear,
+          price: 132,
+        },
+        {
+          id: "wb-3",
+          name: "Conjunto polar tejido",
+          image: ASSETS.mujer.bestsellerKnitSet,
+          price: 176,
+        },
+        {
+          id: "wb-4",
+          name: "Look acento invierno",
+          image: ASSETS.mujer.bestsellerAccent,
+          price: 118,
+        },
+      ],
+    },
+    promoTitle: "Diseñado para los días más fríos",
     promoDescription:
-      "Casacas, vestidos tejidos y accesorios en tonos neutros para una coleccion femenina y funcional.",
+      "Casacas, vestidos tejidos y accesorios en tonos neutros para una colección femenina y funcional.",
     promoImage: ASSETS.mujer.editorialFamily,
     spotlight: {
-      eyebrow: "Nueva seleccion",
+      eyebrow: "Nueva selección",
       title: "Looks pensados para toda la temporada",
       description:
-        "Combinamos capas suaves, accesorios tejidos y piezas faciles de llevar para mantener el estilo sin sacrificar abrigo.",
+        "Combinamos capas suaves, accesorios tejidos y piezas fáciles de llevar para mantener el estilo sin sacrificar abrigo.",
       image: ASSETS.mujer.bannerPrimary,
-      alt: "Banner editorial de la coleccion mujer",
+      alt: "Banner editorial de la colección mujer",
       tags: ["Capas ligeras", "Texturas suaves", "Tonos neutros"],
     },
     gallery: {
       eyebrow: "Detalles visuales",
-      title: "Inspiracion para tus proximos looks",
+      title: "Inspiración para tus próximos looks",
       description:
-        "Una seleccion editorial con imagenes de apoyo tomadas de la referencia entregada.",
+        "Una selección editorial con imágenes de apoyo tomadas de la referencia entregada.",
       items: womenGallery,
     },
     promoTiles: [
       {
-        title: "Mas capas, menos esfuerzo",
+        title: "Más capas, menos esfuerzo",
         description:
           "Combina abrigos cortos, tejidos y accesorios con una paleta clara y elegante.",
         image: ASSETS.mujer.bannerPrimary,
@@ -510,39 +561,79 @@ export const collections: Record<CollectionConfig["page"], CollectionConfig> = {
   },
   hombre: {
     page: "hombre",
-    eyebrow: "Coleccion para hombre",
-    title: "Proteccion para cada dia",
+    eyebrow: "Colección para hombre",
+    title: "Protección para cada día",
     description:
-      "Prendas resistentes, comodas y calidas para afrontar el invierno con estilo.",
+      "Prendas resistentes, cómodas y cálidas para afrontar el invierno con estilo.",
     hero: ASSETS.hombre.hero,
     cta: "Ver ofertas",
     ctaDestination: "ofertas",
+    filterTags: ["Casacas", "Polares", "Accesorios", "Más vendidos"],
     products: manProducts,
+    secondarySection: {
+      eyebrow: "Ofertas especiales",
+      title: "Capas listas para todo el invierno",
+      description:
+        "Una selección adicional con chaquetas, chalecos y piezas térmicas para reforzar la estructura de catálogo.",
+      products: [...manProducts].slice(4, 8),
+    },
+    bestsellerSection: {
+      eyebrow: "Productos más vendidos",
+      title: "Esenciales para el clima frío",
+      description:
+        "Referencias visuales más editoriales combinadas con prendas clave de la colección hombre.",
+      products: [
+        {
+          id: "mb-1",
+          name: "Abrigo urbano azul profundo",
+          image: ASSETS.hombre.spotlightLayeredLook,
+          price: 220,
+        },
+        {
+          id: "mb-2",
+          name: "Chaqueta negra termica",
+          image: ASSETS.hombre.spotlightBlackJacket,
+          price: 248,
+        },
+        {
+          id: "mb-3",
+          name: "Set funcional de invierno",
+          image: ASSETS.hombre.spotlightAccessories,
+          price: 165,
+        },
+        {
+          id: "mb-4",
+          name: "Basico premium alpino",
+          image: ASSETS.hombre.spotlightAccent,
+          price: 119,
+        },
+      ],
+    },
     promoTitle: "Abrigos listos para cada salida",
     promoDescription:
-      "Prendas resistentes y versatiles para mantener el frio bajo control con un look sobrio.",
+      "Prendas resistentes y versátiles para mantener el frío bajo control con un look sobrio.",
     promoImage: ASSETS.hombre.spotlightLifestyle,
     spotlight: {
       eyebrow: "Editorial de invierno",
-      title: "Capas urbanas para dias de mucho frio",
+      title: "Capas urbanas para días de mucho frío",
       description:
-        "La referencia muestra una narrativa mas lifestyle para hombre, asi que incorporamos las imagenes de modelos y accesorios ya cargadas en Cloudinary.",
+        "La referencia muestra una narrativa más lifestyle para hombre, así que incorporamos las imágenes de modelos y accesorios ya cargadas en Cloudinary.",
       image: ASSETS.hombre.spotlightLifestyle,
-      alt: "Modelos vistiendo looks de la coleccion hombre",
+      alt: "Modelos vistiendo looks de la colección hombre",
       tags: ["Polares", "Puffer jackets", "Accesorios termicos"],
     },
     gallery: {
-      eyebrow: "Mas opciones",
+      eyebrow: "Más opciones",
       title: "Combinaciones listas para usar",
       description:
-        "Prendas, accesorios y close-ups reutilizados desde la libreria existente de Cloudinary.",
+        "Prendas, accesorios y close-ups reutilizados desde la librería existente de Cloudinary.",
       items: menGallery,
     },
     promoTiles: [
       {
-        title: "Proteccion termica sin perder estilo",
+        title: "Protección térmica sin perder estilo",
         description:
-          "Chaquetas, capas y chalecos en una seleccion pensada para el ritmo diario.",
+          "Chaquetas, capas y chalecos en una selección pensada para el ritmo diario.",
         image: ASSETS.hombre.bannerPrimary,
         alt: "Promo principal de la coleccion hombre",
         destination: "ofertas",
@@ -550,7 +641,7 @@ export const collections: Record<CollectionConfig["page"], CollectionConfig> = {
       {
         title: "Todo listo para la temporada",
         description:
-          "Basicos funcionales para combinar con facilidad en ciudad o escapadas de invierno.",
+          "Básicos funcionales para combinar con facilidad en ciudad o escapadas de invierno.",
         image: ASSETS.hombre.bannerSecondary,
         alt: "Promo secundaria de la coleccion hombre",
         destination: "contacto",
@@ -559,23 +650,63 @@ export const collections: Record<CollectionConfig["page"], CollectionConfig> = {
   },
   mascotas: {
     page: "mascotas",
-    eyebrow: "Coleccion para mascotas",
-    title: "Abrigo para tu mejor companero",
+    eyebrow: "Colección para mascotas",
+    title: "Abrigo para tu mejor compañero",
     description:
-      "Ropa comoda y calida para que perros y gatos tambien disfruten del invierno.",
+      "Ropa cómoda y cálida para que perros y gatos también disfruten del invierno.",
     hero: ASSETS.mascotas.hero,
     cta: "Consultar personalizacion",
     ctaDestination: "contacto",
+    filterTags: ["Perros", "Gatos", "Accesorios", "Más vendidos"],
     products: petProducts,
-    promoTitle: "Disenado para tus mascotas",
+    secondarySection: {
+      eyebrow: "Ofertas especiales",
+      title: "Accesorios y prendas para cada paseo",
+      description:
+        "Bloque adicional con prendas de apoyo, inspirado en la estructura más larga de la referencia para mascotas.",
+      products: [...petProducts].slice(0, 4),
+    },
+    bestsellerSection: {
+      eyebrow: "Productos más vendidos",
+      title: "Favoritos para consentirlos",
+      description:
+        "Una mezcla de imágenes de producto y apoyo visual para hacer la página más completa y cercana al mock.",
+      products: [
+        {
+          id: "pb-1",
+          name: "Perrito crema con abrigo",
+          image: ASSETS.mascotas.bestsellerDog,
+          price: 72,
+        },
+        {
+          id: "pb-2",
+          name: "Gatito con accesorio termico",
+          image: ASSETS.mascotas.bestsellerCat,
+          price: 48,
+        },
+        {
+          id: "pb-3",
+          name: "Look neutro para mascota",
+          image: ASSETS.mascotas.bestsellerNeutral,
+          price: 56,
+        },
+        {
+          id: "pb-4",
+          name: "Coleccion especial invierno",
+          image: ASSETS.mascotas.bestsellerAccent,
+          price: 64,
+        },
+      ],
+    },
+    promoTitle: "Diseñado para tus mascotas",
     promoDescription:
-      "Abrigos, accesorios y conjuntos comodos para que perros y gatos disfruten el invierno contigo.",
+      "Abrigos, accesorios y conjuntos cómodos para que perros y gatos disfruten el invierno contigo.",
     promoImage: ASSETS.mascotas.spotlightCompanions,
     spotlight: {
-      eyebrow: "Coleccion mascota",
-      title: "Paseos con mas abrigo y mejor presencia",
+      eyebrow: "Colección mascota",
+      title: "Paseos con más abrigo y mejor presencia",
       description:
-        "Usamos la foto principal con perro y gato para reflejar mejor la composicion de la referencia sin convertirla en un layout pegado.",
+        "Usamos la foto principal con perro y gato para reflejar mejor la composición de la referencia sin convertirla en un layout pegado.",
       image: ASSETS.mascotas.spotlightCompanions,
       alt: "Perros y gato usando ropa de invierno",
       tags: ["Perros", "Gatos", "Accesorios termicos"],
@@ -584,22 +715,22 @@ export const collections: Record<CollectionConfig["page"], CollectionConfig> = {
       eyebrow: "Favoritos de la temporada",
       title: "Looks y accesorios para cada paseo",
       description:
-        "Imagenes de producto y apoyo visual ya existentes en Cloudinary, ahora ubicadas en bloques coherentes.",
+        "Imágenes de producto y apoyo visual ya existentes en Cloudinary, ahora ubicadas en bloques coherentes.",
       items: petsGallery,
     },
     promoTiles: [
       {
         title: "Abrigos para salir con estilo",
         description:
-          "Capas acolchadas, ponchos y accesorios pensados para tus companeros de cuatro patas.",
+          "Capas acolchadas, ponchos y accesorios pensados para tus compañeros de cuatro patas.",
         image: ASSETS.mascotas.bannerPrimary,
         alt: "Promo principal de mascotas",
         destination: "favoritos",
       },
       {
-        title: "Mas detalles para consentirlos",
+        title: "Más detalles para consentirlos",
         description:
-          "Una segunda franja visual con imagenes de la referencia para enriquecer la pagina sin recortar capturas.",
+          "Una segunda franja visual con imágenes de la referencia para enriquecer la página sin recortar capturas.",
         image: ASSETS.mascotas.bannerSecondary,
         alt: "Promo secundaria de mascotas",
         destination: "contacto",
@@ -610,7 +741,7 @@ export const collections: Record<CollectionConfig["page"], CollectionConfig> = {
 
 export const winterCategories = [
   { name: "Casacas", image: ASSETS.ofertas.categoryJackets },
-  { name: "Conjuntos termicos", image: ASSETS.ofertas.categoryThermalSets },
+  { name: "Conjuntos térmicos", image: ASSETS.ofertas.categoryThermalSets },
   { name: "Bufandas", image: ASSETS.ofertas.categoryScarves },
   { name: "Guantes", image: ASSETS.ofertas.categoryGloves },
   { name: "Botas", image: ASSETS.ofertas.categoryBoots },

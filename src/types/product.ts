@@ -4,7 +4,8 @@ export type CatalogScope =
   | "offers"
   | "mujer"
   | "hombre"
-  | "mascotas";
+  | "mascotas"
+  | string;
 
 export interface CatalogProduct {
   id: string;

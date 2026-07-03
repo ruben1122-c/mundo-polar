@@ -22,7 +22,7 @@ export const NAV_ITEMS: ReadonlyArray<{
   { id: "inicio", label: "Inicio", path: "/" },
   { id: "nosotros", label: "Nosotros", path: "/nosotros" },
   { id: "ofertas", label: "Ofertas", path: "/ofertas" },
-  { id: "contacto", label: "Contactos", path: "/contacto" },
+  { id: "contacto", label: "Contacto", path: "/contacto" },
 ];
 
 export const PAGE_PATHS = Object.fromEntries(

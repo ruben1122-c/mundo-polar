@@ -26,67 +26,67 @@ const initialValues: ContactValues = {
   message: "",
 };
 
-const trustStats = [
-  { label: "Fundacion", value: "2019" },
-  { label: "Clientes", value: "50K+" },
-  { label: "Satisfaccion", value: "100%" },
+const supportStats = [
+  { label: "Canales activos", value: "03" },
+  { label: "Tiempo estimado", value: "24h" },
+  { label: "Cobertura", value: "Lima, Perú" },
 ] as const;
 
-const trustReasons = [
-  "Materiales sostenibles",
-  "Calidad comprobada",
-  "Garantia vitalicia",
-  "Envio carbono neutro",
+const supportReasons = [
+  "Asesoría para elegir tallas",
+  "Dudas sobre cambios y envíos",
+  "Orientación sobre colecciones",
+  "Atención directa y cercana",
 ] as const;
 
-const missionValues = [
+const supportAreas = [
   {
     id: "01",
-    title: "Sostenibilidad",
-    text: "Cada decision considera su impacto en el planeta.",
+    title: "Antes de comprar",
+    text: "Te ayudamos a elegir prendas, tallas y categorías según lo que necesites.",
   },
   {
     id: "02",
-    title: "Calidez",
-    text: "No solo fisica: tambien en como tratamos a nuestra comunidad.",
+    title: "Durante tu pedido",
+    text: "Resolvemos dudas sobre stock, tiempos y recomendaciones de compra.",
   },
   {
     id: "03",
-    title: "Transparencia",
-    text: "Sabemos de donde viene cada material que usamos.",
+    title: "Después de comprar",
+    text: "Te orientamos con cambios, guía de uso y seguimiento general.",
   },
   {
     id: "04",
-    title: "Durabilidad",
-    text: "Disenamos para que dure, no para que compres de nuevo.",
+    title: "Atención continua",
+    text: "Queremos que la experiencia sea clara incluso sin backend de contacto todavía.",
   },
 ] as const;
 
-const sustainabilityChecklist = [
-  "Lana 100% reciclada",
-  "Algodon organico certificado GOTS",
-  "Tintes vegetales y limpios",
-  "Empaques sin plastico",
+const faqChecklist = [
+  "Guía de tallas y ajuste",
+  "Cobertura de entrega en Lima",
+  "Cambios y devoluciones",
+  "Recomendaciones por categoría",
 ] as const;
 
 const reviewCards = [
   {
-    author: "Valentina R.",
-    role: "Cliente fiel",
-    image: ASSETS.ofertas.testimonial01,
-    text: "La chaqueta que compre para mi mascota se ve increible. Super abrigadora y la marca se siente premium.",
-  },
-  {
-    author: "Marcos T.",
+    author: "Luis Pérez",
     role: "Compra verificada",
-    image: ASSETS.ofertas.testimonial02,
-    text: "Uno de los inviernos mas frios y mi abrigo de Mundo Polar no me ha fallado ni un dia.",
+    image: ASSETS.ofertas.testimonial01,
+    text: "Me orientaron rápido sobre tallas y elegí mejor el abrigo. La experiencia se sintió clara y cercana.",
   },
   {
-    author: "Carla M.",
+    author: "Juan Soto",
     role: "Cliente frecuente",
+    image: ASSETS.ofertas.testimonial02,
+    text: "Las respuestas fueron directas y útiles. Se nota que conocen bien las colecciones del sitio.",
+  },
+  {
+    author: "Marcos Díaz",
+    role: "Cliente verificado",
     image: ASSETS.ofertas.testimonial03,
-    text: "Me encanto que el empaque sea ligero y que usen tejidos de mejor calidad. Repetire compra.",
+    text: "La página ahora se siente mucho más completa y el bloque de contacto ayuda bastante para cerrar la compra.",
   },
 ] as const;
 
@@ -101,7 +101,7 @@ export function ContactSection() {
 
     if (!values.name.trim()) nextErrors.name = "Ingresa tu nombre.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-      nextErrors.email = "Ingresa un correo valido.";
+      nextErrors.email = "Ingresa un correo válido.";
     }
     if (!values.subject.trim()) nextErrors.subject = "Ingresa el asunto.";
     if (values.message.trim().length < 10) {
@@ -112,7 +112,7 @@ export function ContactSection() {
     setNotice("");
 
     if (Object.keys(nextErrors).length === 0) {
-      setNotice("Formulario de demostracion: no se enviaron datos.");
+      setNotice("Formulario de demostración: no se enviaron datos.");
     }
   };
 
@@ -128,16 +128,16 @@ export function ContactSection() {
           priority
           kind="hero"
           className="contact-hero-image"
-          src={ASSETS.nosotros.hero}
-          alt="Paisaje de invierno de Mundo Polar"
+          src={ASSETS.nosotros.story06}
+          alt="Atención y soporte de Mundo Polar"
         />
         <div className="contact-hero-overlay" />
         <div className="page-container contact-hero-content">
-          <p className="section-eyebrow">Conoce a Mundo Polar</p>
-          <h1>Estamos para ayudarte y acompanarte todo el invierno</h1>
+          <p className="section-eyebrow">Contacto Mundo Polar</p>
+          <h1>Hablemos sobre tu próximo abrigo</h1>
           <p>
-            Cuida tu estilo, resuelve tus dudas y encuentra la prenda ideal con
-            un equipo que conoce de abrigo, familia y comodidad.
+            Resolvemos dudas sobre productos, tallas, envíos y colecciones para
+            que tu compra sea más simple y segura.
           </p>
           <div className="contact-hero-actions">
             <button
@@ -145,7 +145,7 @@ export function ContactSection() {
               type="button"
               onClick={() => navigateTo("ofertas")}
             >
-              Ver coleccion
+              Ver colección
             </button>
             <button
               className="outline-button"
@@ -156,7 +156,7 @@ export function ContactSection() {
                   ?.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
             >
-              Contactar ahora
+              Escribir mensaje
             </button>
           </div>
         </div>
@@ -165,15 +165,18 @@ export function ContactSection() {
       <section className="page-section">
         <div className="page-container contact-story-grid">
           <div className="contact-story-copy">
-            <p className="section-eyebrow">Quienes somos</p>
-            <h2>Una marca nacida del frio del sur</h2>
+            <p className="section-eyebrow">Cómo te ayudamos</p>
+            <h2>Atención cercana para cada consulta</h2>
             <p>
-              Fundados en Santiago en 2019, nacimos con una obsesion: que
-              ninguna familia pase frio. Hoy vestimos a personas y mascotas con
-              prendas que respetan el planeta y duran mas.
+              Esta página ahora cumple mejor el rol de Contacto: explicar cómo
+              acompañamos al usuario y dejar un punto claro para escribirnos.
+            </p>
+            <p>
+              Mantenemos el frontend visual y funcional, pero con una estructura
+              más completa y alineada a la referencia general del proyecto.
             </p>
             <div className="contact-stats-grid">
-              {trustStats.map((stat) => (
+              {supportStats.map((stat) => (
                 <article key={stat.label}>
                   <strong>{stat.value}</strong>
                   <span>{stat.label}</span>
@@ -184,8 +187,8 @@ export function ContactSection() {
           <OptimizedImage
             kind="content"
             className="contact-story-image"
-            src={ASSETS.nosotros.story04}
-            alt="Persona observando un paisaje nevado"
+            src={ASSETS.nosotros.story02}
+            alt="Cliente revisando prendas de invierno"
           />
         </div>
       </section>
@@ -194,16 +197,16 @@ export function ContactSection() {
         <div className="page-container">
           <div className="contact-trust-header">
             <div>
-              <p className="section-eyebrow">Nuestra propuesta de valor</p>
-              <h2>Por que elegirnos?</h2>
+              <p className="section-eyebrow">Motivos para escribirnos</p>
+              <h2>Estamos aquí para orientarte</h2>
             </div>
             <p>
-              Somos mas que una tienda. Somos el abrigo de las familias en los
-              meses mas frios del ano.
+              Si no sabes qué producto elegir o quieres validar detalles antes
+              de comprar, este es el punto de contacto correcto.
             </p>
           </div>
           <div className="contact-trust-grid">
-            {trustReasons.map((reason) => (
+            {supportReasons.map((reason) => (
               <article key={reason}>
                 <span>
                   <Check size={16} aria-hidden="true" />
@@ -213,13 +216,13 @@ export function ContactSection() {
             ))}
           </div>
           <div className="contact-trust-cta">
-            <p>Mas de 50,000 familias ya eligieron Mundo Polar.</p>
+            <p>Te respondemos con un enfoque práctico y sin rodeos.</p>
             <button
               className="primary-button"
               type="button"
-              onClick={() => navigateTo("ofertas")}
+              onClick={() => navigateTo("perfil")}
             >
-              Ver coleccion
+              Ver mi cuenta
             </button>
           </div>
         </div>
@@ -228,15 +231,15 @@ export function ContactSection() {
       <section className="page-section contact-values-section">
         <div className="page-container">
           <div className="contact-values-header">
-            <p className="section-eyebrow">Mision y valores</p>
-            <h2>Lo que nos mueve cada dia</h2>
+            <p className="section-eyebrow">Soporte</p>
+            <h2>Así acompañamos tu experiencia</h2>
             <p>
-              Mundo Polar nacio con una mision clara: que ninguna familia pase
-              frio, y que hacerlo bien no signifique descuidar el planeta.
+              Reemplazamos el contenido demasiado “nosotros” por una estructura
+              más propia de Contacto, manteniendo el lenguaje visual del sitio.
             </p>
           </div>
           <div className="contact-values-grid">
-            {missionValues.map((value) => (
+            {supportAreas.map((value) => (
               <article key={value.id}>
                 <span>{value.id}</span>
                 <h3>{value.title}</h3>
@@ -246,10 +249,10 @@ export function ContactSection() {
           </div>
           <blockquote className="contact-quote-card">
             <p>
-              "Nuestra mision es que cada prenda que vendemos sea una razon
-              para disfrutar el invierno."
+              “Queremos que pedir ayuda en Mundo Polar se sienta tan claro como
+              comprar una buena prenda de invierno.”
             </p>
-            <span>Mundo Polar</span>
+            <span>Equipo Mundo Polar</span>
           </blockquote>
         </div>
       </section>
@@ -257,15 +260,14 @@ export function ContactSection() {
       <section className="page-section page-section-soft">
         <div className="page-container contact-sustainability-grid">
           <div>
-            <p className="section-eyebrow">Eco materiales</p>
-            <h2>Moda que respeta el planeta</h2>
+            <p className="section-eyebrow">Consultas frecuentes</p>
+            <h2>Temas en los que más te orientamos</h2>
             <p>
-              Todos nuestros materiales son trazables y sostenibles. Lana
-              reciclada, algodon organico certificado y tintes de origen
-              natural.
+              Esta sección ocupa el espacio que antes se veía genérico y ayuda a
+              que Contacto tenga una narrativa más completa.
             </p>
             <ul className="contact-check-list">
-              {sustainabilityChecklist.map((item) => (
+              {faqChecklist.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
@@ -283,8 +285,8 @@ export function ContactSection() {
       <section className="page-section">
         <div className="page-container">
           <div className="contact-reviews-header">
-            <p className="section-eyebrow">Valoracion de clientes</p>
-            <h2>Lo que dice nuestra comunidad.</h2>
+            <p className="section-eyebrow">Opiniones</p>
+            <h2>Lo que dicen nuestros clientes.</h2>
             <div className="contact-review-score">
               <strong>4.9</strong>
               <div>
@@ -316,7 +318,7 @@ export function ContactSection() {
             ))}
           </div>
           <button className="outline-button contact-review-button" type="button">
-            Ver todas las reseñas
+            Ver más comentarios
           </button>
         </div>
       </section>
@@ -324,15 +326,15 @@ export function ContactSection() {
       <section className="page-section page-section-soft" id="contact-form-anchor">
         <div className="page-container contact-bottom-grid">
           <div className="contact-form-column">
-            <p className="section-eyebrow">Contactanos</p>
-            <h2>Estamos para ayudarte.</h2>
+            <p className="section-eyebrow">Contáctanos</p>
+            <h2>Escríbenos y te orientamos.</h2>
             <p>
-              Esta version valida tus datos localmente, pero todavia no envia
+              Esta versión valida tus datos localmente, pero todavía no envía
               mensajes a un backend real.
             </p>
             <div className="contact-details">
               <p>
-                <MapPin aria-hidden="true" /> Lima, Peru
+                <MapPin aria-hidden="true" /> Lima, Perú
               </p>
               <p>
                 <Phone aria-hidden="true" /> +51 962 690 195
@@ -342,7 +344,11 @@ export function ContactSection() {
               </p>
             </div>
 
-            <form className="contact-form contact-form-compact" onSubmit={submit} noValidate>
+            <form
+              className="contact-form contact-form-compact"
+              onSubmit={submit}
+              noValidate
+            >
               <Field
                 id="contact-name"
                 label="Nombre"
@@ -353,7 +359,7 @@ export function ContactSection() {
               />
               <Field
                 id="contact-email"
-                label="Correo electronico"
+                label="Correo electrónico"
                 value={values.email}
                 error={errors.email}
                 onChange={(value) => update("email", value)}
@@ -375,7 +381,7 @@ export function ContactSection() {
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? "contact-message-error" : undefined}
                   onChange={(event) => update("message", event.target.value)}
-                  placeholder="Tu mensaje..."
+                  placeholder="Cuéntanos tu consulta..."
                   rows={5}
                 />
                 {errors.message ? (
@@ -385,7 +391,11 @@ export function ContactSection() {
               <button className="primary-button contact-submit" type="submit">
                 Enviar mensaje
               </button>
-              {notice ? <p className="form-notice" role="status">{notice}</p> : null}
+              {notice ? (
+                <p className="form-notice" role="status">
+                  {notice}
+                </p>
+              ) : null}
             </form>
           </div>
 

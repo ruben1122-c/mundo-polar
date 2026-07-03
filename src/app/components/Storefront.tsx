@@ -8,6 +8,7 @@ import { useToast } from "../context/ToastContext";
 import type {
   CollectionConfig,
   CollectionPromoTile,
+  CollectionProductSection,
   CollectionSpotlight,
   CollectionVisualItem,
   StoreCategory,
@@ -141,7 +142,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <OptimizedImage kind="product" src={product.image} alt={product.name} />
           <div className="absolute inset-0 flex items-center justify-center bg-slate-900/30 opacity-0 transition-opacity duration-200 hover:opacity-100">
             <span className="scale-95 rounded-lg bg-white/95 px-3.5 py-1.5 text-xs font-extrabold text-slate-800 shadow-md transition-all hover:scale-100">
-              Vista rapida
+              Vista rápida
             </span>
           </div>
         </div>
@@ -296,6 +297,30 @@ export function PromoBanner({
   );
 }
 
+interface FilterChipsProps {
+  items: ReadonlyArray<string>;
+}
+
+function FilterChips({ items }: FilterChipsProps) {
+  return (
+    <section className="catalog-filter-strip" aria-label="Filtros visuales">
+      <div className="page-container">
+        <div className="catalog-filter-strip-inner">
+          {items.map((item, index) => (
+            <button
+              key={item}
+              className={index === 0 ? "active" : undefined}
+              type="button"
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const testimonials = [
   {
     name: "Valentina R.",
@@ -436,6 +461,31 @@ function CollectionPromoTiles({ items }: CollectionPromoTilesProps) {
   );
 }
 
+interface CollectionProductSectionProps {
+  section: CollectionProductSection;
+  catalogScope?: CatalogScope;
+  className?: string;
+}
+
+function CollectionProductSectionBlock({
+  section,
+  catalogScope,
+  className,
+}: CollectionProductSectionProps) {
+  return (
+    <section className={`page-section ${className ?? ""}`.trim()}>
+      <div className="page-container">
+        <SectionHeader
+          eyebrow={section.eyebrow}
+          title={section.title}
+          description={section.description}
+        />
+        <ProductGrid products={section.products} catalogScope={catalogScope} />
+      </div>
+    </section>
+  );
+}
+
 interface CollectionPageProps {
   config: CollectionConfig;
 }
@@ -451,17 +501,23 @@ export function CollectionPage({ config }: CollectionPageProps) {
         cta={config.cta}
         destination={config.ctaDestination}
       />
+      <FilterChips items={config.filterTags} />
       <section className="page-section">
         <div className="page-container">
           <SectionHeader
-            eyebrow="Seleccion Mundo Polar"
+            eyebrow="Selección Mundo Polar"
             title="Productos destacados"
             description="Prendas escogidas para combinar calidez, comodidad y estilo."
             action={{ label: "Ver ofertas", destination: "ofertas" }}
           />
-          <ProductGrid products={config.products} catalogScope={config.page} />
+          <ProductGrid products={config.products.slice(0, 4)} catalogScope={`${config.page}:featured`} />
         </div>
       </section>
+      <CollectionProductSectionBlock
+        section={config.secondarySection}
+        catalogScope={`${config.page}:secondary`}
+        className="page-section-soft"
+      />
       <div className="page-container">
         <PromoBanner
           title={config.promoTitle}
@@ -476,6 +532,10 @@ export function CollectionPage({ config }: CollectionPageProps) {
         title={config.gallery.title}
         description={config.gallery.description}
         items={config.gallery.items}
+      />
+      <CollectionProductSectionBlock
+        section={config.bestsellerSection}
+        catalogScope={`${config.page}:bestseller`}
       />
       <CollectionPromoTiles items={config.promoTiles} />
       <Testimonials />

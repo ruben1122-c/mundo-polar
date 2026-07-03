@@ -75,7 +75,31 @@ export function useCatalogProducts(
   }
 
   const scopedProducts = useMemo(() => {
-    if (!scope) return context.products;
+    if (!scope) return [];
+
+    if (scope.includes(":")) {
+      const [category, subScope] = scope.split(":");
+      const catProducts = context.products.filter(
+        (product) => product.categorySlug === category,
+      );
+
+      if (subScope === "featured") {
+        const featured = catProducts.filter((product) => product.isFeatured);
+        if (featured.length > 0) return featured.slice(0, 4);
+        return catProducts.slice(0, 4);
+      }
+      if (subScope === "secondary") {
+        const secondary = catProducts.filter((product) => !product.isFeatured);
+        const source = secondary.length > 0 ? secondary : catProducts;
+        return [...source].reverse().slice(0, 4);
+      }
+      if (subScope === "bestseller") {
+        const bestsellers = catProducts.filter((product) => !product.isFeatured);
+        const source = bestsellers.length > 0 ? bestsellers : catProducts;
+        return source.slice(2, 6);
+      }
+      return catProducts;
+    }
 
     return context.products.filter((product) => {
       if (scope === "featured") return product.isFeatured;
