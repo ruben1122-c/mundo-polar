@@ -5,18 +5,70 @@ import { ShippingMethodSelector } from "@/app/components/checkout/ShippingMethod
 import { Footer } from "@/app/components/Footer";
 import { useShop } from "@/app/context/ShopContext";
 import { navigateTo } from "@/app/navigation";
+import { createPendingOrder } from "@/services/orderService";
+import type { PaymentMethod, ShippingMethod } from "@/types/order";
 import { ChevronRight, Mail, Phone, UserRound } from "lucide-react";
 import { useState } from "react";
 
+const customer = {
+  name: "José Pérez",
+  email: "joseperez@email.com",
+  phone: "999 999 999",
+} as const;
+
 const customerDetails = [
-  { label: "Nombre completo", value: "Jose Perez", Icon: UserRound },
-  { label: "Correo", value: "joseperez@email.com", Icon: Mail },
-  { label: "Teléfono", value: "999 999 999", Icon: Phone },
+  { label: "Nombre completo", value: customer.name, Icon: UserRound },
+  { label: "Correo", value: customer.email, Icon: Mail },
+  { label: "Teléfono", value: customer.phone, Icon: Phone },
 ] as const;
 
 export default function CheckoutPage() {
-  const { cartItems } = useShop();
+  const { cartItems, clearCart } = useShop();
   const [notice, setNotice] = useState("");
+  const [shippingMethod, setShippingMethod] =
+    useState<ShippingMethod>("delivery");
+  const [paymentMethod, setPaymentMethod] =
+    useState<PaymentMethod>("card");
+  const [notes, setNotes] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleConfirm = async () => {
+    if (!cartItems.length || isSubmitting) return;
+
+    try {
+      setIsSubmitting(true);
+      setNotice("");
+      const order = await createPendingOrder({
+        customer_name: customer.name,
+        customer_email: customer.email,
+        customer_phone: customer.phone,
+        shipping_method: shippingMethod,
+        shipping_address:
+          shippingMethod === "delivery"
+            ? { address: "Av. Polar 123", city: "Lima", country: "Perú" }
+            : undefined,
+        payment_method: paymentMethod,
+        notes: notes.trim() || undefined,
+        items: cartItems.map((item) => ({
+          product_reference: item.id,
+          quantity: item.quantity,
+        })),
+      });
+
+      clearCart();
+      setNotice(
+        `Pedido ${order.order_number} registrado como pendiente. No se procesó ningún pago.`,
+      );
+    } catch (error: unknown) {
+      setNotice(
+        error instanceof Error
+          ? error.message
+          : "No se pudo registrar el pedido.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <>
@@ -61,14 +113,20 @@ export default function CheckoutPage() {
                 title="Método de envío"
                 description="Elige cómo quieres recibir tu pedido."
               >
-                <ShippingMethodSelector />
+                <ShippingMethodSelector
+                  value={shippingMethod}
+                  onChange={setShippingMethod}
+                />
               </CheckoutSection>
 
               <CheckoutSection
                 title="Método de pago"
                 description="Selecciona una opción para esta demostración."
               >
-                <PaymentMethodSelector />
+                <PaymentMethodSelector
+                  value={paymentMethod}
+                  onChange={setPaymentMethod}
+                />
               </CheckoutSection>
 
               <CheckoutSection title="Observación">
@@ -76,6 +134,8 @@ export default function CheckoutPage() {
                   <span>Observaciones adicionales</span>
                   <textarea
                     rows={5}
+                    value={notes}
+                    onChange={(event) => setNotes(event.target.value)}
                     placeholder="Ejemplo: usar el timbre, entregar al portero, referencia de dirección, etc."
                   />
                 </label>
@@ -85,11 +145,8 @@ export default function CheckoutPage() {
             <CheckoutSummary
               notice={notice}
               products={cartItems}
-              onConfirm={() =>
-                setNotice(
-                  "Pago de demostración confirmado. No se procesó ningún cobro.",
-                )
-              }
+              isSubmitting={isSubmitting}
+              onConfirm={handleConfirm}
               onBack={() => navigateTo("carrito")}
             />
           </div>

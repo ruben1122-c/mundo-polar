@@ -7,6 +7,7 @@ interface CheckoutSummaryProps {
   onBack: () => void;
   onConfirm: () => void;
   products: ReadonlyArray<CartItem>;
+  isSubmitting?: boolean;
 }
 
 const money = new Intl.NumberFormat("es-PE", {
@@ -19,6 +20,7 @@ export function CheckoutSummary({
   onBack,
   onConfirm,
   products,
+  isSubmitting = false,
 }: CheckoutSummaryProps) {
   const itemCount = products.reduce(
     (total, product) => total + product.quantity,
@@ -78,11 +80,11 @@ export function CheckoutSummary({
         <button
           className="checkout-confirm-button"
           type="button"
-          disabled={!products.length}
+          disabled={!products.length || isSubmitting}
           onClick={onConfirm}
         >
           <LockKeyhole size={18} aria-hidden="true" />
-          Confirmar pago
+          {isSubmitting ? "Registrando pedido..." : "Confirmar pago"}
         </button>
         <button className="checkout-back-button" type="button" onClick={onBack}>
           <ArrowLeft size={18} aria-hidden="true" />

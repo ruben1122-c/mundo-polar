@@ -1,10 +1,17 @@
 import { MapPin, Store } from "lucide-react";
 import { useState } from "react";
 
-type ShippingMethod = "delivery" | "store";
+import type { ShippingMethod } from "@/types/order";
 
-export function ShippingMethodSelector() {
-  const [method, setMethod] = useState<ShippingMethod>("delivery");
+interface ShippingMethodSelectorProps {
+  value: ShippingMethod;
+  onChange: (method: ShippingMethod) => void;
+}
+
+export function ShippingMethodSelector({
+  value,
+  onChange,
+}: ShippingMethodSelectorProps) {
   const [addressAdded, setAddressAdded] = useState(false);
 
   return (
@@ -15,26 +22,26 @@ export function ShippingMethodSelector() {
         role="group"
       >
         <button
-          className={method === "delivery" ? "selected" : undefined}
+          className={value === "delivery" ? "selected" : undefined}
           type="button"
-          aria-pressed={method === "delivery"}
-          onClick={() => setMethod("delivery")}
+          aria-pressed={value === "delivery"}
+          onClick={() => onChange("delivery")}
         >
           <MapPin size={18} aria-hidden="true" />
           Delivery
         </button>
         <button
-          className={method === "store" ? "selected" : undefined}
+          className={value === "store_pickup" ? "selected" : undefined}
           type="button"
-          aria-pressed={method === "store"}
-          onClick={() => setMethod("store")}
+          aria-pressed={value === "store_pickup"}
+          onClick={() => onChange("store_pickup")}
         >
           <Store size={18} aria-hidden="true" />
           Recojo en tienda
         </button>
       </div>
 
-      {method === "delivery" ? (
+      {value === "delivery" ? (
         <div className="checkout-method-detail">
           <p>
             {addressAdded

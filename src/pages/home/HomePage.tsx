@@ -79,7 +79,11 @@ export default function HomePage() {
             />
           </AnimateInView>
           <AnimateInView delay={100}>
-            <ProductGrid products={featuredProducts} className="mobile-carousel product-carousel" />
+            <ProductGrid
+              products={featuredProducts}
+              catalogScope="featured"
+              className="mobile-carousel product-carousel"
+            />
           </AnimateInView>
         </div>
       </section>
@@ -101,7 +105,11 @@ export default function HomePage() {
             <SectionHeader title="Nuevos ingresos" />
           </AnimateInView>
           <AnimateInView delay={100}>
-            <ProductGrid products={[...featuredProducts].reverse()} className="mobile-carousel product-carousel" />
+            <ProductGrid
+              products={[...featuredProducts].reverse()}
+              catalogScope="new"
+              className="mobile-carousel product-carousel"
+            />
           </AnimateInView>
         </div>
       </section>

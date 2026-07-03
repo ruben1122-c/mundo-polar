@@ -1,14 +1,8 @@
 import { ASSETS } from "@/config/assets";
 import type { Page } from "@/app/navigation";
+import type { CatalogProduct } from "@/types/product";
 
-export interface StoreProduct {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  previousPrice?: number;
-  badge?: string;
-}
+export type StoreProduct = CatalogProduct;
 
 export interface StoreCategory {
   id: string;

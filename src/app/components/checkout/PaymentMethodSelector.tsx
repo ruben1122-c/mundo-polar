@@ -1,11 +1,15 @@
 import { CreditCard, Smartphone } from "lucide-react";
-import { useState } from "react";
+import type { PaymentMethod } from "@/types/order";
 
-type PaymentMethod = "card" | "yape" | "plin";
+interface PaymentMethodSelectorProps {
+  value: PaymentMethod;
+  onChange: (method: PaymentMethod) => void;
+}
 
-export function PaymentMethodSelector() {
-  const [method, setMethod] = useState<PaymentMethod>("card");
-
+export function PaymentMethodSelector({
+  value,
+  onChange,
+}: PaymentMethodSelectorProps) {
   return (
     <div className="checkout-selector">
       <div
@@ -14,33 +18,33 @@ export function PaymentMethodSelector() {
         role="group"
       >
         <button
-          className={method === "card" ? "selected" : undefined}
+          className={value === "card" ? "selected" : undefined}
           type="button"
-          aria-pressed={method === "card"}
-          onClick={() => setMethod("card")}
+          aria-pressed={value === "card"}
+          onClick={() => onChange("card")}
         >
           <CreditCard size={18} aria-hidden="true" />
           Tarjeta
         </button>
         <button
-          className={method === "yape" ? "selected" : undefined}
+          className={value === "yape" ? "selected" : undefined}
           type="button"
-          aria-pressed={method === "yape"}
-          onClick={() => setMethod("yape")}
+          aria-pressed={value === "yape"}
+          onClick={() => onChange("yape")}
         >
           Yape
         </button>
         <button
-          className={method === "plin" ? "selected" : undefined}
+          className={value === "plin" ? "selected" : undefined}
           type="button"
-          aria-pressed={method === "plin"}
-          onClick={() => setMethod("plin")}
+          aria-pressed={value === "plin"}
+          onClick={() => onChange("plin")}
         >
           Plin
         </button>
       </div>
 
-      {method === "card" ? (
+      {value === "card" ? (
         <div className="checkout-payment-fields">
           <label className="checkout-field checkout-field-wide">
             <span>Número de tarjeta</span>
@@ -71,7 +75,7 @@ export function PaymentMethodSelector() {
         <div className="checkout-method-message" role="status">
           <Smartphone size={20} aria-hidden="true" />
           <p>
-            {method === "yape"
+            {value === "yape"
               ? "El código QR de Yape aparecerá aquí cuando exista una pasarela de pago."
               : "El código QR de Plin aparecerá aquí cuando exista una pasarela de pago."}
           </p>

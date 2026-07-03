@@ -13,6 +13,9 @@ import type {
 import { winterCategories } from "@/data/catalog";
 import { ASSETS } from "@/config/assets";
 import { Footer } from "./Footer";
+import type { CatalogScope } from "@/types/product";
+import { useCatalogProducts } from "../context/ProductCatalogContext";
+import { ProductCardSkeleton } from "./skeletons/PageSkeleton";
 
 interface SectionHeaderProps {
   eyebrow?: string;
@@ -219,14 +222,32 @@ export function ProductCard({ product }: ProductCardProps) {
 interface ProductGridProps {
   products: ReadonlyArray<StoreProduct>;
   className?: string;
+  catalogScope?: CatalogScope;
 }
 
-export function ProductGrid({ products, className = "" }: ProductGridProps) {
+export function ProductGrid({
+  products: fallbackProducts,
+  className = "",
+  catalogScope,
+}: ProductGridProps) {
+  const { products, isLoading } = useCatalogProducts(
+    catalogScope,
+    fallbackProducts,
+  );
+
   return (
-    <div className={`product-grid ${className}`}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div
+      className={`product-grid ${className}`}
+      aria-busy={isLoading}
+      aria-live="polite"
+    >
+      {isLoading
+        ? Array.from({ length: Math.min(Math.max(fallbackProducts.length, 4), 8) }, (_, index) => (
+            <ProductCardSkeleton key={`product-skeleton-${index}`} />
+          ))
+        : products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
     </div>
   );
 }
@@ -364,7 +385,10 @@ export function CollectionPage({ config }: CollectionPageProps) {
             description="Prendas escogidas para combinar calidez, comodidad y estilo."
             action={{ label: "Ver ofertas", destination: "ofertas" }}
           />
-          <ProductGrid products={config.products} />
+          <ProductGrid
+            products={config.products}
+            catalogScope={config.page}
+          />
         </div>
       </section>
       <div className="page-container">

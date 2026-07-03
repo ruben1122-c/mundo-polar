@@ -42,7 +42,11 @@ export default function OffersPage() {
             title="Productos destacados"
             description="Una selección local de prendas y accesorios con precios de temporada."
           />
-          <ProductGrid products={offerProducts} className="mobile-carousel product-carousel" />
+          <ProductGrid
+            products={offerProducts}
+            catalogScope="offers"
+            className="mobile-carousel product-carousel"
+          />
         </div>
       </section>
 
