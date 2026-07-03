@@ -1,12 +1,12 @@
 import { OptimizedImage } from "@/app/components/OptimizedImage";
-import type { CheckoutProduct } from "@/data/products";
+import type { CartItem } from "@/app/context/ShopContext";
 import { ArrowLeft, LockKeyhole } from "lucide-react";
 
 interface CheckoutSummaryProps {
   notice: string;
   onBack: () => void;
   onConfirm: () => void;
-  products: ReadonlyArray<CheckoutProduct>;
+  products: ReadonlyArray<CartItem>;
 }
 
 const money = new Intl.NumberFormat("es-PE", {
@@ -20,7 +20,10 @@ export function CheckoutSummary({
   onConfirm,
   products,
 }: CheckoutSummaryProps) {
-  const itemCount = products.reduce((total, product) => total + product.quantity, 0);
+  const itemCount = products.reduce(
+    (total, product) => total + product.quantity,
+    0,
+  );
   const subtotal = products.reduce(
     (total, product) => total + product.price * product.quantity,
     0,
@@ -30,24 +33,31 @@ export function CheckoutSummary({
     <aside className="checkout-summary" aria-labelledby="checkout-summary-title">
       <h2 id="checkout-summary-title">Resumen</h2>
 
-      <div className="checkout-summary-products">
-        {products.map((product) => (
-          <article key={product.id} className="checkout-summary-product">
-            <OptimizedImage
-              kind="thumbnail"
-              src={product.image}
-              alt={product.name}
-            />
-            <div>
-              <h3>{product.name}</h3>
-              <p>{product.details}</p>
-              {product.badge ? <span>{product.badge}</span> : null}
-              <small>Cantidad: {product.quantity}</small>
-            </div>
-            <strong>S/ {money.format(product.price * product.quantity)}</strong>
-          </article>
-        ))}
-      </div>
+      {products.length ? (
+        <div className="checkout-summary-products">
+          {products.map((product) => (
+            <article key={product.id} className="checkout-summary-product">
+              <OptimizedImage
+                kind="thumbnail"
+                src={product.image}
+                alt={product.name}
+              />
+              <div>
+                <h3>{product.name}</h3>
+                <p>{product.details ?? "Producto Mundo Polar"}</p>
+                {product.badge ? <span>{product.badge}</span> : null}
+                <small>Cantidad: {product.quantity}</small>
+              </div>
+              <strong>S/ {money.format(product.price * product.quantity)}</strong>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div className="checkout-summary-empty">
+          <strong>No hay productos en el carrito</strong>
+          <p>Vuelve al carrito o agrega productos antes de confirmar.</p>
+        </div>
+      )}
 
       <dl className="checkout-totals">
         <div>
@@ -65,7 +75,12 @@ export function CheckoutSummary({
       </dl>
 
       <div className="checkout-summary-actions">
-        <button className="checkout-confirm-button" type="button" onClick={onConfirm}>
+        <button
+          className="checkout-confirm-button"
+          type="button"
+          disabled={!products.length}
+          onClick={onConfirm}
+        >
           <LockKeyhole size={18} aria-hidden="true" />
           Confirmar pago
         </button>

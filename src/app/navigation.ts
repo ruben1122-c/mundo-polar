@@ -9,7 +9,8 @@ export type Page =
   | "mascotas"
   | "favoritos"
   | "perfil"
-  | "checkout";
+  | "checkout"
+  | "carrito";
 
 export const NAV_ITEMS: ReadonlyArray<{
   id: Page;
@@ -32,6 +33,7 @@ export const PAGE_PATHS = Object.fromEntries(
     { id: "favoritos", path: "/favoritos" },
     { id: "perfil", path: "/perfil" },
     { id: "checkout", path: "/checkout" },
+    { id: "carrito", path: "/carrito" },
   ].map(({ id, path }) => [id, path]),
 ) as Record<Page, string>;
 

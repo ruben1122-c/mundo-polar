@@ -1,10 +1,11 @@
 import { OptimizedImage } from "@/app/components/OptimizedImage";
-import type { FavoriteProduct } from "@/data/products";
+import type { ShopProduct } from "@/app/context/ShopContext";
 import { Check, Heart, ShoppingCart } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ProductFavoriteCardProps {
-  product: FavoriteProduct;
+  product: ShopProduct;
+  onAddToCart: (product: ShopProduct) => void;
   onRemove: (productId: string) => void;
 }
 
@@ -15,9 +16,16 @@ const priceFormatter = new Intl.NumberFormat("es-PE", {
 
 export function ProductFavoriteCard({
   product,
+  onAddToCart,
   onRemove,
 }: ProductFavoriteCardProps) {
   const [added, setAdded] = useState(false);
+
+  useEffect(() => {
+    if (!added) return undefined;
+    const timeout = window.setTimeout(() => setAdded(false), 1400);
+    return () => window.clearTimeout(timeout);
+  }, [added]);
 
   return (
     <article className="favorite-product-card">
@@ -30,7 +38,7 @@ export function ProductFavoriteCard({
 
       <div className="favorite-product-copy">
         <h2>{product.name}</h2>
-        <p>{product.details}</p>
+        <p>{product.details ?? "Producto Mundo Polar"}</p>
         {product.badge ? <span>{product.badge}</span> : null}
         <strong>S/ {priceFormatter.format(product.price)}</strong>
       </div>
@@ -39,8 +47,10 @@ export function ProductFavoriteCard({
         <button
           className={added ? "favorite-cart-button added" : "favorite-cart-button"}
           type="button"
-          onClick={() => setAdded((current) => !current)}
-          aria-pressed={added}
+          onClick={() => {
+            onAddToCart(product);
+            setAdded(true);
+          }}
         >
           {added ? (
             <Check size={18} aria-hidden="true" />

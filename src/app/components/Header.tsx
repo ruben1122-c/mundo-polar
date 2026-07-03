@@ -1,12 +1,12 @@
 import { OptimizedImage } from "@/app/components/OptimizedImage";
 import { ASSETS } from "@/config/assets";
 import {
-  favoriteProducts,
   mockProducts,
   type ProductCategory,
 } from "@/data/products";
 import { Search, ShoppingCart } from "lucide-react";
 import { Fragment, useMemo, useState } from "react";
+import { useShop } from "../context/ShopContext";
 import { NAV_ITEMS, type Page } from "../navigation";
 import { CategoryDropdown } from "./header/CategoryDropdown";
 import { FavoritesPopover } from "./header/FavoritesPopover";
@@ -28,6 +28,7 @@ const CATEGORY_PAGES: Record<ProductCategory, Page> = {
 };
 
 export function Header({ currentPage, onNavigate }: HeaderProps) {
+  const { cartCount, favoriteItems } = useShop();
   const [query, setQuery] = useState("");
   const [notice, setNotice] = useState("");
   const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
@@ -134,7 +135,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
 
           <div className="commerce-placeholders">
             <FavoritesPopover
-              count={favoriteProducts.length}
+              items={favoriteItems}
               open={openPanel === "favorites"}
               onNavigate={navigate}
               onOpenChange={(open) => togglePanel("favorites", open)}
@@ -142,14 +143,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             <button
               className="icon-placeholder"
               type="button"
-              aria-label="Carrito (demostración)"
-              title="Carrito (demostración)"
-              onClick={() => {
-                setOpenPanel(null);
-                setNotice("El carrito se habilitará más adelante.");
-              }}
+              aria-label={`Abrir carrito, ${cartCount} productos`}
+              title="Abrir carrito"
+              onClick={() => navigate("carrito")}
             >
               <ShoppingCart size={22} aria-hidden="true" />
+              {cartCount > 0 ? (
+                <span className="icon-count">{cartCount}</span>
+              ) : null}
             </button>
             <ProfileDropdown
               open={openPanel === "profile"}

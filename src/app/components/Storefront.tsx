@@ -1,5 +1,7 @@
-import { Star } from "lucide-react";
+import { Check, Heart, ShoppingCart, Star } from "lucide-react";
+import { useEffect, useState } from "react";
 import { OptimizedImage } from "./OptimizedImage";
+import { useShop } from "../context/ShopContext";
 import { navigateTo, type Page } from "../navigation";
 import type {
   CollectionConfig,
@@ -95,6 +97,16 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const { addToCart, isFavorite, toggleFavorite } = useShop();
+  const [added, setAdded] = useState(false);
+  const favorite = isFavorite(product.id);
+
+  useEffect(() => {
+    if (!added) return undefined;
+    const timeout = window.setTimeout(() => setAdded(false), 1400);
+    return () => window.clearTimeout(timeout);
+  }, [added]);
+
   return (
     <article className="product-card">
       <div className="product-media">
@@ -117,6 +129,44 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.previousPrice ? (
             <span>S/ {product.previousPrice}</span>
           ) : null}
+        </div>
+        <div className="product-card-actions">
+          <button
+            className={added ? "product-cart-action added" : "product-cart-action"}
+            type="button"
+            onClick={() => {
+              addToCart(product);
+              setAdded(true);
+            }}
+          >
+            {added ? (
+              <Check size={17} aria-hidden="true" />
+            ) : (
+              <ShoppingCart size={17} aria-hidden="true" />
+            )}
+            {added ? "Agregado" : "Agregar"}
+          </button>
+          <button
+            className={
+              favorite
+                ? "product-favorite-action active"
+                : "product-favorite-action"
+            }
+            type="button"
+            aria-label={
+              favorite
+                ? `Quitar ${product.name} de favoritos`
+                : `Agregar ${product.name} a favoritos`
+            }
+            aria-pressed={favorite}
+            onClick={() => toggleFavorite(product)}
+          >
+            <Heart
+              size={19}
+              fill={favorite ? "currentColor" : "none"}
+              aria-hidden="true"
+            />
+          </button>
         </div>
       </div>
     </article>

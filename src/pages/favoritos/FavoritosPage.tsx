@@ -1,17 +1,10 @@
 import { Footer } from "@/app/components/Footer";
 import { ProductFavoriteCard } from "@/app/components/ProductFavoriteCard";
-import { favoriteProducts } from "@/data/products";
+import { useShop } from "@/app/context/ShopContext";
 import { Heart } from "lucide-react";
-import { useState } from "react";
 
 export default function FavoritosPage() {
-  const [products, setProducts] = useState(() => [...favoriteProducts]);
-
-  const removeFavorite = (productId: string) => {
-    setProducts((current) =>
-      current.filter((product) => product.id !== productId),
-    );
-  };
+  const { addToCart, favoriteItems, toggleFavorite } = useShop();
 
   return (
     <>
@@ -20,20 +13,21 @@ export default function FavoritosPage() {
           <header className="account-page-header">
             <h1>Mis favoritos</h1>
             <p>
-              {products.length}{" "}
-              {products.length === 1
+              {favoriteItems.length}{" "}
+              {favoriteItems.length === 1
                 ? "producto guardado"
                 : "productos guardados"}
             </p>
           </header>
 
-          {products.length ? (
+          {favoriteItems.length ? (
             <div className="favorite-product-list">
-              {products.map((product) => (
+              {favoriteItems.map((product) => (
                 <ProductFavoriteCard
                   key={product.id}
                   product={product}
-                  onRemove={removeFavorite}
+                  onAddToCart={addToCart}
+                  onRemove={() => toggleFavorite(product)}
                 />
               ))}
             </div>

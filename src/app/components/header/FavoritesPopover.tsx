@@ -2,20 +2,22 @@ import { Heart, X } from "lucide-react";
 import { useCallback, useRef } from "react";
 import { useDismissiblePopover } from "@/app/hooks/useDismissiblePopover";
 import type { Page } from "@/app/navigation";
+import type { ShopProduct } from "@/app/context/ShopContext";
 
 interface FavoritesPopoverProps {
-  count: number;
+  items: ReadonlyArray<ShopProduct>;
   open: boolean;
   onNavigate: (page: Page) => void;
   onOpenChange: (open: boolean) => void;
 }
 
 export function FavoritesPopover({
-  count,
+  items,
   open,
   onNavigate,
   onOpenChange,
 }: FavoritesPopoverProps) {
+  const count = items.length;
   const rootRef = useRef<HTMLDivElement>(null);
   const close = useCallback(() => onOpenChange(false), [onOpenChange]);
   useDismissiblePopover(rootRef, open, close);
@@ -54,6 +56,11 @@ export function FavoritesPopover({
               <>
                 <strong>{count} productos guardados</strong>
                 <p>Encuentra aquí las prendas que elegiste para más adelante.</p>
+                <ul className="favorites-popover-preview" aria-label="Favoritos recientes">
+                  {items.slice(0, 2).map((item) => (
+                    <li key={item.id}>{item.name}</li>
+                  ))}
+                </ul>
                 <button
                   className="primary-button favorites-popover-action"
                   type="button"

@@ -21,7 +21,7 @@ const contactItems: ReadonlyArray<ProfileInfoItem> = [
 ];
 
 const personalItems: ReadonlyArray<ProfileInfoItem> = [
-  { label: "Usuario", value: "Diogo", Icon: UserRound },
+  { label: "Usuario", value: "Nombre", Icon: UserRound },
   { label: "Género", value: "No especificado", Icon: VenusAndMars },
 ];
 

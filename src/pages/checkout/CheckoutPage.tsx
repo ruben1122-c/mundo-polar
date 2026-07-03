@@ -3,17 +3,19 @@ import { CheckoutSummary } from "@/app/components/checkout/CheckoutSummary";
 import { PaymentMethodSelector } from "@/app/components/checkout/PaymentMethodSelector";
 import { ShippingMethodSelector } from "@/app/components/checkout/ShippingMethodSelector";
 import { Footer } from "@/app/components/Footer";
-import { checkoutProducts } from "@/data/products";
+import { useShop } from "@/app/context/ShopContext";
+import { navigateTo } from "@/app/navigation";
 import { ChevronRight, Mail, Phone, UserRound } from "lucide-react";
 import { useState } from "react";
 
 const customerDetails = [
-  { label: "Nombre completo", value: "Diego Gonzales", Icon: UserRound },
-  { label: "Correo", value: "diego@email.com", Icon: Mail },
+  { label: "Nombre completo", value: "Jose Perez", Icon: UserRound },
+  { label: "Correo", value: "joseperez@email.com", Icon: Mail },
   { label: "Teléfono", value: "999 999 999", Icon: Phone },
 ] as const;
 
 export default function CheckoutPage() {
+  const { cartItems } = useShop();
   const [notice, setNotice] = useState("");
 
   return (
@@ -21,7 +23,9 @@ export default function CheckoutPage() {
       <section className="checkout-page">
         <div className="checkout-container">
           <nav className="checkout-breadcrumb" aria-label="Ruta de compra">
-            <span>Carrito</span>
+            <button type="button" onClick={() => navigateTo("carrito")}>
+              Carrito
+            </button>
             <ChevronRight size={16} aria-hidden="true" />
             <strong aria-current="page">Checkout</strong>
           </nav>
@@ -80,17 +84,13 @@ export default function CheckoutPage() {
 
             <CheckoutSummary
               notice={notice}
-              products={checkoutProducts}
+              products={cartItems}
               onConfirm={() =>
                 setNotice(
                   "Pago de demostración confirmado. No se procesó ningún cobro.",
                 )
               }
-              onBack={() =>
-                setNotice(
-                  "El carrito todavía es un placeholder visual; no se cambió de página.",
-                )
-              }
+              onBack={() => navigateTo("carrito")}
             />
           </div>
         </div>
