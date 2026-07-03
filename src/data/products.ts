@@ -1,3 +1,5 @@
+import { ASSETS } from "@/config/assets";
+
 export type ProductCategory =
   | "mujer"
   | "hombre"
@@ -12,6 +14,15 @@ export interface MockProduct {
   price: number;
   previousPrice?: number;
   featured?: boolean;
+}
+
+export interface FavoriteProduct {
+  id: string;
+  name: string;
+  details: string;
+  image: string;
+  price: number;
+  badge?: string;
 }
 
 /**
@@ -70,5 +81,30 @@ export const mockProducts: ReadonlyArray<MockProduct> = [
     name: "Suéter tejido para mascota",
     category: "mascotas",
     price: 55,
+  },
+];
+
+export const favoriteProducts: ReadonlyArray<FavoriteProduct> = [
+  {
+    id: "favorito-conjunto-termico",
+    name: "Conjunto térmico",
+    details: "Beige · Talla S",
+    image: ASSETS.products.polarSet,
+    price: 299,
+  },
+  {
+    id: "favorito-conjunto-moon",
+    name: "Conjunto Moon",
+    details: "Negro · Talla XS",
+    image: ASSETS.products.gildanHeavyCottonShirt,
+    price: 70,
+  },
+  {
+    id: "favorito-seleccion-peru",
+    name: "Selección Perú 2024",
+    details: "Blanco/Rojo · Talla S",
+    image: ASSETS.products.stripedBrownTop,
+    price: 89.9,
+    badge: "Camiseta personalizada",
   },
 ];
