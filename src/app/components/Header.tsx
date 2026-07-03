@@ -93,7 +93,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
         <nav className="primary-nav" aria-label="Navegación principal">
           {NAV_ITEMS.map((item) => (
             <Fragment key={item.id}>
-              {item.id === "ofertas" ? (
+              {item.id === "nosotros" ? (
                 <CategoryDropdown
                   currentPage={currentPage}
                   open={openPanel === "categories"}

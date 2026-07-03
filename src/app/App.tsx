@@ -117,12 +117,16 @@ export default function App() {
     }
   }, [isAuthLoading, page, user]);
 
-  // Stabilize page change scroll reset using requestAnimationFrame
+  // Redirect logged-in users away from login and register pages
   useEffect(() => {
-    const animFrame = requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-    return () => cancelAnimationFrame(animFrame);
+    if (!isAuthLoading && user && (page === "login" || page === "registro")) {
+      navigateTo("perfil");
+    }
+  }, [isAuthLoading, page, user]);
+
+  // Reset scroll to top instantly on page change
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, [page]);
 
   useEffect(() => {

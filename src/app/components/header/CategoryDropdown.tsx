@@ -11,7 +11,7 @@ interface CategoryDropdownProps {
 }
 
 const categories: ReadonlyArray<{ label: string; page: Page }> = [
-  { label: "Mujeres", page: "mujer" },
+  { label: "Damas", page: "mujer" },
   { label: "Hombres", page: "hombre" },
   { label: "Niños & Niñas", page: "ninos" },
   { label: "Mascotas", page: "mascotas" },
