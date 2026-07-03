@@ -39,3 +39,15 @@ export interface ProfileUpdateData {
   document_number?: string | null;
   gender?: Gender | null;
 }
+
+export interface AuthResponse {
+  access_token: string;
+  token_type: "bearer";
+  expires_at: string;
+  user: UserProfile;
+}
+
+export interface AuthSession {
+  access_token: string;
+  expires_at: string;
+}

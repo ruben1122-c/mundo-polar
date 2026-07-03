@@ -17,6 +17,7 @@ interface ProfileDropdownProps {
   onOpenChange: (open: boolean) => void;
   isAuthenticated: boolean;
   displayName?: string;
+  email?: string;
   onLogout: () => Promise<void>;
 }
 
@@ -27,6 +28,7 @@ export function ProfileDropdown({
   onOpenChange,
   isAuthenticated,
   displayName,
+  email,
   onLogout,
 }: ProfileDropdownProps) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -57,9 +59,14 @@ export function ProfileDropdown({
         <div className="header-menu profile-menu" role="menu">
           {isAuthenticated ? (
             <>
-              <div className="profile-menu-identity">
-                <span>Sesión activa</span>
-                <strong>{displayName}</strong>
+              <div className="profile-menu-header">
+                <div className="profile-avatar-circle">
+                  <UserRound size={20} aria-hidden="true" />
+                </div>
+                <div className="profile-info-details">
+                  <strong>{displayName}</strong>
+                  <span>{email}</span>
+                </div>
               </div>
               <button
                 type="button"
@@ -71,6 +78,43 @@ export function ProfileDropdown({
               >
                 <UserRound size={17} aria-hidden="true" />
                 Mi perfil
+              </button>
+              <button
+                type="button"
+                role="menuitem"
+                onClick={() =>
+                  runMockAction(
+                    "El historial completo de pedidos estará disponible próximamente.",
+                  )
+                }
+              >
+                <PackageSearch size={17} aria-hidden="true" />
+                Mis pedidos
+              </button>
+              <button
+                type="button"
+                role="menuitem"
+                onClick={() =>
+                  runMockAction(
+                    "La sección de ayuda estará disponible próximamente.",
+                  )
+                }
+              >
+                <CircleHelp size={17} aria-hidden="true" />
+                Ayuda
+              </button>
+              <div className="profile-menu-divider" />
+              <button
+                className="profile-logout"
+                type="button"
+                role="menuitem"
+                onClick={() => {
+                  close();
+                  void onLogout();
+                }}
+              >
+                <LogOut size={17} aria-hidden="true" />
+                Cerrar sesión
               </button>
             </>
           ) : (
@@ -97,50 +141,21 @@ export function ProfileDropdown({
                 <UserPlus size={17} aria-hidden="true" />
                 Crear cuenta
               </button>
-            </>
-          )}
-
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() =>
-              runMockAction(
-                "La sección de ayuda estará disponible próximamente.",
-              )
-            }
-          >
-            <CircleHelp size={17} aria-hidden="true" />
-            Ayuda
-          </button>
-
-          {isAuthenticated ? (
-            <>
+              <div className="profile-menu-divider" />
               <button
                 type="button"
                 role="menuitem"
                 onClick={() =>
                   runMockAction(
-                    "El historial completo de pedidos estará disponible próximamente.",
+                    "La sección de ayuda estará disponible próximamente.",
                   )
                 }
               >
-                <PackageSearch size={17} aria-hidden="true" />
-                Mis pedidos
-              </button>
-              <button
-                className="profile-logout"
-                type="button"
-                role="menuitem"
-                onClick={() => {
-                  close();
-                  void onLogout();
-                }}
-              >
-                <LogOut size={17} aria-hidden="true" />
-                Cerrar sesión
+                <CircleHelp size={17} aria-hidden="true" />
+                Ayuda
               </button>
             </>
-          ) : null}
+          )}
         </div>
       ) : null}
     </div>

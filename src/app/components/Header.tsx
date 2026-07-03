@@ -181,6 +181,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
                   ? `${profile.first_name} ${profile.last_name}`.trim()
                   : user?.email
               }
+              email={user?.email}
               onLogout={handleLogout}
             />
           </div>

@@ -1,11 +1,17 @@
-import { getCurrentProfile, saveCurrentProfile } from "@/services/accountService";
-import { isSupabaseConfigured, supabase } from "@/lib/supabaseClient";
+import {
+  getCurrentProfile,
+  login,
+  logout,
+  register,
+  saveCurrentProfile,
+} from "@/services/accountService";
 import type {
+  AuthResponse,
+  AuthSession,
   ProfileUpdateData,
   SignUpData,
   UserProfile,
 } from "@/types/auth";
-import type { Session, User } from "@supabase/supabase-js";
 import {
   createContext,
   useCallback,
@@ -16,9 +22,11 @@ import {
   type PropsWithChildren,
 } from "react";
 
+const AUTH_STORAGE_KEY = "mundo-polar-access-token";
+
 interface AuthContextValue {
-  session: Session | null;
-  user: User | null;
+  session: AuthSession | null;
+  user: UserProfile | null;
   profile: UserProfile | null;
   isLoading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
@@ -31,103 +39,91 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-function configurationError() {
-  return new Error(
-    "Supabase Auth no está configurado. Revisa VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY.",
-  );
+function storedToken(): string | null {
+  try {
+    return window.localStorage.getItem(AUTH_STORAGE_KEY);
+  } catch {
+    return null;
+  }
 }
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const [session, setSession] = useState<Session | null>(null);
+  const [session, setSession] = useState<AuthSession | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const loadProfile = useCallback(async (nextSession: Session | null) => {
-    if (!nextSession) {
-      setProfile(null);
-      return;
-    }
-    const nextProfile = await getCurrentProfile(nextSession.access_token);
-    setProfile(nextProfile);
+  const clearSession = useCallback(() => {
+    window.localStorage.removeItem(AUTH_STORAGE_KEY);
+    setSession(null);
+    setProfile(null);
+  }, []);
+
+  const applyAuthResponse = useCallback((response: AuthResponse) => {
+    window.localStorage.setItem(AUTH_STORAGE_KEY, response.access_token);
+    setProfile(response.user);
+    setSession({
+      access_token: response.access_token,
+      expires_at: response.expires_at,
+    });
   }, []);
 
   useEffect(() => {
     let active = true;
+    const token = storedToken();
+    setProfile(null);
 
-    void supabase.auth.getSession().then(async ({ data }) => {
-      if (!active) return;
-      setSession(data.session);
-      try {
-        await loadProfile(data.session);
-      } catch {
-        if (active) setProfile(null);
-      } finally {
+    if (!token) {
+      setIsLoading(false);
+      return () => {
+        active = false;
+      };
+    }
+
+    void getCurrentProfile(token)
+      .then((currentProfile) => {
+        if (!active) return;
+        setProfile(currentProfile);
+        setSession({ access_token: token, expires_at: "" });
+      })
+      .catch(() => {
+        if (active) clearSession();
+      })
+      .finally(() => {
         if (active) setIsLoading(false);
-      }
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, nextSession) => {
-      if (!active) return;
-      setSession(nextSession);
-      if (!nextSession) {
-        setProfile(null);
-        setIsLoading(false);
-        return;
-      }
-      queueMicrotask(() => {
-        void loadProfile(nextSession).finally(() => {
-          if (active) setIsLoading(false);
-        });
       });
-    });
 
     return () => {
       active = false;
-      subscription.unsubscribe();
     };
-  }, [loadProfile]);
+  }, [clearSession]);
 
-  const signIn = useCallback(async (email: string, password: string) => {
-    if (!isSupabaseConfigured) throw configurationError();
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email.trim().toLowerCase(),
-      password,
-    });
-    if (error) throw new Error("Correo o contraseña incorrectos.");
-  }, []);
+  const signIn = useCallback(
+    async (email: string, password: string) => {
+      setProfile(null);
+      const response = await login(email, password);
+      applyAuthResponse(response);
+    },
+    [applyAuthResponse],
+  );
 
-  const signUp = useCallback(async (data: SignUpData) => {
-    if (!isSupabaseConfigured) throw configurationError();
-    const { data: result, error } = await supabase.auth.signUp({
-      email: data.email.trim().toLowerCase(),
-      password: data.password,
-      options: {
-        data: {
-          first_name: data.firstName.trim(),
-          last_name: data.lastName.trim(),
-          phone: data.phone.trim(),
-          document_type: "dni",
-          document_number: data.documentNumber.trim(),
-        },
-      },
-    });
-    if (error) {
-      if (error.message.toLowerCase().includes("already registered")) {
-        throw new Error("Este correo ya está registrado.");
-      }
-      throw new Error(error.message);
-    }
-    return Boolean(result.session);
-  }, []);
+  const signUp = useCallback(
+    async (data: SignUpData) => {
+      setProfile(null);
+      const response = await register(data);
+      applyAuthResponse(response);
+      return true;
+    },
+    [applyAuthResponse],
+  );
 
   const signOut = useCallback(async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) throw new Error("No se pudo cerrar la sesión.");
-    setSession(null);
-    setProfile(null);
-  }, []);
+    const accessToken = session?.access_token;
+    try {
+      if (accessToken) await logout(accessToken);
+    } finally {
+      clearSession();
+    }
+  }, [clearSession, session]);
 
   const updateProfile = useCallback(
     async (data: ProfileUpdateData) => {
@@ -140,13 +136,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
   );
 
   const refreshProfile = useCallback(async () => {
-    await loadProfile(session);
-  }, [loadProfile, session]);
+    if (!session) return;
+    const nextProfile = await getCurrentProfile(session.access_token);
+    setProfile(nextProfile);
+  }, [session]);
 
   const value = useMemo<AuthContextValue>(
     () => ({
       session,
-      user: session?.user ?? null,
+      user: profile,
       profile,
       isLoading,
       signIn,

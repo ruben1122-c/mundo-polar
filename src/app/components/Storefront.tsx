@@ -7,10 +7,12 @@ import { ProductPreviewModal } from "./product/ProductPreviewModal";
 import { useToast } from "../context/ToastContext";
 import type {
   CollectionConfig,
+  CollectionPromoTile,
+  CollectionSpotlight,
+  CollectionVisualItem,
   StoreCategory,
   StoreProduct,
 } from "@/data/catalog";
-import { winterCategories } from "@/data/catalog";
 import { ASSETS } from "@/config/assets";
 import { Footer } from "./Footer";
 import type { CatalogScope } from "@/types/product";
@@ -115,12 +117,12 @@ export function ProductCard({ product }: ProductCardProps) {
     return () => window.clearTimeout(timeout);
   }, [added]);
 
-  const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleFavoriteClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
     toggleFavorite(product);
     setIsHeartPulse(true);
     setTimeout(() => setIsHeartPulse(false), 450);
-    
+
     if (favorite) {
       showToast(`Quitado de favoritos: ${product.name}`, "info");
     } else {
@@ -136,15 +138,10 @@ export function ProductCard({ product }: ProductCardProps) {
           onClick={() => setIsModalOpen(true)}
         >
           {product.badge ? <span className="product-badge">{product.badge}</span> : null}
-          <OptimizedImage
-            kind="product"
-            src={product.image}
-            alt={product.name}
-          />
-          {/* Quick view overlay on hover */}
-          <div className="absolute inset-0 bg-slate-900/30 opacity-0 hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-            <span className="bg-white/95 text-slate-800 px-3.5 py-1.5 rounded-lg font-extrabold text-xs shadow-md transition-all transform scale-95 hover:scale-100 backdrop-blur-xs">
-              Vista rápida
+          <OptimizedImage kind="product" src={product.image} alt={product.name} />
+          <div className="absolute inset-0 flex items-center justify-center bg-slate-900/30 opacity-0 transition-opacity duration-200 hover:opacity-100">
+            <span className="scale-95 rounded-lg bg-white/95 px-3.5 py-1.5 text-xs font-extrabold text-slate-800 shadow-md transition-all hover:scale-100">
+              Vista rapida
             </span>
           </div>
         </div>
@@ -155,16 +152,14 @@ export function ProductCard({ product }: ProductCardProps) {
             ))}
           </div>
           <h3
-            className="cursor-pointer hover:text-blue-600 transition-colors"
+            className="cursor-pointer transition-colors hover:text-blue-600"
             onClick={() => setIsModalOpen(true)}
           >
             {product.name}
           </h3>
           <div className="product-price">
             <strong>S/ {product.price}</strong>
-            {product.previousPrice ? (
-              <span>S/ {product.previousPrice}</span>
-            ) : null}
+            {product.previousPrice ? <span>S/ {product.previousPrice}</span> : null}
           </div>
           <div className="product-card-actions">
             <button
@@ -176,19 +171,11 @@ export function ProductCard({ product }: ProductCardProps) {
                 showToast(`Agregado al carrito: ${product.name}`, "success");
               }}
             >
-              {added ? (
-                <Check size={17} aria-hidden="true" />
-              ) : (
-                <ShoppingCart size={17} aria-hidden="true" />
-              )}
+              {added ? <Check size={17} aria-hidden="true" /> : <ShoppingCart size={17} aria-hidden="true" />}
               {added ? "Agregado" : "Agregar"}
             </button>
             <button
-              className={`${
-                favorite
-                  ? "product-favorite-action active"
-                  : "product-favorite-action"
-              } btn-animate-tap`}
+              className={`${favorite ? "product-favorite-action active" : "product-favorite-action"} btn-animate-tap`}
               type="button"
               aria-label={
                 favorite
@@ -209,12 +196,12 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </article>
 
-      {isModalOpen && (
+      {isModalOpen ? (
         <ProductPreviewModal
           product={product}
           onClose={() => setIsModalOpen(false)}
         />
-      )}
+      ) : null}
     </>
   );
 }
@@ -242,12 +229,11 @@ export function ProductGrid({
       aria-live="polite"
     >
       {isLoading
-        ? Array.from({ length: Math.min(Math.max(fallbackProducts.length, 4), 8) }, (_, index) => (
-            <ProductCardSkeleton key={`product-skeleton-${index}`} />
-          ))
-        : products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        ? Array.from(
+            { length: Math.min(Math.max(fallbackProducts.length, 4), 8) },
+            (_, index) => <ProductCardSkeleton key={`product-skeleton-${index}`} />,
+          )
+        : products.map((product) => <ProductCard key={product.id} product={product} />)}
     </div>
   );
 }
@@ -266,7 +252,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
       <OptimizedImage
         kind="content"
         src={category.image}
-        alt={`Colección ${category.name}`}
+        alt={`Coleccion ${category.name}`}
       />
       <span>{category.name}</span>
     </button>
@@ -313,17 +299,17 @@ export function PromoBanner({
 const testimonials = [
   {
     name: "Valentina R.",
-    text: "La prenda se siente cálida y resistente. El acabado superó mis expectativas.",
+    text: "La prenda se siente calida y resistente. El acabado supero mis expectativas.",
     image: ASSETS.ofertas.testimonial01,
   },
   {
-    name: "Luis Pérez",
-    text: "La calidad de las telas se nota desde el primer uso. Volvería a comprar.",
+    name: "Luis Perez",
+    text: "La calidad de las telas se nota desde el primer uso. Volveria a comprar.",
     image: ASSETS.ofertas.testimonial02,
   },
   {
     name: "Juan Soto",
-    text: "Excelente confección y muy buen ajuste para los días de más frío.",
+    text: "Excelente confeccion y muy buen ajuste para los dias de mas frio.",
     image: ASSETS.ofertas.testimonial03,
   },
 ] as const;
@@ -332,31 +318,119 @@ export function Testimonials() {
   return (
     <section className="page-section page-section-soft">
       <div className="page-container">
-        <SectionHeader
-          eyebrow="Opiniones"
-          title="Lo que dice nuestra comunidad"
-        />
+        <SectionHeader eyebrow="Opiniones" title="Lo que dice nuestra comunidad" />
         <div className="testimonial-grid">
           {testimonials.map((testimonial) => (
             <article className="testimonial-card" key={testimonial.name}>
-              <OptimizedImage
-                kind="thumbnail"
-                src={testimonial.image}
-                alt=""
-              />
+              <OptimizedImage kind="thumbnail" src={testimonial.image} alt="" />
               <div>
                 <div className="product-rating" aria-hidden="true">
                   {Array.from({ length: 5 }, (_, index) => (
                     <Star key={index} size={15} />
                   ))}
                 </div>
-                <blockquote>“{testimonial.text}”</blockquote>
+                <blockquote>"{testimonial.text}"</blockquote>
                 <strong>{testimonial.name}</strong>
                 <span>Compra verificada</span>
               </div>
             </article>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+interface CollectionSpotlightSectionProps {
+  spotlight: CollectionSpotlight;
+}
+
+function CollectionSpotlightSection({
+  spotlight,
+}: CollectionSpotlightSectionProps) {
+  return (
+    <section className="page-section page-section-soft">
+      <div className="page-container collection-spotlight">
+        <OptimizedImage
+          kind="content"
+          className="collection-spotlight-image"
+          src={spotlight.image}
+          alt={spotlight.alt}
+        />
+        <div className="collection-spotlight-copy">
+          <p className="section-eyebrow">{spotlight.eyebrow}</p>
+          <h2>{spotlight.title}</h2>
+          <p>{spotlight.description}</p>
+          {spotlight.tags?.length ? (
+            <div className="collection-tag-list" aria-label="Etiquetas visuales">
+              {spotlight.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+interface CollectionGallerySectionProps {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  items: ReadonlyArray<CollectionVisualItem>;
+}
+
+function CollectionGallerySection({
+  eyebrow,
+  title,
+  description,
+  items,
+}: CollectionGallerySectionProps) {
+  return (
+    <section className="page-section">
+      <div className="page-container">
+        <SectionHeader eyebrow={eyebrow} title={title} description={description} />
+        <div className="collection-visual-grid">
+          {items.map((item) => (
+            <article className="collection-visual-card" key={item.id}>
+              <OptimizedImage kind="content" src={item.image} alt={item.alt} />
+              <div className="collection-visual-copy">
+                <h3>{item.title}</h3>
+                {item.description ? <p>{item.description}</p> : null}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+interface CollectionPromoTilesProps {
+  items: ReadonlyArray<CollectionPromoTile>;
+}
+
+function CollectionPromoTiles({ items }: CollectionPromoTilesProps) {
+  return (
+    <section className="page-section">
+      <div className="page-container collection-promo-tile-grid">
+        {items.map((item) => (
+          <button
+            key={item.title}
+            className="collection-promo-tile"
+            type="button"
+            onClick={() => navigateTo(item.destination)}
+          >
+            <OptimizedImage kind="banner" src={item.image} alt={item.alt} />
+            <div className="collection-promo-tile-overlay" />
+            <div className="collection-promo-tile-copy">
+              <p className="hero-eyebrow">Coleccion destacada</p>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </button>
+        ))}
       </div>
     </section>
   );
@@ -380,15 +454,12 @@ export function CollectionPage({ config }: CollectionPageProps) {
       <section className="page-section">
         <div className="page-container">
           <SectionHeader
-            eyebrow="Selección Mundo Polar"
+            eyebrow="Seleccion Mundo Polar"
             title="Productos destacados"
             description="Prendas escogidas para combinar calidez, comodidad y estilo."
             action={{ label: "Ver ofertas", destination: "ofertas" }}
           />
-          <ProductGrid
-            products={config.products}
-            catalogScope={config.page}
-          />
+          <ProductGrid products={config.products} catalogScope={config.page} />
         </div>
       </section>
       <div className="page-container">
@@ -396,26 +467,17 @@ export function CollectionPage({ config }: CollectionPageProps) {
           title={config.promoTitle}
           description={config.promoDescription}
           image={config.promoImage}
-          action={{ label: "Ver colección", destination: config.page }}
+          action={{ label: "Ver coleccion", destination: config.page }}
         />
       </div>
-      <section className="page-section">
-        <div className="page-container">
-          <SectionHeader title="Compra por categoría" />
-          <div className="winter-category-grid mobile-carousel category-carousel">
-            {winterCategories.map((category) => (
-              <article className="winter-category-card" key={category.name}>
-                <OptimizedImage
-                  kind="content"
-                  src={category.image}
-                  alt={category.name}
-                />
-                <h3>{category.name}</h3>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CollectionSpotlightSection spotlight={config.spotlight} />
+      <CollectionGallerySection
+        eyebrow={config.gallery.eyebrow}
+        title={config.gallery.title}
+        description={config.gallery.description}
+        items={config.gallery.items}
+      />
+      <CollectionPromoTiles items={config.promoTiles} />
       <Testimonials />
       <Footer />
     </>
