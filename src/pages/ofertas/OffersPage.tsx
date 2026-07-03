@@ -42,14 +42,14 @@ export default function OffersPage() {
             title="Productos destacados"
             description="Una selección local de prendas y accesorios con precios de temporada."
           />
-          <ProductGrid products={offerProducts} />
+          <ProductGrid products={offerProducts} className="mobile-carousel product-carousel" />
         </div>
       </section>
 
       <section className="page-section page-section-soft">
         <div className="page-container">
           <SectionHeader title="Compra por categoría" />
-          <div className="winter-category-grid">
+          <div className="winter-category-grid mobile-carousel category-carousel">
             {winterCategories.map((category) => (
               <article className="winter-category-card" key={category.name}>
                 <OptimizedImage

@@ -11,10 +11,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
 }
 
 body {
   min-width: 320px;
+  min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
 }
@@ -2728,6 +2731,168 @@ p {
     right: 12px;
     left: 12px;
     width: auto;
+  }
+}
+
+/* ANIMATIONS & MICRO-INTERACTIONS */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f2f4f7 25%, #e4e7ec 50%, #f2f4f7 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: fadeSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes badgeBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+}
+
+.animate-badge-bounce {
+  animation: badgeBounce 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes favPulse {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.45);
+  }
+  70% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-fav-pulse {
+  animation: favPulse 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes toastSlideIn {
+  from {
+    transform: translateY(100%) translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-toast-in {
+  animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cart-item-removing {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  opacity: 0 !important;
+  transform: translateX(60px) !important;
+  max-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  border-top-width: 0 !important;
+  border-bottom-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.btn-animate-tap {
+  transition: transform 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-animate-tap:active {
+  transform: scale(0.96);
+}
+
+.underline-draw {
+  position: relative;
+}
+
+.underline-draw::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.underline-draw:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* END ANIMATIONS & MICRO-INTERACTIONS */
+
+/* MOBILE CAROUSEL UTILITIES */
+@media (max-width: 767px) {
+  .mobile-carousel {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px !important;
+    padding-bottom: 12px !important;
+    padding-inline: 16px !important;
+    margin-inline: -16px !important;
+  }
+  
+  .mobile-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  .mobile-carousel {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+
+  .mobile-carousel > * {
+    scroll-snap-align: start !important;
+    flex-shrink: 0 !important;
+  }
+
+  .category-carousel > * {
+    width: 70% !important;
+  }
+
+  .product-carousel > * {
+    width: 80% !important;
   }
 }
 

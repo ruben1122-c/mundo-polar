@@ -2,6 +2,7 @@ import { Footer } from "@/app/components/Footer";
 import { OptimizedImage } from "@/app/components/OptimizedImage";
 import { useShop } from "@/app/context/ShopContext";
 import { navigateTo } from "@/app/navigation";
+import { useToast } from "@/app/context/ToastContext";
 import {
   ArrowLeft,
   ArrowRight,
@@ -10,6 +11,7 @@ import {
   ShoppingBag,
   Trash2,
 } from "lucide-react";
+import { useState } from "react";
 
 const money = new Intl.NumberFormat("es-PE", {
   minimumFractionDigits: 2,
@@ -27,6 +29,16 @@ export default function CarritoPage() {
     increaseQuantity,
     removeFromCart,
   } = useShop();
+  const { showToast } = useToast();
+  const [removingId, setRemovingId] = useState<string | null>(null);
+
+  const handleRemove = (id: string, name: string) => {
+    setRemovingId(id);
+    setTimeout(() => {
+      removeFromCart(id);
+      showToast(`Eliminado del carrito: ${name}`, "info");
+    }, 320);
+  };
 
   return (
     <>
@@ -53,7 +65,12 @@ export default function CarritoPage() {
             <div className="cart-layout">
               <div className="cart-item-list">
                 {cartItems.map((item) => (
-                  <article className="cart-item-card" key={item.id}>
+                  <article
+                    className={`cart-item-card transition-all duration-300 ${
+                      removingId === item.id ? "cart-item-removing" : ""
+                    }`}
+                    key={item.id}
+                  >
                     <OptimizedImage
                       kind="thumbnail"
                       src={item.image}
@@ -72,14 +89,23 @@ export default function CarritoPage() {
                         role="group"
                       >
                         <button
+                          className="btn-animate-tap"
                           type="button"
                           aria-label={`Disminuir cantidad de ${item.name}`}
-                          onClick={() => decreaseQuantity(item.id)}
+                          onClick={() => {
+                            decreaseQuantity(item.id);
+                            if (item.quantity === 1) {
+                              showToast(`Eliminado del carrito: ${item.name}`, "info");
+                            }
+                          }}
                         >
                           <Minus size={17} aria-hidden="true" />
                         </button>
-                        <span aria-live="polite">{item.quantity}</span>
+                        <span key={item.quantity} className="animate-badge-bounce" aria-live="polite">
+                          {item.quantity}
+                        </span>
                         <button
+                          className="btn-animate-tap"
                           type="button"
                           aria-label={`Aumentar cantidad de ${item.name}`}
                           onClick={() => increaseQuantity(item.id)}
@@ -91,10 +117,10 @@ export default function CarritoPage() {
                         S/ {money.format(item.price * item.quantity)}
                       </strong>
                       <button
-                        className="cart-remove-button"
+                        className="cart-remove-button btn-animate-tap"
                         type="button"
                         aria-label={`Eliminar ${item.name} del carrito`}
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={() => handleRemove(item.id, item.name)}
                       >
                         <Trash2 size={18} aria-hidden="true" />
                       </button>

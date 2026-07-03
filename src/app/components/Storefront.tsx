@@ -4,6 +4,7 @@ import { OptimizedImage } from "./OptimizedImage";
 import { useShop } from "../context/ShopContext";
 import { navigateTo, type Page } from "../navigation";
 import { ProductPreviewModal } from "./product/ProductPreviewModal";
+import { useToast } from "../context/ToastContext";
 import type {
   CollectionConfig,
   StoreCategory,
@@ -99,8 +100,10 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addToCart, isFavorite, toggleFavorite } = useShop();
+  const { showToast } = useToast();
   const [added, setAdded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHeartPulse, setIsHeartPulse] = useState(false);
   const favorite = isFavorite(product.id);
 
   useEffect(() => {
@@ -108,6 +111,19 @@ export function ProductCard({ product }: ProductCardProps) {
     const timeout = window.setTimeout(() => setAdded(false), 1400);
     return () => window.clearTimeout(timeout);
   }, [added]);
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleFavorite(product);
+    setIsHeartPulse(true);
+    setTimeout(() => setIsHeartPulse(false), 450);
+    
+    if (favorite) {
+      showToast(`Quitado de favoritos: ${product.name}`, "info");
+    } else {
+      showToast(`Agregado a favoritos: ${product.name}`, "success");
+    }
+  };
 
   return (
     <>
@@ -149,11 +165,12 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
           <div className="product-card-actions">
             <button
-              className={added ? "product-cart-action added" : "product-cart-action"}
+              className={`${added ? "product-cart-action added" : "product-cart-action"} btn-animate-tap`}
               type="button"
               onClick={() => {
                 addToCart(product);
                 setAdded(true);
+                showToast(`Agregado al carrito: ${product.name}`, "success");
               }}
             >
               {added ? (
@@ -164,11 +181,11 @@ export function ProductCard({ product }: ProductCardProps) {
               {added ? "Agregado" : "Agregar"}
             </button>
             <button
-              className={
+              className={`${
                 favorite
                   ? "product-favorite-action active"
                   : "product-favorite-action"
-              }
+              } btn-animate-tap`}
               type="button"
               aria-label={
                 favorite
@@ -176,9 +193,10 @@ export function ProductCard({ product }: ProductCardProps) {
                   : `Agregar ${product.name} a favoritos`
               }
               aria-pressed={favorite}
-              onClick={() => toggleFavorite(product)}
+              onClick={handleFavoriteClick}
             >
               <Heart
+                className={isHeartPulse ? "animate-fav-pulse" : ""}
                 size={19}
                 fill={favorite ? "currentColor" : "none"}
                 aria-hidden="true"
@@ -200,11 +218,12 @@ export function ProductCard({ product }: ProductCardProps) {
 
 interface ProductGridProps {
   products: ReadonlyArray<StoreProduct>;
+  className?: string;
 }
 
-export function ProductGrid({ products }: ProductGridProps) {
+export function ProductGrid({ products, className = "" }: ProductGridProps) {
   return (
-    <div className="product-grid">
+    <div className={`product-grid ${className}`}>
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
@@ -359,7 +378,7 @@ export function CollectionPage({ config }: CollectionPageProps) {
       <section className="page-section">
         <div className="page-container">
           <SectionHeader title="Compra por categoría" />
-          <div className="winter-category-grid">
+          <div className="winter-category-grid mobile-carousel category-carousel">
             {winterCategories.map((category) => (
               <article className="winter-category-card" key={category.name}>
                 <OptimizedImage

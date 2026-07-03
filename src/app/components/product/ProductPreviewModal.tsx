@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { Heart, Minus, Plus, ShoppingCart, X } from "lucide-react";
 import { OptimizedImage } from "../OptimizedImage";
 import { useShop, type ShopProduct } from "../../context/ShopContext";
+import { useToast } from "../../context/ToastContext";
 
 interface ProductMetadata {
   description: string;
@@ -174,34 +175,56 @@ export function ProductPreviewModal({
   onClose: () => void;
 }) {
   const { addToCart, isFavorite, toggleFavorite } = useShop();
+  const { showToast } = useToast();
   const metadata = getProductMetadata(product);
 
   const [selectedColor, setSelectedColor] = useState(metadata.colors[0]);
   const [selectedSize, setSelectedSize] = useState(metadata.sizes[0]);
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isHeartPulse, setIsHeartPulse] = useState(false);
 
   const favorite = isFavorite(product.id);
 
   useEffect(() => {
-    // Lock body scroll
+    setIsMounted(true);
+
+    // Calculate scrollbar width to prevent layout shift
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+
     document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
     };
   }, []);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 250);
+  };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        onClose();
+        handleClose();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, []);
 
   useEffect(() => {
     if (!added) return undefined;
@@ -210,13 +233,24 @@ export function ProductPreviewModal({
   }, [added]);
 
   const handleAddToCart = () => {
-    // Include selected size/color in details if desired (for presentation)
     const productWithSelections = {
       ...product,
       details: `${selectedColor.name.charAt(0).toUpperCase() + selectedColor.name.slice(1)} · Talla ${selectedSize}`,
     };
     addToCart(productWithSelections, quantity);
     setAdded(true);
+    showToast(`Agregado al carrito: ${product.name} (${quantity} ud.)`, "success");
+  };
+
+  const handleFavoriteClick = () => {
+    toggleFavorite(product);
+    setIsHeartPulse(true);
+    setTimeout(() => setIsHeartPulse(false), 450);
+    if (favorite) {
+      showToast(`Quitado de favoritos: ${product.name}`, "info");
+    } else {
+      showToast(`Agregado a favoritos: ${product.name}`, "success");
+    }
   };
 
   const handleDecrease = () => setQuantity((prev) => Math.max(1, prev - 1));
@@ -227,18 +261,24 @@ export function ProductPreviewModal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-product-title"
-      className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 transition-all duration-300"
-      onClick={onClose}
+      className={`fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 transition-all duration-300 ${
+        isMounted && !isClosing ? "opacity-100" : "opacity-0"
+      }`}
+      onClick={handleClose}
     >
       <div
-        className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden relative border border-slate-100 flex flex-col md:flex-row p-6 md:p-10 gap-8 max-h-[90vh] overflow-y-auto transform scale-100 opacity-100 transition-all duration-300"
+        className={`bg-white rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden relative border border-slate-100 flex flex-col md:flex-row p-6 md:p-10 gap-8 max-h-[90vh] overflow-y-auto transition-all duration-300 ${
+          isMounted && !isClosing
+            ? "scale-100 translate-y-0 opacity-100"
+            : "scale-95 translate-y-4 opacity-0"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
-          className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+          className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-full transition-colors cursor-pointer btn-animate-tap"
           type="button"
-          onClick={onClose}
+          onClick={handleClose}
           aria-label="Cerrar modal"
         >
           <X size={24} aria-hidden="true" />
@@ -257,7 +297,7 @@ export function ProductPreviewModal({
 
           <div className="aspect-[4/5] bg-slate-50 rounded-2xl overflow-hidden flex items-center justify-center p-4 border border-slate-100 relative group">
             {product.badge ? (
-              <span className="absolute top-4 left-4 z-10 px-3 py-1 bg-blue-600 text-white rounded-full text-xs font-bold shadow-sm">
+              <span className="absolute top-4 left-4 z-10 px-3 py-1 bg-blue-600 text-white rounded-full text-xs font-bold shadow-sm animate-badge-bounce">
                 {product.badge}
               </span>
             ) : null}
@@ -265,21 +305,25 @@ export function ProductPreviewModal({
               kind="product"
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-cover rounded-xl transition-transform duration-500 hover:scale-105"
             />
           </div>
 
           <button
-            className={`w-full py-3.5 px-6 border-2 rounded-full font-bold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+            className={`w-full py-3.5 px-6 border-2 rounded-full font-bold flex items-center justify-center gap-2 transition-all cursor-pointer btn-animate-tap ${
               favorite
                 ? "border-blue-600 text-blue-600 bg-blue-50/50 hover:bg-blue-50"
                 : "border-slate-200 text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300"
             }`}
             type="button"
-            onClick={() => toggleFavorite(product)}
+            onClick={handleFavoriteClick}
             aria-pressed={favorite}
           >
-            <Heart size={20} fill={favorite ? "currentColor" : "none"} />
+            <Heart
+              className={isHeartPulse ? "animate-fav-pulse" : ""}
+              size={20}
+              fill={favorite ? "currentColor" : "none"}
+            />
             {favorite ? "Quitar de favoritos" : "Agregar a favoritos"}
           </button>
         </div>
@@ -369,7 +413,7 @@ export function ProductPreviewModal({
               <h4 className="font-bold text-slate-800">Cantidad</h4>
               <div className="flex items-center border border-slate-200 rounded-xl bg-white w-32 justify-between p-1">
                 <button
-                  className="w-10 h-10 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer"
+                  className="w-10 h-10 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer btn-animate-tap"
                   type="button"
                   onClick={handleDecrease}
                   aria-label="Disminuir cantidad"
@@ -381,7 +425,7 @@ export function ProductPreviewModal({
                   {quantity}
                 </span>
                 <button
-                  className="w-10 h-10 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer"
+                  className="w-10 h-10 flex items-center justify-center text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition-colors cursor-pointer btn-animate-tap"
                   type="button"
                   onClick={handleIncrease}
                   aria-label="Aumentar cantidad"
@@ -395,7 +439,7 @@ export function ProductPreviewModal({
           <div className="flex flex-col gap-4">
             {/* Primary Action Button */}
             <button
-              className={`w-full py-4 px-6 rounded-full font-bold flex items-center justify-center gap-2.5 transition-all text-base cursor-pointer shadow-md shadow-blue-500/10 ${
+              className={`w-full py-4 px-6 rounded-full font-bold flex items-center justify-center gap-2.5 transition-all text-base cursor-pointer shadow-md shadow-blue-500/10 btn-animate-tap ${
                 added
                   ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-emerald-500/10"
                   : "bg-blue-600 hover:bg-blue-700 text-white hover:-translate-y-[1px]"
@@ -421,11 +465,11 @@ export function ProductPreviewModal({
             {/* Trust Badges */}
             <div className="flex flex-col gap-1.5 border-t border-slate-100 pt-4">
               <p className="text-xs text-slate-500 font-semibold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-badge-bounce" />
                 Envío gratis en compras mayores a S/ 200
               </p>
               <p className="text-xs text-slate-500 font-semibold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-badge-bounce" />
                 Garantía de calidad MundoPolar
               </p>
             </div>

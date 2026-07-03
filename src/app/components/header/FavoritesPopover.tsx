@@ -33,7 +33,9 @@ export function FavoritesPopover({
         onClick={() => onOpenChange(!open)}
       >
         <Heart size={22} aria-hidden="true" />
-        {count > 0 ? <span className="icon-count">{count}</span> : null}
+        {count > 0 ? (
+          <span key={count} className="icon-count animate-badge-bounce">{count}</span>
+        ) : null}
       </button>
 
       {open ? (

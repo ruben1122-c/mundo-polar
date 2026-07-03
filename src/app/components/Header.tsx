@@ -149,7 +149,7 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
             >
               <ShoppingCart size={22} aria-hidden="true" />
               {cartCount > 0 ? (
-                <span className="icon-count">{cartCount}</span>
+                <span key={cartCount} className="icon-count animate-badge-bounce">{cartCount}</span>
               ) : null}
             </button>
             <ProfileDropdown
