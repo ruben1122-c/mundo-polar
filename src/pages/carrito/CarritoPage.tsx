@@ -3,6 +3,8 @@ import { OptimizedImage } from "@/app/components/OptimizedImage";
 import { useShop } from "@/app/context/ShopContext";
 import { navigateTo } from "@/app/navigation";
 import { useToast } from "@/app/context/ToastContext";
+import { useAuth } from "@/app/context/AuthContext";
+import { setAuthReturnPage } from "@/app/navigation";
 import {
   ArrowLeft,
   ArrowRight,
@@ -30,6 +32,7 @@ export default function CarritoPage() {
     removeFromCart,
   } = useShop();
   const { showToast } = useToast();
+  const { user } = useAuth();
   const [removingId, setRemovingId] = useState<string | null>(null);
 
   const handleRemove = (id: string, name: string) => {
@@ -38,6 +41,16 @@ export default function CarritoPage() {
       removeFromCart(id);
       showToast(`Eliminado del carrito: ${name}`, "info");
     }, 320);
+  };
+
+  const handleCheckout = () => {
+    if (user) {
+      navigateTo("checkout");
+      return;
+    }
+    setAuthReturnPage("checkout");
+    showToast("Inicia sesión para continuar con el pago.", "info");
+    navigateTo("login");
   };
 
   return (
@@ -148,7 +161,7 @@ export default function CarritoPage() {
                 <button
                   className="cart-checkout-button"
                   type="button"
-                  onClick={() => navigateTo("checkout")}
+                  onClick={handleCheckout}
                 >
                   Ir a pagar
                   <ArrowRight size={18} aria-hidden="true" />

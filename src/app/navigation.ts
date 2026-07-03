@@ -10,7 +10,9 @@ export type Page =
   | "favoritos"
   | "perfil"
   | "checkout"
-  | "carrito";
+  | "carrito"
+  | "login"
+  | "registro";
 
 export const NAV_ITEMS: ReadonlyArray<{
   id: Page;
@@ -34,6 +36,8 @@ export const PAGE_PATHS = Object.fromEntries(
     { id: "perfil", path: "/perfil" },
     { id: "checkout", path: "/checkout" },
     { id: "carrito", path: "/carrito" },
+    { id: "login", path: "/login" },
+    { id: "registro", path: "/registro" },
   ].map(({ id, path }) => [id, path]),
 ) as Record<Page, string>;
 
@@ -48,4 +52,16 @@ export function navigateTo(target: Page) {
     window.history.pushState({}, "", path);
     window.dispatchEvent(new Event("popstate"));
   }
+}
+
+const AUTH_RETURN_KEY = "mundo-polar-auth-return";
+
+export function setAuthReturnPage(target: Page) {
+  window.sessionStorage.setItem(AUTH_RETURN_KEY, target);
+}
+
+export function consumeAuthReturnPage(): Page | null {
+  const target = window.sessionStorage.getItem(AUTH_RETURN_KEY);
+  window.sessionStorage.removeItem(AUTH_RETURN_KEY);
+  return target && target in PAGE_PATHS ? (target as Page) : null;
 }

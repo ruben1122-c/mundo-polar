@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { Header } from "./components/Header";
 import { getPageFromPath, navigateTo, type Page } from "./navigation";
+import { setAuthReturnPage } from "./navigation";
+import { useAuth } from "./context/AuthContext";
 import {
   HomePageSkeleton,
   OffersPageSkeleton,
@@ -24,6 +26,8 @@ const routeImports = {
   perfil: () => import("@/pages/perfil/PerfilPage"),
   checkout: () => import("@/pages/checkout/CheckoutPage"),
   carrito: () => import("@/pages/carrito/CarritoPage"),
+  login: () => import("@/pages/auth/LoginPage"),
+  registro: () => import("@/pages/auth/RegistroPage"),
 };
 
 const skeletons: Record<Page, () => ReactNode> = {
@@ -39,6 +43,8 @@ const skeletons: Record<Page, () => ReactNode> = {
   perfil: ProfilePageSkeleton,
   checkout: CheckoutPageSkeleton,
   carrito: CartPageSkeleton,
+  login: GenericPageSkeleton,
+  registro: GenericPageSkeleton,
 };
 
 const HomePage = lazy(routeImports.inicio);
@@ -52,6 +58,8 @@ const FavoritesPage = lazy(routeImports.favoritos);
 const ProfilePage = lazy(routeImports.perfil);
 const CheckoutPage = lazy(routeImports.checkout);
 const CartPage = lazy(routeImports.carrito);
+const LoginPage = lazy(routeImports.login);
+const RegistroPage = lazy(routeImports.registro);
 
 const pages: Record<Page, React.LazyExoticComponent<React.ComponentType>> = {
   inicio: HomePage,
@@ -66,9 +74,14 @@ const pages: Record<Page, React.LazyExoticComponent<React.ComponentType>> = {
   perfil: ProfilePage,
   checkout: CheckoutPage,
   carrito: CartPage,
+  login: LoginPage,
+  registro: RegistroPage,
 };
 
+const PROTECTED_PAGES = new Set<Page>(["perfil", "checkout"]);
+
 export default function App() {
+  const { isLoading: isAuthLoading, user } = useAuth();
   const [page, setPage] = useState<Page>(() =>
     getPageFromPath(window.location.pathname),
   );
@@ -93,6 +106,17 @@ export default function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (
+      !isAuthLoading &&
+      !user &&
+      PROTECTED_PAGES.has(page)
+    ) {
+      setAuthReturnPage(page);
+      navigateTo("login");
+    }
+  }, [isAuthLoading, page, user]);
+
   // Stabilize page change scroll reset using requestAnimationFrame
   useEffect(() => {
     const animFrame = requestAnimationFrame(() => {
@@ -112,6 +136,8 @@ export default function App() {
   };
 
   const CurrentPage = pages[page];
+  const awaitingAuthGuard =
+    isAuthLoading || (!user && PROTECTED_PAGES.has(page));
 
   return (
     <div className="site-shell">
@@ -124,7 +150,7 @@ export default function App() {
           })()}
         >
           <div key={page} className="animate-page-enter">
-            <CurrentPage />
+            {awaitingAuthGuard ? <GenericPageSkeleton /> : <CurrentPage />}
           </div>
         </Suspense>
       </main>

@@ -7,6 +7,7 @@ import {
 import { Search, ShoppingCart } from "lucide-react";
 import { Fragment, useMemo, useState } from "react";
 import { useShop } from "../context/ShopContext";
+import { useAuth } from "../context/AuthContext";
 import { NAV_ITEMS, type Page } from "../navigation";
 import { CategoryDropdown } from "./header/CategoryDropdown";
 import { FavoritesPopover } from "./header/FavoritesPopover";
@@ -29,6 +30,7 @@ const CATEGORY_PAGES: Record<ProductCategory, Page> = {
 
 export function Header({ currentPage, onNavigate }: HeaderProps) {
   const { cartCount, favoriteItems } = useShop();
+  const { profile, signOut, user } = useAuth();
   const [query, setQuery] = useState("");
   const [notice, setNotice] = useState("");
   const [openPanel, setOpenPanel] = useState<OpenPanel>(null);
@@ -58,6 +60,22 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
   const togglePanel = (panel: Exclude<OpenPanel, null>, open: boolean) => {
     setNotice("");
     setOpenPanel(open ? panel : null);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      setNotice("Sesión cerrada correctamente.");
+      if (currentPage === "perfil" || currentPage === "checkout") {
+        onNavigate("inicio");
+      }
+    } catch (reason: unknown) {
+      setNotice(
+        reason instanceof Error
+          ? reason.message
+          : "No se pudo cerrar la sesión.",
+      );
+    }
   };
 
   return (
@@ -157,6 +175,13 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               onNavigate={navigate}
               onMockAction={setNotice}
               onOpenChange={(open) => togglePanel("profile", open)}
+              isAuthenticated={Boolean(user)}
+              displayName={
+                profile
+                  ? `${profile.first_name} ${profile.last_name}`.trim()
+                  : user?.email
+              }
+              onLogout={handleLogout}
             />
           </div>
 
