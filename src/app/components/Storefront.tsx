@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { OptimizedImage } from "./OptimizedImage";
 import { useShop } from "../context/ShopContext";
 import { navigateTo, type Page } from "../navigation";
+import { ProductPreviewModal } from "./product/ProductPreviewModal";
 import type {
   CollectionConfig,
   StoreCategory,
@@ -99,6 +100,7 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const { addToCart, isFavorite, toggleFavorite } = useShop();
   const [added, setAdded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const favorite = isFavorite(product.id);
 
   useEffect(() => {
@@ -108,68 +110,91 @@ export function ProductCard({ product }: ProductCardProps) {
   }, [added]);
 
   return (
-    <article className="product-card">
-      <div className="product-media">
-        {product.badge ? <span className="product-badge">{product.badge}</span> : null}
-        <OptimizedImage
-          kind="product"
-          src={product.image}
-          alt={product.name}
+    <>
+      <article className="product-card">
+        <div
+          className="product-media group relative cursor-pointer"
+          onClick={() => setIsModalOpen(true)}
+        >
+          {product.badge ? <span className="product-badge">{product.badge}</span> : null}
+          <OptimizedImage
+            kind="product"
+            src={product.image}
+            alt={product.name}
+          />
+          {/* Quick view overlay on hover */}
+          <div className="absolute inset-0 bg-slate-900/30 opacity-0 hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+            <span className="bg-white/95 text-slate-800 px-3.5 py-1.5 rounded-lg font-extrabold text-xs shadow-md transition-all transform scale-95 hover:scale-100 backdrop-blur-xs">
+              Vista rápida
+            </span>
+          </div>
+        </div>
+        <div className="product-content">
+          <div className="product-rating" aria-label="5 de 5 estrellas">
+            {Array.from({ length: 5 }, (_, index) => (
+              <Star key={index} size={15} aria-hidden="true" />
+            ))}
+          </div>
+          <h3
+            className="cursor-pointer hover:text-blue-600 transition-colors"
+            onClick={() => setIsModalOpen(true)}
+          >
+            {product.name}
+          </h3>
+          <div className="product-price">
+            <strong>S/ {product.price}</strong>
+            {product.previousPrice ? (
+              <span>S/ {product.previousPrice}</span>
+            ) : null}
+          </div>
+          <div className="product-card-actions">
+            <button
+              className={added ? "product-cart-action added" : "product-cart-action"}
+              type="button"
+              onClick={() => {
+                addToCart(product);
+                setAdded(true);
+              }}
+            >
+              {added ? (
+                <Check size={17} aria-hidden="true" />
+              ) : (
+                <ShoppingCart size={17} aria-hidden="true" />
+              )}
+              {added ? "Agregado" : "Agregar"}
+            </button>
+            <button
+              className={
+                favorite
+                  ? "product-favorite-action active"
+                  : "product-favorite-action"
+              }
+              type="button"
+              aria-label={
+                favorite
+                  ? `Quitar ${product.name} de favoritos`
+                  : `Agregar ${product.name} a favoritos`
+              }
+              aria-pressed={favorite}
+              onClick={() => toggleFavorite(product)}
+            >
+              <Heart
+                size={19}
+                fill={favorite ? "currentColor" : "none"}
+                aria-hidden="true"
+              />
+            </button>
+          </div>
+        </div>
+      </article>
+
+      {isModalOpen && (
+        <ProductPreviewModal
+          product={product}
+          onClose={() => setIsModalOpen(false)}
         />
-      </div>
-      <div className="product-content">
-        <div className="product-rating" aria-label="5 de 5 estrellas">
-          {Array.from({ length: 5 }, (_, index) => (
-            <Star key={index} size={15} aria-hidden="true" />
-          ))}
-        </div>
-        <h3>{product.name}</h3>
-        <div className="product-price">
-          <strong>S/ {product.price}</strong>
-          {product.previousPrice ? (
-            <span>S/ {product.previousPrice}</span>
-          ) : null}
-        </div>
-        <div className="product-card-actions">
-          <button
-            className={added ? "product-cart-action added" : "product-cart-action"}
-            type="button"
-            onClick={() => {
-              addToCart(product);
-              setAdded(true);
-            }}
-          >
-            {added ? (
-              <Check size={17} aria-hidden="true" />
-            ) : (
-              <ShoppingCart size={17} aria-hidden="true" />
-            )}
-            {added ? "Agregado" : "Agregar"}
-          </button>
-          <button
-            className={
-              favorite
-                ? "product-favorite-action active"
-                : "product-favorite-action"
-            }
-            type="button"
-            aria-label={
-              favorite
-                ? `Quitar ${product.name} de favoritos`
-                : `Agregar ${product.name} a favoritos`
-            }
-            aria-pressed={favorite}
-            onClick={() => toggleFavorite(product)}
-          >
-            <Heart
-              size={19}
-              fill={favorite ? "currentColor" : "none"}
-              aria-hidden="true"
-            />
-          </button>
-        </div>
-      </div>
-    </article>
+      )}
+    </>
   );
 }
 

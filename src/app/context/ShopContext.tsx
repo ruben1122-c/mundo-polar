@@ -25,7 +25,7 @@ export interface CartItem extends ShopProduct {
 interface ShopContextValue {
   cartItems: ReadonlyArray<CartItem>;
   favoriteItems: ReadonlyArray<ShopProduct>;
-  addToCart: (product: ShopProduct) => void;
+  addToCart: (product: ShopProduct, quantity?: number) => void;
   removeFromCart: (productId: string) => void;
   increaseQuantity: (productId: string) => void;
   decreaseQuantity: (productId: string) => void;
@@ -73,17 +73,17 @@ export function ShopProvider({ children }: PropsWithChildren) {
     );
   }, [favoriteItems]);
 
-  const addToCart = useCallback((product: ShopProduct) => {
+  const addToCart = useCallback((product: ShopProduct, quantity = 1) => {
     setCartItems((current) => {
       const existingItem = current.find((item) => item.id === product.id);
       if (existingItem) {
         return current.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item,
         );
       }
-      return [...current, { ...product, quantity: 1 }];
+      return [...current, { ...product, quantity }];
     });
   }, []);
 
