@@ -12,6 +12,7 @@ const HombrePage = lazy(() => import("@/pages/hombre/HombrePage"));
 const MascotasPage = lazy(() => import("@/pages/mascotas/MascotasPage"));
 const FavoritesPage = lazy(() => import("@/pages/favoritos/FavoritosPage"));
 const ProfilePage = lazy(() => import("@/pages/perfil/PerfilPage"));
+const CheckoutPage = lazy(() => import("@/pages/checkout/CheckoutPage"));
 
 const pages: Record<Page, React.LazyExoticComponent<React.ComponentType>> = {
   inicio: HomePage,
@@ -24,6 +25,7 @@ const pages: Record<Page, React.LazyExoticComponent<React.ComponentType>> = {
   mascotas: MascotasPage,
   favoritos: FavoritesPage,
   perfil: ProfilePage,
+  checkout: CheckoutPage,
 };
 
 export default function App() {

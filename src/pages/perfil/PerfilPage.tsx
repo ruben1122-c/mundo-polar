@@ -58,9 +58,9 @@ export default function PerfilPage() {
               TT
             </span>
             <div className="profile-identity">
-              <h2>Gonzales Diogo</h2>
-              <p>@Torres</p>
-              <p>202310509@gmail.com · Cuenta protegida</p>
+              <h2>Appellido Nombre</h2>
+              <p>@nombredeusuario</p>
+              <p>correo@gmail.com · Cuenta protegida</p>
             </div>
             <div className="profile-purchases">
               <strong>0</strong>

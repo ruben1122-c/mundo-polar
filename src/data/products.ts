@@ -25,6 +25,10 @@ export interface FavoriteProduct {
   badge?: string;
 }
 
+export interface CheckoutProduct extends FavoriteProduct {
+  quantity: number;
+}
+
 /**
  * Catálogo local de referencia. No está conectado a carrito, favoritos,
  * checkout, autenticación ni servicios externos.
@@ -105,6 +109,26 @@ export const favoriteProducts: ReadonlyArray<FavoriteProduct> = [
     details: "Blanco/Rojo · Talla S",
     image: ASSETS.products.stripedBrownTop,
     price: 89.9,
+    badge: "Camiseta personalizada",
+  },
+];
+
+export const checkoutProducts: ReadonlyArray<CheckoutProduct> = [
+  {
+    id: "checkout-conjunto-moon",
+    name: "Conjunto Moon",
+    details: "Negro · Talla XS",
+    image: ASSETS.products.gildanHeavyCottonShirt,
+    price: 70,
+    quantity: 1,
+  },
+  {
+    id: "checkout-seleccion-peru",
+    name: "Selección Perú 2024",
+    details: "Blanco/Rojo · Talla S",
+    image: ASSETS.products.stripedBrownTop,
+    price: 89.9,
+    quantity: 2,
     badge: "Camiseta personalizada",
   },
 ];
