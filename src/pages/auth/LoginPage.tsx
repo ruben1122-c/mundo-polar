@@ -1,9 +1,6 @@
 import { Footer } from "@/app/components/Footer";
 import { useAuth } from "@/app/context/AuthContext";
-import {
-  consumeAuthReturnPage,
-  navigateTo,
-} from "@/app/navigation";
+import { navigateTo } from "@/app/navigation";
 import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
@@ -22,7 +19,6 @@ export default function LoginPage() {
       setIsSubmitting(true);
       setError("");
       await signIn(email, password);
-      navigateTo(consumeAuthReturnPage() ?? "perfil");
     } catch (reason: unknown) {
       setError(
         reason instanceof Error

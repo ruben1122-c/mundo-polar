@@ -151,6 +151,129 @@ const PRODUCT_METADATA_MAP: Record<string, Partial<ProductMetadata>> = {
     description:
       "Suéter clásico de invierno con detalles acanalados en puños y bajo. Alta resistencia al desgaste y lavado.",
   },
+  "abrigo-largo-beige-mujer": {
+    description:
+      "Abrigo largo de silueta elegante, pensado para combinar con capas ligeras y mantener el calor durante todo el día.",
+    colors: [
+      { name: "beige", hex: "#d7c0a3" },
+      { name: "arena", hex: "#c6b093" },
+      { name: "hueso", hex: "#f3ede4" },
+    ],
+  },
+  "casaca-puffer-negra": {
+    description:
+      "Casaca puffer con aislamiento térmico y acabado mate. Ideal para trayectos urbanos y días de mucho frío.",
+    colors: [
+      { name: "negro", hex: "#111827" },
+      { name: "gris grafito", hex: "#374151" },
+    ],
+  },
+  "sueter-nordico-azul-marino": {
+    description:
+      "Suéter nórdico de punto grueso con patrón invernal. Abrigo cómodo para usar solo o como capa intermedia.",
+    colors: [
+      { name: "azul marino", hex: "#1e3356" },
+      { name: "gris piedra", hex: "#94a3b8" },
+    ],
+  },
+  "sueter-gris-tejido": {
+    description:
+      "Suéter tejido de textura suave y fit relajado. Un básico versátil para el clima frío.",
+    colors: [
+      { name: "gris claro", hex: "#cbd5e1" },
+      { name: "gris pizarra", hex: "#64748b" },
+    ],
+  },
+  "conjunto-infantil-azul-marino": {
+    description:
+      "Conjunto invernal para niños con interior suave y piezas fáciles de combinar para el día a día.",
+    colors: [
+      { name: "azul marino", hex: "#1e3a5f" },
+      { name: "blanco nieve", hex: "#f8fafc" },
+    ],
+    sizes: ["2A", "4A", "6A", "8A"],
+  },
+  "conjunto-infantil-rosa": {
+    description:
+      "Conjunto abrigador para niñas con textura acolchada y tono suave pensado para los días más fríos.",
+    colors: [
+      { name: "rosa pastel", hex: "#e9b4c0" },
+      { name: "crema", hex: "#f5eee5" },
+    ],
+    sizes: ["2A", "4A", "6A", "8A"],
+  },
+  "conjunto-infantil-negro": {
+    description:
+      "Set invernal infantil en tono oscuro, cómodo y resistente para salidas, colegio y paseos familiares.",
+    colors: [
+      { name: "negro", hex: "#111827" },
+      { name: "gris humo", hex: "#6b7280" },
+    ],
+    sizes: ["4A", "6A", "8A", "10A"],
+  },
+  "casaca-infantil-roja": {
+    description:
+      "Casaca infantil acolchada con gran retención térmica, ligera para jugar y fácil de poner.",
+    colors: [
+      { name: "rojo", hex: "#c2410c" },
+      { name: "vino", hex: "#7f1d1d" },
+    ],
+    sizes: ["4A", "6A", "8A", "10A"],
+  },
+  "botas-termicas-rosa": {
+    description:
+      "Botas térmicas livianas con interior suave y acabado impermeable para mantener los pies abrigados.",
+    colors: [
+      { name: "rosa", hex: "#d19cab" },
+      { name: "beige", hex: "#d6c1a2" },
+    ],
+    sizes: ["28", "29", "30", "31", "32"],
+  },
+  "botas-invierno-camel": {
+    description:
+      "Botas de invierno en tono camel con suela firme y acabado resistente para climas fríos.",
+    colors: [
+      { name: "camel", hex: "#a66b3f" },
+      { name: "marrón", hex: "#7c4a23" },
+    ],
+    sizes: ["36", "37", "38", "39", "40"],
+  },
+  "sueter-mascota-pinguino-azul": {
+    description:
+      "Suéter para mascota con diseño divertido y tejido suave que aporta abrigo sin limitar el movimiento.",
+    colors: [
+      { name: "azul marino", hex: "#1f3b63" },
+      { name: "celeste", hex: "#9bc2de" },
+    ],
+    sizes: ["XS", "S", "M", "L"],
+  },
+  "sueter-mascota-crema-celeste": {
+    description:
+      "Suéter crema para mascota con detalles celestes y ajuste cómodo para paseos cortos o largos.",
+    colors: [
+      { name: "crema", hex: "#efe3d0" },
+      { name: "celeste", hex: "#aac8df" },
+    ],
+    sizes: ["XS", "S", "M", "L"],
+  },
+  "chaleco-mascota-verde": {
+    description:
+      "Chaleco ligero para mascota con cobertura cálida y cierre práctico para salir sin complicaciones.",
+    colors: [
+      { name: "verde oliva", hex: "#556b4d" },
+      { name: "beige", hex: "#d9c8ae" },
+    ],
+    sizes: ["XS", "S", "M", "L"],
+  },
+  "sueter-mascota-verde": {
+    description:
+      "Suéter tejido verde para mascota con textura suave y abrigo parejo para días fríos.",
+    colors: [
+      { name: "verde bosque", hex: "#4b5d42" },
+      { name: "crema", hex: "#e8dcc9" },
+    ],
+    sizes: ["XS", "S", "M", "L"],
+  },
 };
 
 function getProductMetadata(product: ShopProduct): ProductMetadata {

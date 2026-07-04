@@ -336,17 +336,17 @@ function FilterChips({ items }: FilterChipsProps) {
 const testimonials = [
   {
     name: "Valentina R.",
-    text: "La prenda se siente calida y resistente. El acabado supero mis expectativas.",
+    text: "La prenda se siente cálida y resistente. El acabado superó mis expectativas.",
     image: ASSETS.ofertas.testimonial01,
   },
   {
-    name: "Luis Perez",
-    text: "La calidad de las telas se nota desde el primer uso. Volveria a comprar.",
+    name: "Luis Pérez",
+    text: "La calidad de las telas se nota desde el primer uso. Volvería a comprar.",
     image: ASSETS.ofertas.testimonial02,
   },
   {
     name: "Juan Soto",
-    text: "Excelente confeccion y muy buen ajuste para los dias de mas frio.",
+    text: "Excelente confección y muy buen ajuste para los días de más frío.",
     image: ASSETS.ofertas.testimonial03,
   },
 ] as const;
@@ -492,7 +492,11 @@ function CollectionProductSectionBlock({
           title={section.title}
           description={section.description}
         />
-        <ProductGrid products={section.products} catalogScope={catalogScope} />
+        <ProductGrid
+          products={section.products}
+          catalogScope={catalogScope}
+          className="mobile-carousel product-carousel"
+        />
       </div>
     </section>
   );
@@ -517,13 +521,16 @@ export function CollectionPage({ config }: CollectionPageProps) {
       <CollectionProductSectionBlock
         section={config.secondarySection}
         catalogScope={`${config.page}:secondary`}
+        className="collection-product-section"
       />
       <section className="page-section">
         <div className="page-container">
-          <SectionHeader
-            title="Productos destacados"
+          <SectionHeader title="Productos destacados" />
+          <ProductGrid
+            products={config.products}
+            catalogScope={`${config.page}:featured`}
+            className="mobile-carousel product-carousel"
           />
-          <ProductGrid products={config.products} catalogScope={`${config.page}:featured`} />
         </div>
       </section>
       <div className="page-container">
@@ -531,7 +538,7 @@ export function CollectionPage({ config }: CollectionPageProps) {
           title={config.promoTitle}
           description={config.promoDescription}
           image={config.promoImage}
-          action={{ label: "Ver coleccion", destination: config.page }}
+          action={{ label: "Ver colección", destination: config.page }}
         />
       </div>
       <CollectionSpotlightSection spotlight={config.spotlight} />
@@ -544,6 +551,7 @@ export function CollectionPage({ config }: CollectionPageProps) {
       <CollectionProductSectionBlock
         section={config.bestsellerSection}
         catalogScope={`${config.page}:bestseller`}
+        className="collection-product-section"
       />
       <CollectionPromoTiles items={config.promoTiles} />
       <Testimonials />

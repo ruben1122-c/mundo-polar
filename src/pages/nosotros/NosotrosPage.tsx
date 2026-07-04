@@ -33,7 +33,7 @@ const materials = [
 ] as const;
 
 const reviews = [
-  { name: "Valentina R.", location: "Santiago, Chile", image: ASSETS.nosotros.story01, text: "La chaqueta que compré para mi mascota es increíble. Súper abrigadora y el material se siente premium." },
+  { name: "Valentina R.", location: "Lima, Perú", image: ASSETS.nosotros.story01, text: "La chaqueta que compré para mi mascota es increíble. Súper abrigadora y el material se siente premium." },
   { name: "Marcos T.", location: "Mendoza, Argentina", image: ASSETS.nosotros.story02, text: "Llevo dos inviernos usando mi abrigo de Mundo Polar. No se ha deformado ni perdido color." },
   { name: "Carla M.", location: "Lima, Perú", image: ASSETS.nosotros.story03, text: "Me encantó que el empaque llegó sin plástico y con una tarjeta explicando de dónde viene el material." },
 ] as const;
@@ -59,7 +59,7 @@ export default function NosotrosPage() {
           <div>
             <p className="about-kicker">Quiénes somos</p>
             <h2>Una marca nacida<br />del frío del sur.</h2>
-            <p>Fundados en Santiago en 2019, nacimos con una obsesión: que ninguna familia pase frío. Hoy vestimos a miles de personas en toda Latinoamérica con prendas que respetan el planeta y duran años.</p>
+            <p>Fundados en Lima, Perú, en 2019, nacimos con una obsesión: que ninguna familia pase frío. Hoy vestimos a miles de personas en todo el país y Latinoamérica con prendas que respetan el planeta y duran años.</p>
             <div className="about-stats">
               {storyStats.map((stat) => <article key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span></article>)}
             </div>
@@ -89,7 +89,7 @@ export default function NosotrosPage() {
           <div className="about-values-grid">
             {values.map((value) => <article key={value.id}><span>{value.id}</span><h3>{value.title}</h3><p>{value.text}</p></article>)}
           </div>
-          <blockquote><p>“Nuestra misión es que cada prenda que vendemos sea una razón para disfrutar el invierno.”</p><footer><strong>Mundo Polar</strong><span>Fundada en 2019 · Chile</span></footer></blockquote>
+          <blockquote><p>“Nuestra misión es que cada prenda que vendemos sea una razón para disfrutar el invierno.”</p><footer><strong>Mundo Polar</strong><span>Fundada en 2019 · Perú</span></footer></blockquote>
         </div>
       </section>
 

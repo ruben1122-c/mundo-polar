@@ -59,7 +59,7 @@ export default function PerfilPage() {
         Icon: Phone,
       },
       {
-        label: profile?.document_type.toUpperCase() || "DNI",
+        label: profile?.document_type?.toUpperCase() || "DNI",
         value: profile?.document_number || "No registrado",
         Icon: CreditCard,
       },

@@ -1,9 +1,6 @@
 import { Footer } from "@/app/components/Footer";
 import { useAuth } from "@/app/context/AuthContext";
-import {
-  consumeAuthReturnPage,
-  navigateTo,
-} from "@/app/navigation";
+import { navigateTo } from "@/app/navigation";
 import { Eye, EyeOff, UserPlus } from "lucide-react";
 import { useState, type FormEvent } from "react";
 
@@ -50,7 +47,7 @@ export default function RegistroPage() {
         password: form.password,
       });
       if (hasSession) {
-        navigateTo(consumeAuthReturnPage() ?? "perfil");
+        setNotice("Cuenta creada correctamente.");
       } else {
         setNotice(
           "Cuenta creada. Revisa tu correo para confirmar el registro.",

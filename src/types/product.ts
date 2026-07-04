@@ -9,6 +9,8 @@ export type CatalogScope =
 
 export interface CatalogProduct {
   id: string;
+  slug?: string;
+  productReference?: string;
   name: string;
   image: string;
   price: number;

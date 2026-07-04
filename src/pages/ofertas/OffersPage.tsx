@@ -17,7 +17,6 @@ function productsForSection(index: number) {
     const product = offerProducts[(index * 2 + position) % offerProducts.length];
     return {
       ...product,
-      id: `oferta-${index}-${product.id}`,
       badge: product.badge ?? `-${15 + index * 3}%`,
     };
   });
@@ -133,10 +132,10 @@ export default function OffersPage() {
             <button type="button" onClick={() => navigateTo("ofertas")}>Ver packs ›</button>
           </div>
           <div className="offers-set-gallery" aria-label="Productos del set invernal">
-            <OptimizedImage src={ASSETS.ofertas.categoryJackets} alt="Casaca del set" />
-            <OptimizedImage src={ASSETS.ofertas.categoryThermalSets} alt="Conjunto térmico" />
-            <OptimizedImage src={ASSETS.home.categoryKids} alt="Set para niños" />
-            <OptimizedImage src={ASSETS.home.categoryPets} alt="Set para mascotas" />
+            <OptimizedImage src={ASSETS.products.womensLongBeigeCoat} alt="Abrigo largo beige" />
+            <OptimizedImage src={ASSETS.products.kidsNavyWinterSet} alt="Conjunto infantil azul marino" />
+            <OptimizedImage src={ASSETS.products.petBluePenguinSweater} alt="Suéter para mascota con pingüino" />
+            <OptimizedImage src={ASSETS.products.mensBlackPufferJacket} alt="Casaca puffer negra" />
           </div>
         </div>
       </section>

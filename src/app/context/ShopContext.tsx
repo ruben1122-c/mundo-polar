@@ -10,6 +10,8 @@ import {
 
 export interface ShopProduct {
   id: string;
+  slug?: string;
+  productReference?: string;
   name: string;
   image: string;
   price: number;
@@ -43,6 +45,30 @@ const FAVORITES_STORAGE_KEY = "mundo-polar.favorites.v1";
 
 const ShopContext = createContext<ShopContextValue | undefined>(undefined);
 
+function resolveProductReference(product: Pick<ShopProduct, "id" | "slug" | "productReference">) {
+  return product.productReference ?? product.slug ?? product.id;
+}
+
+function normalizeLegacyOfferId(value: string) {
+  const match = /^oferta-\d+-(.+)$/.exec(value);
+  return match ? match[1] : value;
+}
+
+function normalizeProduct<T extends ShopProduct>(product: T): T {
+  const normalizedId = normalizeLegacyOfferId(product.id);
+  const normalizedSlug = product.slug ? normalizeLegacyOfferId(product.slug) : undefined;
+  const normalizedReference = product.productReference
+    ? normalizeLegacyOfferId(product.productReference)
+    : normalizedSlug ?? normalizedId;
+
+  return {
+    ...product,
+    id: normalizedId,
+    slug: normalizedSlug,
+    productReference: normalizedReference,
+  };
+}
+
 function readStorage<T>(key: string): T[] {
   try {
     const storedValue = window.localStorage.getItem(key);
@@ -56,10 +82,10 @@ function readStorage<T>(key: string): T[] {
 
 export function ShopProvider({ children }: PropsWithChildren) {
   const [cartItems, setCartItems] = useState<CartItem[]>(() =>
-    readStorage<CartItem>(CART_STORAGE_KEY),
+    readStorage<CartItem>(CART_STORAGE_KEY).map(normalizeProduct),
   );
   const [favoriteItems, setFavoriteItems] = useState<ShopProduct[]>(() =>
-    readStorage<ShopProduct>(FAVORITES_STORAGE_KEY),
+    readStorage<ShopProduct>(FAVORITES_STORAGE_KEY).map(normalizeProduct),
   );
 
   useEffect(() => {
@@ -74,16 +100,19 @@ export function ShopProvider({ children }: PropsWithChildren) {
   }, [favoriteItems]);
 
   const addToCart = useCallback((product: ShopProduct, quantity = 1) => {
+    const normalizedProduct = normalizeProduct(product);
     setCartItems((current) => {
-      const existingItem = current.find((item) => item.id === product.id);
+      const existingItem = current.find(
+        (item) => item.id === normalizedProduct.id,
+      );
       if (existingItem) {
         return current.map((item) =>
-          item.id === product.id
+          item.id === normalizedProduct.id
             ? { ...item, quantity: item.quantity + quantity }
             : item,
         );
       }
-      return [...current, { ...product, quantity }];
+      return [...current, { ...normalizedProduct, quantity }];
     });
   }, []);
 
@@ -117,10 +146,11 @@ export function ShopProvider({ children }: PropsWithChildren) {
   const clearCart = useCallback(() => setCartItems([]), []);
 
   const toggleFavorite = useCallback((product: ShopProduct) => {
+    const normalizedProduct = normalizeProduct(product);
     setFavoriteItems((current) =>
-      current.some((item) => item.id === product.id)
-        ? current.filter((item) => item.id !== product.id)
-        : [...current, product],
+      current.some((item) => item.id === normalizedProduct.id)
+        ? current.filter((item) => item.id !== normalizedProduct.id)
+        : [...current, normalizedProduct],
     );
   }, []);
 
@@ -180,3 +210,5 @@ export function useShop() {
   }
   return context;
 }
+
+export { resolveProductReference };

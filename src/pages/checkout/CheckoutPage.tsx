@@ -4,7 +4,7 @@ import { PaymentMethodSelector } from "@/app/components/checkout/PaymentMethodSe
 import { ShippingMethodSelector } from "@/app/components/checkout/ShippingMethodSelector";
 import { Footer } from "@/app/components/Footer";
 import { useAuth } from "@/app/context/AuthContext";
-import { useShop } from "@/app/context/ShopContext";
+import { resolveProductReference, useShop } from "@/app/context/ShopContext";
 import { navigateTo } from "@/app/navigation";
 import { createPendingOrder } from "@/services/orderService";
 import type { PaymentMethod, ShippingMethod } from "@/types/order";
@@ -56,7 +56,7 @@ export default function CheckoutPage() {
           payment_method: paymentMethod,
           notes: notes.trim() || undefined,
           items: cartItems.map((item) => ({
-            product_reference: item.id,
+            product_reference: resolveProductReference(item),
             quantity: item.quantity,
           })),
         },

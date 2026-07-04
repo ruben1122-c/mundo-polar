@@ -93,14 +93,6 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
         <nav className="primary-nav" aria-label="Navegación principal">
           {NAV_ITEMS.map((item) => (
             <Fragment key={item.id}>
-              {item.id === "nosotros" ? (
-                <CategoryDropdown
-                  currentPage={currentPage}
-                  open={openPanel === "categories"}
-                  onNavigate={navigate}
-                  onOpenChange={(open) => togglePanel("categories", open)}
-                />
-              ) : null}
               <button
                 className={
                   currentPage === item.id ? "nav-link active" : "nav-link"
@@ -111,6 +103,14 @@ export function Header({ currentPage, onNavigate }: HeaderProps) {
               >
                 {item.label}
               </button>
+              {item.id === "nosotros" ? (
+                <CategoryDropdown
+                  currentPage={currentPage}
+                  open={openPanel === "categories"}
+                  onNavigate={navigate}
+                  onOpenChange={(open) => togglePanel("categories", open)}
+                />
+              ) : null}
             </Fragment>
           ))}
         </nav>

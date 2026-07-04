@@ -1,7 +1,12 @@
 import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 import { Header } from "./components/Header";
-import { getPageFromPath, navigateTo, type Page } from "./navigation";
-import { setAuthReturnPage } from "./navigation";
+import {
+  consumeAuthReturnPage,
+  getPageFromPath,
+  navigateTo,
+  setAuthReturnPage,
+  type Page,
+} from "./navigation";
 import { useAuth } from "./context/AuthContext";
 import {
   HomePageSkeleton,
@@ -126,7 +131,7 @@ export default function App() {
   // Redirect logged-in users away from login and register pages
   useEffect(() => {
     if (!isAuthLoading && user && (page === "login" || page === "registro")) {
-      navigateTo("perfil");
+      navigateTo(consumeAuthReturnPage() ?? "perfil");
     }
   }, [isAuthLoading, page, user]);
 
